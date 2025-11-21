@@ -1,0 +1,38 @@
+{
+  "id": "js-l2-002",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "function removeDuplicates(items) {",
+    "  const uniqueItems = new Set(items);",
+    "  return uniqueItems[0];",
+    "}",
+    "",
+    "const result = removeDuplicates([1, 2, 2, 3, 3, 4]);",
+    "console.log(result);"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-002-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Setはインデックスアクセスできません。Array.from()やスプレッド構文を使う必要があります",
+        "en": "Set cannot be accessed by index. Need to use Array.from() or spread syntax"
+      }
+    },
+    {
+      "id": "js-l2-002-2",
+      "lines": [3],
+      "type": "design",
+      "severity": "normal",
+      "score": 2,
+      "description": {
+        "ja": "関数名はremoveDuplicatesなのに最初の要素だけを返すのは意図が不明確です",
+        "en": "The function name suggests removing duplicates, but it only returns the first element"
+      }
+    }
+  ]
+}

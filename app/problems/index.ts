@@ -25,16 +25,53 @@ export type Problem = {
   issues: Issue[];
 };
 
+// Import all problem JSON files using Vite's glob import
+const problemModules = import.meta.glob<{ default: Problem }>(
+  './javascript/level*/*.json',
+  { eager: true }
+);
+
+// Cache for loaded problems
+const problemsCache: Problem[] = [];
+let cacheInitialized = false;
+
+/**
+ * Initialize problems cache
+ */
+function initializeProblemsCache() {
+  if (cacheInitialized) return;
+
+  for (const path in problemModules) {
+    const problem = problemModules[path].default;
+    problemsCache.push(problem);
+  }
+
+  cacheInitialized = true;
+}
+
 /**
  * Get problems by language and level
  * @param lang - Code language or 'all'
  * @param level - Problem difficulty level (1, 2, or 3)
  * @returns Array of problems matching the criteria
  */
-export function getProblems(_lang: CodeLanguageOrAll, _level: number): Problem[] {
-  // TODO: Implement problem loading logic
-  // This will be implemented in feature/problem-loader
-  return [];
+export function getProblems(lang: CodeLanguageOrAll, level: number): Problem[] {
+  initializeProblemsCache();
+
+  return problemsCache.filter((problem) => {
+    const langMatch = lang === 'all' || problem.codeLanguage === lang;
+    const levelMatch = problem.level === level;
+    return langMatch && levelMatch;
+  });
+}
+
+/**
+ * Get all problems
+ * @returns Array of all problems
+ */
+export function getAllProblems(): Problem[] {
+  initializeProblemsCache();
+  return [...problemsCache];
 }
 
 /**

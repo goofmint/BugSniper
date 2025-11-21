@@ -1,0 +1,27 @@
+{
+  "id": "js-l1-002",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function countDown(num) {",
+    "  let i = num;",
+    "  while (i > 0) {",
+    "    console.log(i);",
+    "  }",
+    "  return 'Done';",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-002-1",
+      "lines": [3, 4, 5],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "whileループ内でiをデクリメントしていないため、無限ループが発生します",
+        "en": "Infinite loop occurs because 'i' is never decremented inside the while loop"
+      }
+    }
+  ]
+}

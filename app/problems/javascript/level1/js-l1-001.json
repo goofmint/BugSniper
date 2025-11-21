@@ -1,0 +1,25 @@
+{
+  "id": "js-l1-001",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function processUserData(userId) {",
+    "  const userId = getUserId();",
+    "  const userData = fetchData(userId);",
+    "  return userData;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-001-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "引数userIdと同名の変数を再定義しているため、SyntaxErrorが発生します",
+        "en": "Redeclaring variable 'userId' with the same name as the parameter causes a SyntaxError"
+      }
+    }
+  ]
+}

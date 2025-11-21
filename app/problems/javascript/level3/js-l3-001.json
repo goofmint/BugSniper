@@ -1,0 +1,45 @@
+{
+  "id": "js-l3-001",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "function updateUserSettings(currentSettings, updates) {",
+    "  const entries = Object.entries(updates);",
+    "  ",
+    "  for (let i = 0; i < entries.length; i++) {",
+    "    const key = entries[i][0];",
+    "    const value = entries[i][1];",
+    "    currentSettings.key = value;",
+    "  }",
+    "  ",
+    "  return currentSettings;",
+    "}",
+    "",
+    "const settings = { theme: 'dark', language: 'ja' };",
+    "updateUserSettings(settings, { theme: 'light' });"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-001-1",
+      "lines": [7],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "ドット記法でkeyを使うと文字列'key'がプロパティ名になります。ブラケット記法[key]を使う必要があります",
+        "en": "Using dot notation with 'key' creates a property named 'key'. Should use bracket notation [key]"
+      }
+    },
+    {
+      "id": "js-l3-001-2",
+      "lines": [4, 5, 6, 7, 8],
+      "type": "design",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "for...ofループを使えばより簡潔に書けます: for (const [key, value] of entries)",
+        "en": "Can be written more concisely using for...of loop: for (const [key, value] of entries)"
+      }
+    }
+  ]
+}
