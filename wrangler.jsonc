@@ -25,6 +25,43 @@
 	 * https://developers.cloudflare.com/workers/runtime-apis/bindings/
 	 */
 	/**
+	 * D1 Database Binding
+	 * Uncomment and configure after creating your D1 database
+	 * Create D1 database: wrangler d1 create bug-sniper-db
+	 * https://developers.cloudflare.com/d1/
+	 */
+	// "d1_databases": [
+	//   {
+	//     "binding": "DB",
+	//     "database_name": "bug-sniper-db",
+	//     "database_id": "YOUR_DATABASE_ID"
+	//   }
+	// ]
+	/**
+	 * KV Namespace Binding
+	 * Uncomment and configure after creating your KV namespace
+	 * Create KV namespace: wrangler kv:namespace create "BUG_SNIPER_CACHE"
+	 * https://developers.cloudflare.com/kv/
+	 */
+	// "kv_namespaces": [
+	//   {
+	//     "binding": "CACHE",
+	//     "id": "YOUR_KV_NAMESPACE_ID"
+	//   }
+	// ]
+	/**
+	 * R2 Bucket Binding
+	 * Uncomment and configure after creating your R2 bucket
+	 * Create R2 bucket: wrangler r2 bucket create bug-sniper-assets
+	 * https://developers.cloudflare.com/r2/
+	 */
+	// "r2_buckets": [
+	//   {
+	//     "binding": "ASSETS",
+	//     "bucket_name": "bug-sniper-assets"
+	//   }
+	// ]
+	/**
 	 * Environment Variables
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
 	 */
