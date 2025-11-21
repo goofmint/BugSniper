@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router';
+import { Link } from 'react-router';
 import { SupportedLanguage, saveLanguage } from '../locales';
 
 interface HeaderProps {
@@ -6,8 +6,6 @@ interface HeaderProps {
 }
 
 export function Header({ currentLang }: HeaderProps) {
-  const location = useLocation();
-
   const handleLanguageSwitch = (lang: SupportedLanguage) => {
     saveLanguage(lang);
     // Set cookie for server-side detection
