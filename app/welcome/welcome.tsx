@@ -1,39 +1,44 @@
-import logoDark from './logo-dark.svg';
-import logoLight from './logo-light.svg';
+import { SupportedLanguage, t } from '../locales';
 
-export function Welcome({ message }: { message: string }) {
+export function Welcome({ message, lang }: { message: string; lang: SupportedLanguage }) {
   return (
-    <main className="flex items-center justify-center pt-16 pb-4">
-      <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
-        <header className="flex flex-col items-center gap-9">
-          <div className="w-[500px] max-w-[100vw] p-4">
-            <img src={logoLight} alt="React Router" className="block w-full dark:hidden" />
-            <img src={logoDark} alt="React Router" className="hidden w-full dark:block" />
+    <main className="flex items-center justify-center min-h-[calc(100vh-56px)] px-4">
+      <div className="flex flex-col items-center justify-center space-y-6 w-full max-w-md">
+        <h1 className="text-4xl font-bold tracking-tight">{t('title', lang)}</h1>
+
+        <div className="space-y-3 w-full max-w-xs">
+          <div>
+            <label className="block text-sm font-medium mb-1">{t('label.uiLanguage', lang)}</label>
+            <select
+              className="w-full px-3 py-2 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
+              defaultValue={lang}
+              disabled
+            >
+              <option value="ja">日本語</option>
+              <option value="en">English</option>
+            </select>
           </div>
-        </header>
-        <div className="max-w-[300px] w-full space-y-6 px-4">
-          <nav className="rounded-3xl border border-gray-200 p-6 dark:border-gray-700 space-y-4">
-            <p className="leading-6 text-gray-700 dark:text-gray-200 text-center">
-              What&apos;s next?
-            </p>
-            <ul>
-              {resources.map(({ href, text, icon }) => (
-                <li key={href}>
-                  <a
-                    className="group flex items-center gap-3 self-stretch p-3 leading-normal text-blue-700 hover:underline dark:text-blue-500"
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {icon}
-                    {text}
-                  </a>
-                </li>
-              ))}
-              <li className="self-stretch p-3 leading-normal">{message}</li>
-            </ul>
-          </nav>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">{t('label.codeLanguage', lang)}</label>
+            <select className="w-full px-3 py-2 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700">
+              <option value="all">{t('language.all', lang)}</option>
+              <option value="javascript">{t('language.javascript', lang)}</option>
+              <option value="php">{t('language.php', lang)}</option>
+              <option value="ruby">{t('language.ruby', lang)}</option>
+              <option value="java">{t('language.java', lang)}</option>
+              <option value="dart">{t('language.dart', lang)}</option>
+            </select>
+          </div>
         </div>
+
+        <button className="w-full max-w-xs py-3 text-lg font-semibold rounded-md bg-sky-500 text-white hover:bg-sky-600 active:bg-sky-700 transition">
+          {t('button.start', lang)}
+        </button>
+
+        {message && (
+          <p className="text-sm text-gray-600 dark:text-gray-400 text-center mt-4">{message}</p>
+        )}
       </div>
     </main>
   );
