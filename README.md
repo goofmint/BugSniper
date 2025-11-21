@@ -12,7 +12,6 @@ GitHub Actions による自動デプロイを有効にするには、以下の S
 
 1. GitHubリポジトリの `Settings` > `Secrets and variables` > `Actions` に移動
 2. 以下の Secrets を追加：
-
    - `CF_API_TOKEN`: Cloudflare API Token
    - `CF_ACCOUNT_ID`: Cloudflare Account ID
 
@@ -40,6 +39,7 @@ GitHub Actions による自動デプロイを有効にするには、以下の S
 プロジェクトが進行すると、以下のリソースが必要になります：
 
 #### D1 Database の作成
+
 ```bash
 wrangler d1 create bug-sniper-db
 ```
@@ -47,6 +47,7 @@ wrangler d1 create bug-sniper-db
 作成後、`wrangler.jsonc` の D1 設定のコメントを外して、`database_id` を設定してください。
 
 #### KV Namespace の作成
+
 ```bash
 wrangler kv:namespace create "BUG_SNIPER_CACHE"
 ```
@@ -54,6 +55,7 @@ wrangler kv:namespace create "BUG_SNIPER_CACHE"
 作成後、`wrangler.jsonc` の KV 設定のコメントを外して、namespace ID を設定してください。
 
 #### R2 Bucket の作成
+
 ```bash
 wrangler r2 bucket create bug-sniper-assets
 ```
