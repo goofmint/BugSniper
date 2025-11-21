@@ -1,11 +1,11 @@
 {
   "title": "Bug Sniper",
+  "catchphrase": "Find bugs for 60 seconds!",
   "button.start": "Start",
   "button.skip": "Skip",
   "label.score": "Score",
   "label.time": "Time",
   "label.combo": "Combo",
-  "label.uiLanguage": "UI Language",
   "label.codeLanguage": "Code Language",
   "nav.ranking": "Ranking",
   "nav.home": "Home",
@@ -14,5 +14,10 @@
   "language.php": "PHP",
   "language.ruby": "Ruby",
   "language.java": "Java",
-  "language.dart": "Dart"
+  "language.dart": "Dart",
+  "rules.title": "Rules",
+  "rules.time": "60 seconds time limit",
+  "rules.tap": "Tap lines with bugs to report them",
+  "rules.combo": "Consecutive correct answers for combo bonus",
+  "rules.skip": "Skip difficult problems"
 }

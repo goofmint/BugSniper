@@ -21,7 +21,7 @@ export function meta({ params }: Route.MetaArgs) {
   ];
 }
 
-export function loader({ params, context }: Route.LoaderArgs) {
+export function loader({ params }: Route.LoaderArgs) {
   const lang = params.lang;
 
   // Validate language parameter
@@ -31,7 +31,6 @@ export function loader({ params, context }: Route.LoaderArgs) {
 
   return {
     lang: lang as SupportedLanguage,
-    message: context.cloudflare.env.VALUE_FROM_CLOUDFLARE,
   };
 }
 
@@ -39,7 +38,7 @@ export default function LanguageHome({ loaderData }: Route.ComponentProps) {
   return (
     <>
       <Header currentLang={loaderData.lang} />
-      <Welcome message={loaderData.message} lang={loaderData.lang} />
+      <Welcome lang={loaderData.lang} />
     </>
   );
 }

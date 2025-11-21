@@ -1,11 +1,11 @@
 {
   "title": "Bug Sniper",
+  "catchphrase": "60秒間バグを見つけ続けろ！",
   "button.start": "スタート",
   "button.skip": "スキップ",
   "label.score": "スコア",
   "label.time": "残り時間",
   "label.combo": "コンボ",
-  "label.uiLanguage": "UI言語",
   "label.codeLanguage": "コード言語",
   "nav.ranking": "ランキング",
   "nav.home": "ホーム",
@@ -14,5 +14,10 @@
   "language.php": "PHP",
   "language.ruby": "Ruby",
   "language.java": "Java",
-  "language.dart": "Dart"
+  "language.dart": "Dart",
+  "rules.title": "ルール",
+  "rules.time": "制限時間は60秒",
+  "rules.tap": "バグがある行をタップして指摘",
+  "rules.combo": "連続正解でコンボボーナス",
+  "rules.skip": "難しい問題はスキップ可能"
 }

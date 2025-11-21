@@ -1,22 +1,37 @@
 import { SupportedLanguage, t } from '../locales';
 
-export function Welcome({ message, lang }: { message: string; lang: SupportedLanguage }) {
+export function Welcome({ lang }: { lang: SupportedLanguage }) {
   return (
     <main className="flex items-center justify-center min-h-[calc(100vh-56px)] px-4">
       <div className="flex flex-col items-center justify-center space-y-6 w-full max-w-md">
-        <h1 className="text-4xl font-bold tracking-tight">{t('title', lang)}</h1>
+        <div className="text-center space-y-2">
+          <h1 className="text-4xl font-bold tracking-tight">{t('title', lang)}</h1>
+          <p className="text-xl text-sky-600 dark:text-sky-400 font-semibold">
+            {t('catchphrase', lang)}
+          </p>
+        </div>
 
-        <div className="space-y-3 w-full max-w-xs">
-          <div>
-            <label className="block text-sm font-medium mb-1">{t('label.uiLanguage', lang)}</label>
-            <select
-              className="w-full px-3 py-2 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
-              defaultValue={lang}
-              disabled
-            >
-              <option value="ja">日本語</option>
-              <option value="en">English</option>
-            </select>
+        <div className="w-full max-w-xs space-y-4">
+          <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4">
+            <h2 className="text-lg font-semibold mb-3">{t('rules.title', lang)}</h2>
+            <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
+              <li className="flex items-start">
+                <span className="mr-2">•</span>
+                <span>{t('rules.time', lang)}</span>
+              </li>
+              <li className="flex items-start">
+                <span className="mr-2">•</span>
+                <span>{t('rules.tap', lang)}</span>
+              </li>
+              <li className="flex items-start">
+                <span className="mr-2">•</span>
+                <span>{t('rules.combo', lang)}</span>
+              </li>
+              <li className="flex items-start">
+                <span className="mr-2">•</span>
+                <span>{t('rules.skip', lang)}</span>
+              </li>
+            </ul>
           </div>
 
           <div>
@@ -35,10 +50,6 @@ export function Welcome({ message, lang }: { message: string; lang: SupportedLan
         <button className="w-full max-w-xs py-3 text-lg font-semibold rounded-md bg-sky-500 text-white hover:bg-sky-600 active:bg-sky-700 transition">
           {t('button.start', lang)}
         </button>
-
-        {message && (
-          <p className="text-sm text-gray-600 dark:text-gray-400 text-center mt-4">{message}</p>
-        )}
       </div>
     </main>
   );
