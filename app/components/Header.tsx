@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
-import { SupportedLanguage, saveLanguage } from '../locales';
+import type { SupportedLanguage } from '../locales';
+import { saveLanguage } from '../locales';
 
 interface HeaderProps {
   currentLang: SupportedLanguage;

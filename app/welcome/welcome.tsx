@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { SupportedLanguage, t } from '../locales';
-import { CodeLanguageOrAll } from '../problems';
+import type { SupportedLanguage } from '../locales';
+import { t } from '../locales';
+import type { CodeLanguageOrAll } from '../problems';
 
 export function Welcome({ lang }: { lang: SupportedLanguage }) {
   const navigate = useNavigate();

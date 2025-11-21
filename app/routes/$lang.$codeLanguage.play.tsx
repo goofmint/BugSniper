@@ -1,8 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { redirect } from 'react-router';
 import type { Route } from './+types/$lang.$codeLanguage.play';
-import { SupportedLanguage, t } from '../locales';
-import { CodeLanguageOrAll, Problem, getProblems, calculateScore } from '../problems';
+import type { SupportedLanguage } from '../locales';
+import { t } from '../locales';
+import type { CodeLanguageOrAll, Problem } from '../problems';
+import { getProblems, calculateScore } from '../problems';
 import { Header } from '../components/Header';
 
 /**
