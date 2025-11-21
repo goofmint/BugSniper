@@ -1,0 +1,18 @@
+{
+  "title": "Bug Sniper",
+  "button.start": "Start",
+  "button.skip": "Skip",
+  "label.score": "Score",
+  "label.time": "Time",
+  "label.combo": "Combo",
+  "label.uiLanguage": "UI Language",
+  "label.codeLanguage": "Code Language",
+  "nav.ranking": "Ranking",
+  "nav.home": "Home",
+  "language.all": "All",
+  "language.javascript": "JavaScript",
+  "language.php": "PHP",
+  "language.ruby": "Ruby",
+  "language.java": "Java",
+  "language.dart": "Dart"
+}
