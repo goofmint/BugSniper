@@ -10,6 +10,46 @@ feature/* → 各要件（この一覧）
 
 ---
 
+## 0. デプロイ・CI/CD
+
+### 11.1 デプロイターゲット
+
+* Cloudflare Workers（`wrangler.toml` で D1 / KV / R2 バインディングを設定）
+
+### 11.2 GitHub Actions
+
+* `main` ブランチ push をトリガーとして自動デプロイする。
+
+例：
+
+```yaml
+name: Deploy to Cloudflare
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm install
+      - run: npm run build
+
+      - name: Deploy with Wrangler
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+```
+
 # 1. ⚙️ 基礎セットアップ
 
 ## ■ feature/project-setup
@@ -21,6 +61,7 @@ feature/* → 各要件（この一覧）
 * Tailwind（使う場合）セットアップ
 * dev / prod ビルド確認
 * wrangler.toml の雛形作成
+
 
 ---
 
@@ -836,45 +877,3 @@ function handleGameEnd(result: GameResult) {
 
   * プレイログ（カテゴリ別発見率、見逃し issue、コード言語、UI 言語）を元にフィードバック文章を生成
   * JSON 形式（`summary`, `strengths`, `weak_points`, `advice`）で返却し、D1 の `llm_feedback` カラムに保存
-
----
-
-## 11. デプロイ・CI/CD
-
-### 11.1 デプロイターゲット
-
-* Cloudflare Workers（`wrangler.toml` で D1 / KV / R2 バインディングを設定）
-
-### 11.2 GitHub Actions
-
-* `main` ブランチ push をトリガーとして自動デプロイする。
-
-例：
-
-```yaml
-name: Deploy to Cloudflare
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - run: npm install
-      - run: npm run build
-
-      - name: Deploy with Wrangler
-        run: npx wrangler deploy
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-```
