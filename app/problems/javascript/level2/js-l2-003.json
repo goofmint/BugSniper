@@ -1,0 +1,41 @@
+{
+  "id": "js-l2-003",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "function calculateTotal(price, quantity) {",
+    "  const tax = 0.1;",
+    "  const subtotal = price * quantity;",
+    "  const total = subtotal + subtotal * tax;",
+    "  return total.toFixed(2);",
+    "}",
+    "",
+    "const userInput = document.getElementById('quantity').value;",
+    "const result = calculateTotal(1000, userInput);",
+    "console.log(`合計: ${result}円`);"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-003-1",
+      "lines": [8, 9],
+      "type": "bug",
+      "severity": "normal",
+      "score": 4,
+      "description": {
+        "ja": "input要素のvalueは文字列なので、数値演算の前にNumber()やparseInt()で変換が必要です",
+        "en": "The value property of input element is a string, needs conversion with Number() or parseInt() before arithmetic operations"
+      }
+    },
+    {
+      "id": "js-l2-003-2",
+      "lines": [9],
+      "type": "design",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "入力値の妥当性チェック（NaN、負数、小数など）が行われていません",
+        "en": "No validation for input value (NaN, negative numbers, decimals, etc.)"
+      }
+    }
+  ]
+}

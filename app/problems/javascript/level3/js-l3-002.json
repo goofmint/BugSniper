@@ -1,0 +1,64 @@
+{
+  "id": "js-l3-002",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "class User {",
+    "  constructor(id, name) {",
+    "    this.id = id;",
+    "    this.name = name;",
+    "  }",
+    "",
+    "  static findById(users, id) {",
+    "    return users.find(user => user.id === id);",
+    "  }",
+    "",
+    "  findByName(name) {",
+    "    return this.find(user => user.name === name);",
+    "  }",
+    "}",
+    "",
+    "const users = [",
+    "  new User(1, 'Alice'),",
+    "  new User(2, 'Bob')",
+    "];",
+    "",
+    "const user = User.findById(users, 1);",
+    "const result = user.findByName('Bob');"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-002-1",
+      "lines": [12],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "インスタンスメソッド内でthis.find()を呼んでいますが、thisはUserインスタンスで配列ではありません",
+        "en": "Calling this.find() in instance method, but 'this' is a User instance, not an array"
+      }
+    },
+    {
+      "id": "js-l3-002-2",
+      "lines": [22],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "findByNameはインスタンスメソッドですが、配列を受け取るように設計されていません。静的メソッドにすべきです",
+        "en": "findByName is an instance method but not designed to receive an array. Should be a static method"
+      }
+    },
+    {
+      "id": "js-l3-002-3",
+      "lines": [11, 12, 13],
+      "type": "design",
+      "severity": "normal",
+      "score": 2,
+      "description": {
+        "ja": "findByNameメソッドの設計が不適切です。静的メソッドとして定義し、配列を引数に取るべきです",
+        "en": "Poor design of findByName method. Should be defined as a static method and take an array as parameter"
+      }
+    }
+  ]
+}

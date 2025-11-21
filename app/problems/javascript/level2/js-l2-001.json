@@ -1,0 +1,37 @@
+{
+  "id": "js-l2-001",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "class Calculator {",
+    "  constructor(value) {",
+    "    this.value = value;",
+    "  }",
+    "",
+    "  add(n) {",
+    "    this.value += n;",
+    "    return this;",
+    "  }",
+    "",
+    "  getValue() {",
+    "    return this.value;",
+    "  }",
+    "}",
+    "",
+    "const calc = new Calculator(10);",
+    "calc.add(5).subtract(3).getValue();"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-001-1",
+      "lines": [17],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "subtractメソッドが定義されていないため、実行時にTypeErrorが発生します",
+        "en": "The 'subtract' method is not defined, causing a TypeError at runtime"
+      }
+    }
+  ]
+}
