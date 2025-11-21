@@ -1,6 +1,16 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { SupportedLanguage, t } from '../locales';
+import { CodeLanguageOrAll } from '../problems';
 
 export function Welcome({ lang }: { lang: SupportedLanguage }) {
+  const navigate = useNavigate();
+  const [codeLanguage, setCodeLanguage] = useState<CodeLanguageOrAll>('all');
+
+  const handleStart = () => {
+    navigate(`/${lang}/${codeLanguage}/play`);
+  };
+
   return (
     <main className="flex items-center justify-center min-h-[calc(100vh-56px)] px-4">
       <div className="flex flex-col items-center justify-center space-y-6 w-full max-w-md">
@@ -36,7 +46,11 @@ export function Welcome({ lang }: { lang: SupportedLanguage }) {
 
           <div>
             <label className="block text-sm font-medium mb-1">{t('label.codeLanguage', lang)}</label>
-            <select className="w-full px-3 py-2 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700">
+            <select
+              className="w-full px-3 py-2 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
+              value={codeLanguage}
+              onChange={(e) => setCodeLanguage(e.target.value as CodeLanguageOrAll)}
+            >
               <option value="all">{t('language.all', lang)}</option>
               <option value="javascript">{t('language.javascript', lang)}</option>
               <option value="php">{t('language.php', lang)}</option>
@@ -47,7 +61,10 @@ export function Welcome({ lang }: { lang: SupportedLanguage }) {
           </div>
         </div>
 
-        <button className="w-full max-w-xs py-3 text-lg font-semibold rounded-md bg-sky-500 text-white hover:bg-sky-600 active:bg-sky-700 transition">
+        <button
+          onClick={handleStart}
+          className="w-full max-w-xs py-3 text-lg font-semibold rounded-md bg-sky-500 text-white hover:bg-sky-600 active:bg-sky-700 transition"
+        >
           {t('button.start', lang)}
         </button>
       </div>
