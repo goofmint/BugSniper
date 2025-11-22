@@ -37,6 +37,10 @@ export async function loader({ params, request, context }: Route.LoaderArgs) {
 
   const db = context.cloudflare.env.DB;
 
+  if (!db) {
+    throw new Response('Database not configured', { status: 500 });
+  }
+
   // Get top 50 scores from the last 7 days
   let query: string;
   let queryParams: string[];
