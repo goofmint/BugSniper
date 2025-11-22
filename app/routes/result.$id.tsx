@@ -22,6 +22,25 @@ type ScoreRecord = {
 };
 
 /**
+ * Meta function to set page title
+ */
+export function meta({ data }: Route.MetaArgs) {
+  if (!data || !data.score) {
+    return [{ title: 'Result Not Found | Bug Sniper' }];
+  }
+
+  const { score } = data;
+  const langName = score.ui_language === 'ja' ? '日本語' : 'English';
+  const codeLangDisplay = score.code_language.charAt(0).toUpperCase() + score.code_language.slice(1);
+
+  return [
+    {
+      title: `${langName} | ${codeLangDisplay} ${score.score}pt | Bug Sniper`,
+    },
+  ];
+}
+
+/**
  * Loader to fetch score data from D1
  */
 export async function loader({ params, context }: Route.LoaderArgs) {
