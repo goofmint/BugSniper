@@ -1,0 +1,23 @@
+{
+  "id": "js-l1-010",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function getFirstElement(arr) {",
+    "  return arr[1];",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-010-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "配列の最初の要素はインデックス0です。arr[1]は2番目の要素を返します",
+        "en": "First element of array is at index 0. arr[1] returns the second element"
+      }
+    }
+  ]
+}

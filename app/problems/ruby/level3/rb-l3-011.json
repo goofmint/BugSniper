@@ -1,0 +1,36 @@
+{
+  "id": "rb-l3-011",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "module Logging",
+    "  def log(message)",
+    "    puts \"[LOG] #{message}\"",
+    "  end",
+    "end",
+    "",
+    "module Formatting",
+    "  def log(message)",
+    "    super(\"[#{Time.now}] #{message}\")",
+    "  end",
+    "end",
+    "",
+    "class Service",
+    "  include Logging",
+    "  prepend Formatting",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-011-1",
+      "lines": [14, 15],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "prependはメソッド探索チェーンの先頭に追加されますが、includeの後に呼ばれています。順序が期待と異なる可能性があります",
+        "en": "prepend adds to front of method lookup chain but is called after include. Order may differ from expectations"
+      }
+    }
+  ]
+}

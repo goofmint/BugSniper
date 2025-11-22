@@ -1,0 +1,31 @@
+{
+  "id": "java-l2-015",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "public class Calculator {",
+    "    public int divide(int a, int b) {",
+    "        try {",
+    "            return a / b;",
+    "        } catch (ArithmeticException e) {",
+    "            System.out.println(\"Error: \" + e.getMessage());",
+    "        } finally {",
+    "            return 0;",
+    "        }",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-015-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "finallyブロックのreturn文が問題です。finallyブロックのreturnは、tryまたはcatchブロックのreturn値を上書きします。これにより、正常な計算結果も常に0が返されます。",
+        "en": "Return in finally block is problematic. Finally's return overrides try/catch block returns. This causes normal results to always return 0."
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "dart-l1-017",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  double price = 19.99;",
+    "  int roundedPrice = price;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-017-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "型変換エラー: double型をint型に暗黙的に変換できません",
+        "en": "Type conversion error: Cannot implicitly convert double to int"
+      }
+    }
+  ]
+}

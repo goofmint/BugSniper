@@ -1,0 +1,25 @@
+{
+  "id": "php-l1-004",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$colors = ['red', 'green', 'blue'];",
+    "$firstColor = $colors[1];",
+    "echo $firstColor;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-004-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "配列のインデックスは0から始まります。最初の要素は$colors[0]です",
+        "en": "Array indices start at 0. The first element is $colors[0]"
+      }
+    }
+  ]
+}

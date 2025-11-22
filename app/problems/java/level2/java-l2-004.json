@@ -1,0 +1,41 @@
+{
+  "id": "java-l2-004",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "import java.io.*;",
+    "",
+    "public class FileReader {",
+    "    public String readFile(String path) {",
+    "        BufferedReader reader = new BufferedReader(new FileReader(path));",
+    "        String line = reader.readLine();",
+    "        reader.close();",
+    "        return line;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-004-1",
+      "lines": [5, 6, 7],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "チェック例外が処理されていません。FileNotFoundExceptionとIOExceptionをキャッチするか、throws宣言で投げる必要があります。",
+        "en": "Checked exceptions not handled. Must catch FileNotFoundException and IOException or declare with throws."
+      }
+    },
+    {
+      "id": "java-l2-004-2",
+      "lines": [5, 7],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "リソースリークの可能性があります。例外が発生した場合、readerがクローズされません。try-with-resourcesを使用すべきです。",
+        "en": "Potential resource leak. If exception occurs, reader won't be closed. Should use try-with-resources."
+      }
+    }
+  ]
+}

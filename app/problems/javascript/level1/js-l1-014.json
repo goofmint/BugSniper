@@ -1,0 +1,25 @@
+{
+  "id": "js-l1-014",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function printNumbers(n) {",
+    "  for (let i = 1; i <= n; i--) {",
+    "    console.log(i);",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-014-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "ループカウンタをデクリメント(i--)しているため、無限ループが発生します",
+        "en": "Decrementing loop counter (i--) causes an infinite loop"
+      }
+    }
+  ]
+}

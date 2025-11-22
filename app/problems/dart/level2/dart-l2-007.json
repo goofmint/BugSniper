@@ -1,0 +1,32 @@
+{
+  "id": "dart-l2-007",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "void main() {",
+    "  String? value = getValue();",
+    "  if (value != null) {",
+    "    processAsync();",
+    "    print(value.length);",
+    "  }",
+    "}",
+    "",
+    "String? getValue() => 'test';",
+    "Future<void> processAsync() async {",
+    "  await Future.delayed(Duration(seconds: 1));",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-007-1",
+      "lines": [4, 5],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "Null安全性の微妙なバグ: processAsyncが非同期なので、nullチェック後にvalueが使用される保証がありません",
+        "en": "Subtle null safety bug: processAsync is async, so value might change after null check"
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "py-l2-004",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "class User:",
+    "    count = 0",
+    "    ",
+    "    def __init__(self, name):",
+    "        self.name = name",
+    "        count += 1"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-004-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "クラス変数にアクセスするには'User.count'または'self.count'を使用する必要があります",
+        "en": "Should use 'User.count' or 'self.count' to access class variable"
+      }
+    }
+  ]
+}

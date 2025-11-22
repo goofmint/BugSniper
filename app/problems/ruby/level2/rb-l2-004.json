@@ -1,0 +1,29 @@
+{
+  "id": "rb-l2-004",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "def find_users(criteria)",
+    "  users = User.all",
+    "  users.select { |user|",
+    "    user.name == criteria[:name] &&",
+    "    user.age > criteria[:age]",
+    "  }",
+    "rescue",
+    "  []",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-004-1",
+      "lines": [7],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "すべての例外を捕捉しており、エラーの原因が隠蔽されます。特定の例外クラスを指定すべきです",
+        "en": "Rescuing all exceptions hides the error cause. Should specify particular exception classes"
+      }
+    }
+  ]
+}

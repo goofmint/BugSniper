@@ -1,0 +1,31 @@
+{
+  "id": "dart-l2-010",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "void main() {",
+    "  Map<String, dynamic> data = {",
+    "    'name': 'Alice',",
+    "    'age': 30",
+    "  };",
+    "  data.forEach((key, value) {",
+    "    if (value > 25) {",
+    "      data.remove(key);",
+    "    }",
+    "  });",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-010-1",
+      "lines": [6, 7, 8, 9, 10],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "並行変更エラー: forEachループ内でMapを変更するとConcurrentModificationErrorが発生します",
+        "en": "Concurrent modification error: Modifying Map inside forEach causes ConcurrentModificationError"
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "py-l2-015",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "def modify_tuple(t):",
+    "    t[0] = 100",
+    "    return t"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-015-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "タプルは不変です。要素を変更できません",
+        "en": "Tuples are immutable, cannot modify elements"
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "py-l1-005",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def get_first_element(lst):",
+    "    return lst[1]"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-005-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "リストの最初の要素はインデックス0です。lst[1]は2番目の要素を返します",
+        "en": "First element of list is at index 0. lst[1] returns the second element"
+      }
+    }
+  ]
+}

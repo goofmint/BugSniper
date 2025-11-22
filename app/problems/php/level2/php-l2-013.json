@@ -1,0 +1,30 @@
+{
+  "id": "php-l2-013",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "class Product {",
+    "  public function __construct($name, $price) {",
+    "    $this->name = $name;",
+    "    $this->price = $price;",
+    "  }",
+    "}",
+    "$product = new Product('Book', 29.99);",
+    "echo $product->name;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-013-1",
+      "lines": [3, 4, 5],
+      "type": "design",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "プロパティが宣言されていません。動的プロパティは非推奨です",
+        "en": "Properties not declared. Dynamic properties are deprecated"
+      }
+    }
+  ]
+}

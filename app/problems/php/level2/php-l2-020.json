@@ -1,0 +1,33 @@
+{
+  "id": "php-l2-020",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "class Counter {",
+    "  private $count = 0;",
+    "  ",
+    "  public function increment() {",
+    "    $count++;",
+    "  }",
+    "  ",
+    "  public function getCount() {",
+    "    return $count;",
+    "  }",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-020-1",
+      "lines": [6, 10],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "プロパティにアクセスするには$this->countを使用する必要があります",
+        "en": "Must use $this->count to access property"
+      }
+    }
+  ]
+}

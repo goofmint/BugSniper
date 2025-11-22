@@ -1,0 +1,26 @@
+{
+  "id": "js-l1-005",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function checkAge(age) {",
+    "  if (age = 18) {",
+    "    return 'Adult';",
+    "  }",
+    "  return 'Minor';",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-005-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "代入演算子(=)を使っているため、比較演算子(===)を使う必要があります",
+        "en": "Using assignment operator (=) instead of comparison operator (===)"
+      }
+    }
+  ]
+}

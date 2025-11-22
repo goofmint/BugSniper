@@ -1,0 +1,33 @@
+{
+  "id": "rb-l3-013",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class AttributeDefiner",
+    "  def self.attr_with_history(attr_name)",
+    "    define_method(attr_name) do",
+    "      instance_variable_get(\"@#{attr_name}\")",
+    "    end",
+    "",
+    "    define_method(\"#{attr_name}=\") do |value|",
+    "      @history ||= []",
+    "      @history << value",
+    "      instance_variable_set(\"@#{attr_name}\", value)",
+    "    end",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-013-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "@historyが全属性で共有されます。各属性に対して個別の履歴を持つべきです",
+        "en": "@history is shared across all attributes. Should have separate history for each attribute"
+      }
+    }
+  ]
+}

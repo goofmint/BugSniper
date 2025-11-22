@@ -1,0 +1,23 @@
+{
+  "id": "js-l1-018",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function divide(a, b) {",
+    "  return a / b;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-018-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "bが0の場合のチェックがありません。ゼロ除算のエラーハンドリングが必要です",
+        "en": "No check for b being 0. Division by zero error handling is needed"
+      }
+    }
+  ]
+}

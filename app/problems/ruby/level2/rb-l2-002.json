@@ -1,0 +1,27 @@
+{
+  "id": "rb-l2-002",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "def process_items(items)",
+    "  items.map do |item|",
+    "    if item.valid?",
+    "      item.process",
+    "    end",
+    "  end.compact",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-002-1",
+      "lines": [2, 3, 4, 5],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "if文がfalseの場合nilを返すため、配列にnilが含まれます。compactで除去していますが、selectやfilter_mapの使用が適切です",
+        "en": "The if statement returns nil when false, leaving nil values in array. While compact removes them, using select or filter_map is more appropriate"
+      }
+    }
+  ]
+}

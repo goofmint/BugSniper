@@ -1,0 +1,29 @@
+{
+  "id": "php-l1-010",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$x = 10;",
+    "$y = '10';",
+    "if ($x === $y) {",
+    "  echo 'Equal';",
+    "} else {",
+    "  echo 'Not equal';",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-010-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "===は型も比較します。整数10と文字列'10'は厳密には等しくありません",
+        "en": "=== compares types too. Integer 10 and string '10' are not strictly equal"
+      }
+    }
+  ]
+}

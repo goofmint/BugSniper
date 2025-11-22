@@ -1,0 +1,29 @@
+{
+  "id": "java-l1-016",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class MethodCall {",
+    "    public void start() {",
+    "        initialize;",
+    "    }",
+    "    ",
+    "    private void initialize() {",
+    "        System.out.println(\"Initialized\");",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-016-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "メソッド呼び出しに括弧が欠落しています。メソッドを呼び出すには、メソッド名の後に()を付ける必要があります。",
+        "en": "Missing parentheses for method call. To call a method, you must use parentheses () after method name."
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "dart-l3-003",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "class Container<T extends num> {",
+    "  T value;",
+    "  Container(this.value);",
+    "}",
+    "",
+    "void main() {",
+    "  var stringContainer = Container<String>('Hello');",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-003-1",
+      "lines": [7],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "ジェネリック制約違反: Tはnumを継承する必要がありますが、Stringを使用しています",
+        "en": "Generic constraint violation: T must extend num, but String is used"
+      }
+    }
+  ]
+}

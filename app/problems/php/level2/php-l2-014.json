@@ -1,0 +1,29 @@
+{
+  "id": "php-l2-014",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "$colors = ['red', 'green', 'blue'];",
+    "foreach ($colors as &$color) {",
+    "  $color = strtoupper($color);",
+    "}",
+    "foreach ($colors as $color) {",
+    "  echo $color;",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-014-1",
+      "lines": [3, 6],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "参照を使用した後、unset($color)で参照を解除すべきです。次のループで予期しない動作が起こります",
+        "en": "Should unset($color) after using reference. Next loop causes unexpected behavior"
+      }
+    }
+  ]
+}

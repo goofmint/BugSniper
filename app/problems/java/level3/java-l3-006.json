@@ -1,0 +1,45 @@
+{
+  "id": "java-l3-006",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "import java.util.List;",
+    "import java.util.ArrayList;",
+    "",
+    "public class GenericBox<T> {",
+    "    private List<T> items = new ArrayList<>();",
+    "    ",
+    "    public void addAll(List<T> newItems) {",
+    "        items.addAll(newItems);",
+    "    }",
+    "    ",
+    "    public List getItems() {",
+    "        return items;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-006-1",
+      "lines": [11],
+      "type": "design",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ジェネリック型の消失です。戻り値の型がRaw型のListになっており、型パラメータ情報が失われています。List<T>を返すべきです。",
+        "en": "Generic type erasure. Return type is raw List, losing type parameter information. Should return List<T>."
+      }
+    },
+    {
+      "id": "java-l3-006-2",
+      "lines": [11, 12],
+      "type": "security",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "内部コレクションの直接公開です。内部のリストへの参照を返すことで、外部から直接変更される可能性があります。コピーを返すか、不変リストを返すべきです。",
+        "en": "Direct exposure of internal collection. Returning reference to internal list allows external modification. Should return copy or unmodifiable list."
+      }
+    }
+  ]
+}

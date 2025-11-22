@@ -1,0 +1,29 @@
+{
+  "id": "js-l1-004",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function findMax(arr) {",
+    "  let max = 0;",
+    "  for (let i = 0; i < arr.length; i++) {",
+    "    if (arr[i] > max) {",
+    "      max = arr[i];",
+    "    }",
+    "  }",
+    "  return max;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-004-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "maxを0で初期化すると、全ての値が負の場合に誤った結果になります",
+        "en": "Initializing max to 0 returns incorrect result when all values are negative"
+      }
+    }
+  ]
+}

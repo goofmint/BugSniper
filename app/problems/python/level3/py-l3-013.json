@@ -1,0 +1,28 @@
+{
+  "id": "py-l3-013",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "import threading",
+    "",
+    "class Counter:",
+    "    def __init__(self):",
+    "        self.count = 0",
+    "    ",
+    "    def increment(self):",
+    "        self.count += 1"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-013-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "マルチスレッド環境では競合状態が発生します。threading.Lockを使うべきです",
+        "en": "Race condition in multi-threaded environment, should use threading.Lock"
+      }
+    }
+  ]
+}

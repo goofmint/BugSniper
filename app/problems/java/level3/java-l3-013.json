@@ -1,0 +1,34 @@
+{
+  "id": "java-l3-013",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "public class DoubleCheckedLocking {",
+    "    private static Resource resource;",
+    "    ",
+    "    public static Resource getInstance() {",
+    "        if (resource == null) {",
+    "            synchronized(DoubleCheckedLocking.class) {",
+    "                if (resource == null) {",
+    "                    resource = new Resource();",
+    "                }",
+    "            }",
+    "        }",
+    "        return resource;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-013-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "volatileキーワードが欠落しています。Double-Checked Lockingパターンでは、フィールドにvolatileを付けないと、メモリ可視性の問題により、部分的に構築されたオブジェクトが見える可能性があります。",
+        "en": "Missing volatile keyword. In Double-Checked Locking pattern, without volatile on field, memory visibility issues can expose partially constructed objects."
+      }
+    }
+  ]
+}

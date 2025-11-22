@@ -1,0 +1,34 @@
+{
+  "id": "dart-l3-013",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "import 'dart:isolate';",
+    "",
+    "class UserData {",
+    "  final Function callback;",
+    "  UserData(this.callback);",
+    "}",
+    "",
+    "void isolateWorker(UserData data) {",
+    "  data.callback();",
+    "}",
+    "",
+    "void main() async {",
+    "  await Isolate.spawn(isolateWorker, UserData(() => print('Hi')));",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-013-1",
+      "lines": [13],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Isolate送信エラー: 関数はIsolate間で送信できません。プリミティブ型のみ送信可能です",
+        "en": "Isolate send error: Functions cannot be sent between isolates. Only primitive types can be sent"
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "php-l2-003",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "$data = [1, 2, 3, 4, 5];",
+    "$filtered = array_filter($data, function($item) {",
+    "  return $item > $threshold;",
+    "});",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-003-1",
+      "lines": [3, 4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "クロージャが外部変数$thresholdにアクセスするにはuse句が必要です",
+        "en": "Closure needs 'use' clause to access external variable $threshold"
+      }
+    }
+  ]
+}

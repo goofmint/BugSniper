@@ -1,0 +1,25 @@
+{
+  "id": "dart-l2-009",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "Future<void> loadData() async {",
+    "  await fetchFromAPI();",
+    "  await processData();",
+    "  return 'Completed';",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-009-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "戻り値の型不一致: Future<void>関数でString値を返しています",
+        "en": "Return type mismatch: Returning String value in Future<void> function"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "java-l1-002",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class ArrayDemo {",
+    "    public static void main(String[] args) {",
+    "        int[] numbers = {1, 2, 3, 4, 5};",
+    "        for (int i = 0; i <= numbers.length; i++) {",
+    "            System.out.println(numbers[i]);",
+    "        }",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-002-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "配列の範囲外アクセスです。配列のインデックスは0から始まり、length-1で終わります。<=をに変更すべきです。",
+        "en": "Array index out of bounds. Array indices start at 0 and end at length-1. Should use < instead of <=."
+      }
+    }
+  ]
+}

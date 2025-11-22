@@ -1,0 +1,24 @@
+{
+  "id": "py-l2-008",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "class Child(Parent):",
+    "    def __init__(self, name, age):",
+    "        super(Child, self).__init__(name)",
+    "        self.age = age"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-008-1",
+      "lines": [3],
+      "type": "design",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "Python 3では'super()'を引数なしで使用できます",
+        "en": "In Python 3, 'super()' can be used without arguments"
+      }
+    }
+  ]
+}

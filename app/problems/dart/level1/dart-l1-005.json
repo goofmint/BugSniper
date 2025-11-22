@@ -1,0 +1,24 @@
+{
+  "id": "dart-l1-005",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  List<int> numbers = [1, 2, 3];",
+    "  print(numbers[5]);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-005-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "範囲外アクセスエラー: リストの長さは3ですが、インデックス5にアクセスしようとしています",
+        "en": "Index out of range error: Accessing index 5 in a list of length 3"
+      }
+    }
+  ]
+}

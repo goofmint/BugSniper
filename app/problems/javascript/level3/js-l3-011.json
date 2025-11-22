@@ -1,0 +1,27 @@
+{
+  "id": "js-l3-011",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "const cache = new WeakMap();",
+    "",
+    "function cacheResult(key, value) {",
+    "  cache.set(key, value);",
+    "}",
+    "",
+    "cacheResult('user123', { name: 'Alice' });"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-011-1",
+      "lines": [7],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "WeakMapのキーはオブジェクトである必要があります。文字列はキーとして使えません",
+        "en": "WeakMap keys must be objects. Strings cannot be used as keys"
+      }
+    }
+  ]
+}

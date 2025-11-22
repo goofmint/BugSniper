@@ -1,0 +1,27 @@
+{
+  "id": "js-l2-010",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "function processArray(arr) {",
+    "  return arr.sort().reverse().map(x => x * 2);",
+    "}",
+    "",
+    "const original = [3, 1, 2];",
+    "const result = processArray(original);",
+    "console.log(original);"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-010-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "sortとreverseは元の配列を変更します。元の配列を保持するにはスプレッド演算子でコピーが必要です",
+        "en": "sort and reverse mutate original array. Need to copy with spread operator to preserve original"
+      }
+    }
+  ]
+}

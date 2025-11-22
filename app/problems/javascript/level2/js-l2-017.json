@@ -1,0 +1,23 @@
+{
+  "id": "js-l2-017",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "function findUser(users, id) {",
+    "  return users.filter(user => user.id === id);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-017-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "filterは配列を返しますが、単一のユーザーを見つけるにはfindを使うべきです",
+        "en": "filter returns an array, should use find to get single user"
+      }
+    }
+  ]
+}

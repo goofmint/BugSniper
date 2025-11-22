@@ -1,0 +1,26 @@
+{
+  "id": "js-l1-016",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function isPositive(num) {",
+    "  if (num > 0); {",
+    "    return true;",
+    "  }",
+    "  return false;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-016-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "if文の後にセミコロンがあるため、常にtrueを返します",
+        "en": "Semicolon after if statement causes function to always return true"
+      }
+    }
+  ]
+}

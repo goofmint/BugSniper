@@ -1,0 +1,26 @@
+{
+  "id": "php-l1-013",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$arr = [10, 20, 30];",
+    "$index = 3;",
+    "$value = $arr[$index];",
+    "echo $value;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-013-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "配列インデックスが範囲外です。配列には3つの要素しかありませんが、インデックス3にアクセスしています",
+        "en": "Array index out of bounds. Array has only 3 elements but accessing index 3"
+      }
+    }
+  ]
+}

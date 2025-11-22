@@ -1,0 +1,24 @@
+{
+  "id": "py-l1-013",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def check_password(password):",
+    "    if len(password) >= 8",
+    "        return True",
+    "    return False"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-013-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "if文の末尾にコロン(:)が必要です",
+        "en": "Missing colon (:) at the end of if statement"
+      }
+    }
+  ]
+}

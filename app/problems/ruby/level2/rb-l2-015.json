@@ -1,0 +1,31 @@
+{
+  "id": "rb-l2-015",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "def process_batch(items)",
+    "  results = []",
+    "  items.each do |item|",
+    "    begin",
+    "      results << item.process",
+    "    rescue => e",
+    "      next",
+    "    end",
+    "  end",
+    "  results",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-015-1",
+      "lines": [6, 7],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "例外が発生してもエラー情報がログに記録されません。デバッグが困難になります",
+        "en": "Exception is caught but not logged. This makes debugging difficult"
+      }
+    }
+  ]
+}

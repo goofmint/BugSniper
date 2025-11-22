@@ -1,0 +1,32 @@
+{
+  "id": "java-l2-002",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "import java.util.ArrayList;",
+    "import java.util.List;",
+    "",
+    "public class ConcurrentModification {",
+    "    public void removeNegatives(List<Integer> numbers) {",
+    "        for (Integer num : numbers) {",
+    "            if (num < 0) {",
+    "                numbers.remove(num);",
+    "            }",
+    "        }",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-002-1",
+      "lines": [6, 7, 8, 9, 10],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "ConcurrentModificationExceptionが発生します。拡張for文でイテレート中にリストを変更することはできません。Iteratorを使用するか、通常のforループを使用すべきです。",
+        "en": "ConcurrentModificationException will occur. Cannot modify list while iterating with enhanced for loop. Should use Iterator or regular for loop."
+      }
+    }
+  ]
+}

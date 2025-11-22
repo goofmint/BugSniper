@@ -1,0 +1,25 @@
+{
+  "id": "py-l2-007",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "def remove_evens(numbers):",
+    "    for num in numbers:",
+    "        if num % 2 == 0:",
+    "            numbers.remove(num)",
+    "    return numbers"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-007-1",
+      "lines": [2, 3, 4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "イテレーション中にリストを変更すると予期しない動作になります",
+        "en": "Modifying a list while iterating over it causes unexpected behavior"
+      }
+    }
+  ]
+}

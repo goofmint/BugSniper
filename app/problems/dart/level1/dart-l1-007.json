@@ -1,0 +1,23 @@
+{
+  "id": "dart-l1-007",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "String getName() {",
+    "  return 42;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-007-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "戻り値の型不一致: String型を返すべきですが、int型を返しています",
+        "en": "Return type mismatch: Expected String but returning int"
+      }
+    }
+  ]
+}

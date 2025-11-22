@@ -1,0 +1,35 @@
+{
+  "id": "rb-l3-003",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class Counter",
+    "  @@count = 0",
+    "",
+    "  def increment",
+    "    @@count += 1",
+    "  end",
+    "",
+    "  def count",
+    "    @@count",
+    "  end",
+    "end",
+    "",
+    "class SpecialCounter < Counter",
+    "  @@count = 0",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-003-1",
+      "lines": [2, 14],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "クラス変数は継承階層で共有されます。SpecialCounterで@@countを再定義すると、Counterの@@countも上書きされます",
+        "en": "Class variables are shared across inheritance hierarchy. Redefining @@count in SpecialCounter overwrites Counter's @@count"
+      }
+    }
+  ]
+}

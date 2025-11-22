@@ -1,0 +1,30 @@
+{
+  "id": "py-l2-019",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "class A:",
+    "    def method(self):",
+    "        return 'A'",
+    "",
+    "class B(A):",
+    "    def method(self):",
+    "        return 'B'",
+    "",
+    "class C(A, B):",
+    "    pass"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-019-1",
+      "lines": [9],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "メソッド解決順序(MRO)エラー: BはAを継承しているため、C(B, A)とすべきです",
+        "en": "Method Resolution Order (MRO) error: B inherits from A, should be C(B, A)"
+      }
+    }
+  ]
+}

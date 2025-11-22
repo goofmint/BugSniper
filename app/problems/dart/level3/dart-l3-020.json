@@ -1,0 +1,32 @@
+{
+  "id": "dart-l3-020",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "class Singleton {",
+    "  static Singleton? _instance;",
+    "  ",
+    "  factory Singleton() {",
+    "    if (_instance == null) {",
+    "      _instance = Singleton._internal();",
+    "    }",
+    "    return _instance!;",
+    "  }",
+    "  ",
+    "  Singleton._internal();",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-020-1",
+      "lines": [4, 5, 6, 7, 8, 9],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "スレッドセーフ性の欠如: シングルトンパターンがスレッドセーフではなく、複数のインスタンスが生成される可能性があります",
+        "en": "Lack of thread safety: Singleton pattern is not thread-safe, multiple instances may be created"
+      }
+    }
+  ]
+}

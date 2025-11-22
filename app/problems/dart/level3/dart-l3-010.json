@@ -1,0 +1,28 @@
+{
+  "id": "dart-l3-010",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "class Box<T> {",
+    "  T value;",
+    "  Box(this.value);",
+    "  ",
+    "  bool isSameType<U>(Box<U> other) {",
+    "    return T == U;",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-010-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ジェネリック型比較エラー: 実行時に型パラメータを比較していますが、常にfalseになります",
+        "en": "Generic type comparison error: Comparing type parameters at runtime always returns false"
+      }
+    }
+  ]
+}

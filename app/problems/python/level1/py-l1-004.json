@@ -1,0 +1,23 @@
+{
+  "id": "py-l1-004",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def print_numbers(n):",
+    "    for i in range(n):",
+    "    print(i)"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-004-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "インデントが正しくありません。Pythonではインデントが必須です",
+        "en": "Incorrect indentation. Indentation is required in Python"
+      }
+    }
+  ]
+}

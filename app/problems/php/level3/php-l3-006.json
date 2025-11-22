@@ -1,0 +1,26 @@
+{
+  "id": "php-l3-006",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "$pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');",
+    "$id = $_GET['id'];",
+    "$stmt = $pdo->query(\"SELECT * FROM users WHERE id = $id\");",
+    "$user = $stmt->fetch();",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-006-1",
+      "lines": [4],
+      "type": "security",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "PDO::query()でユーザー入力を直接使用しています。prepare()とbindParam()を使用すべきです",
+        "en": "Using user input directly in PDO::query(). Should use prepare() and bindParam()"
+      }
+    }
+  ]
+}

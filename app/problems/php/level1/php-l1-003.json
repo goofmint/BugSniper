@@ -1,0 +1,26 @@
+{
+  "id": "php-l1-003",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$firstName = 'John';",
+    "$lastName = 'Doe';",
+    "$fullName = $firstName + ' ' + $lastName;",
+    "echo $fullName;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-003-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "文字列連結には+演算子ではなく.演算子を使用する必要があります",
+        "en": "String concatenation requires the . operator, not the + operator"
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "php-l1-012",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$isActive = true;",
+    "if ($isActive == 'true') {",
+    "  echo 'Active';",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-012-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ブール値trueと文字列'true'を比較しています。文字列比較は不要です",
+        "en": "Comparing boolean true with string 'true'. String comparison is unnecessary"
+      }
+    }
+  ]
+}

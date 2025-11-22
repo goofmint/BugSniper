@@ -1,0 +1,28 @@
+{
+  "id": "php-l1-019",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$status = 'active';",
+    "if ($status = 'inactive') {",
+    "  echo 'User is inactive';",
+    "} else {",
+    "  echo 'User is active';",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-019-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "比較演算子==の代わりに代入演算子=が使われています",
+        "en": "Assignment operator = used instead of comparison operator =="
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "dart-l3-012",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "abstract class Animal {",
+    "  factory Animal(String type) {",
+    "    if (type == 'dog') return Dog();",
+    "    if (type == 'cat') return Cat();",
+    "    throw ArgumentError('Unknown type');",
+    "  }",
+    "}",
+    "",
+    "class Dog implements Animal {}",
+    "class Cat implements Animal {}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-012-1",
+      "lines": [2, 3, 4, 5, 6],
+      "type": "design",
+      "severity": "normal",
+      "score": 2,
+      "description": {
+        "ja": "ファクトリコンストラクタの設計問題: 抽象クラスのファクトリは具体的な実装を返しますが、型安全性が低下します",
+        "en": "Factory constructor design issue: Abstract class factory returns concrete implementations, reducing type safety"
+      }
+    }
+  ]
+}

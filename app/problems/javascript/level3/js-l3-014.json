@@ -1,0 +1,26 @@
+{
+  "id": "js-l3-014",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "Promise.resolve()",
+    "  .then(() => console.log('A'))",
+    "  .then(() => console.log('B'))",
+    "  .catch(() => console.log('C'))",
+    "  .then(() => console.log('D'))",
+    "  .catch(() => console.log('E'));"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-014-1",
+      "lines": [1, 2, 3, 4, 5, 6],
+      "type": "design",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "エラーがない場合、C、Eは実行されません。Promiseチェーンの理解を確認してください",
+        "en": "Without errors, C and E won't execute. Check understanding of Promise chain"
+      }
+    }
+  ]
+}

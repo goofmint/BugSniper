@@ -1,0 +1,25 @@
+{
+  "id": "rb-l1-007",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def get_user_age(user)",
+    "  age = user[:age]",
+    "  if age > 18",
+    "    puts \"Adult\"",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-007-1",
+      "lines": [5],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "if文に対応するendキーワードが不足しています。メソッド定義も閉じられていません",
+        "en": "Missing 'end' keyword for both if statement and method definition"
+      }
+    }
+  ]
+}

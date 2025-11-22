@@ -1,0 +1,35 @@
+{
+  "id": "php-l2-017",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "abstract class Vehicle {",
+    "  abstract public function start();",
+    "}",
+    "",
+    "class Car extends Vehicle {",
+    "  public function start() {",
+    "    echo 'Car started';",
+    "  }",
+    "  ",
+    "  private function stop() {",
+    "    echo 'Car stopped';",
+    "  }",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-017-1",
+      "lines": [11],
+      "type": "design",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "privateメソッドstopは外部から呼び出せません。protectedまたはpublicにすべきかもしれません",
+        "en": "Private method stop cannot be called externally. Consider protected or public"
+      }
+    }
+  ]
+}

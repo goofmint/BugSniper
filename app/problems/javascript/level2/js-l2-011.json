@@ -1,0 +1,28 @@
+{
+  "id": "js-l2-011",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "const person = {",
+    "  name: 'Alice',",
+    "  greet: function() {",
+    "    setTimeout(function() {",
+    "      console.log('Hello, ' + this.name);",
+    "    }, 1000);",
+    "  }",
+    "};"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-011-1",
+      "lines": [4, 5],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "function内のthisはwindowを指します。アロー関数を使うか、thisをbindする必要があります",
+        "en": "this in function refers to window. Need to use arrow function or bind this"
+      }
+    }
+  ]
+}

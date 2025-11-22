@@ -1,0 +1,25 @@
+{
+  "id": "py-l2-020",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "def validate_email(email):",
+    "    if '@' in email and '.' in email:",
+    "        return True",
+    "    else:",
+    "        raise Exception('Invalid email')"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-020-1",
+      "lines": [5],
+      "type": "design",
+      "severity": "normal",
+      "score": 2,
+      "description": {
+        "ja": "一般的なExceptionではなく、ValueError等の具体的な例外を使うべきです",
+        "en": "Should raise a specific exception like ValueError instead of generic Exception"
+      }
+    }
+  ]
+}

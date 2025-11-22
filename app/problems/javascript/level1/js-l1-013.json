@@ -1,0 +1,23 @@
+{
+  "id": "js-l1-013",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function sum(a, b, c) {",
+    "  return a + b;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-013-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "引数cが合計に含まれていません。a + b + cを返すべきです",
+        "en": "Parameter 'c' is not included in the sum. Should return a + b + c"
+      }
+    }
+  ]
+}

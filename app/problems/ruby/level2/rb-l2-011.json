@@ -1,0 +1,36 @@
+{
+  "id": "rb-l2-011",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "class Database",
+    "  def initialize",
+    "    @connection = nil",
+    "  end",
+    "",
+    "  def connect",
+    "    @connection = establish_connection",
+    "  end",
+    "",
+    "  def query(sql)",
+    "    @connection.execute(sql)",
+    "  rescue Exception => e",
+    "    puts \"Error: #{e.message}\"",
+    "    nil",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-011-1",
+      "lines": [12],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Exceptionクラスを捕捉すると、SystemExitやSignalExceptionも捕捉してしまいます。StandardErrorを使用すべきです",
+        "en": "Rescuing Exception catches SystemExit and SignalException. Should use StandardError instead"
+      }
+    }
+  ]
+}

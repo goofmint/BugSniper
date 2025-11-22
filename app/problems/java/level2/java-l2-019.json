@@ -1,0 +1,30 @@
+{
+  "id": "java-l2-019",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "import java.util.Arrays;",
+    "import java.util.List;",
+    "",
+    "public class ListModification {",
+    "    public void modifyList() {",
+    "        List<String> fruits = Arrays.asList(\"Apple\", \"Banana\", \"Orange\");",
+    "        fruits.add(\"Grape\");",
+    "        System.out.println(fruits);",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-019-1",
+      "lines": [7],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "UnsupportedOperationExceptionが発生します。Arrays.asList()が返すリストは固定サイズであり、要素の追加や削除ができません。変更可能なリストが必要な場合は、new ArrayList<>(Arrays.asList(...))を使用すべきです。",
+        "en": "UnsupportedOperationException will occur. List from Arrays.asList() is fixed-size and cannot add/remove elements. Use new ArrayList<>(Arrays.asList(...)) for mutable list."
+      }
+    }
+  ]
+}

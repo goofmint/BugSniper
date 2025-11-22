@@ -1,0 +1,26 @@
+{
+  "id": "java-l1-013",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class UnreachableCode {",
+    "    public void process() {",
+    "        return;",
+    "        System.out.println(\"Processing...\");",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-013-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 2,
+      "description": {
+        "ja": "到達不可能なコードです。return文の後のコードは実行されません。return文を削除するか、移動する必要があります。",
+        "en": "Unreachable code. Code after return statement will never execute. Remove or move the return statement."
+      }
+    }
+  ]
+}

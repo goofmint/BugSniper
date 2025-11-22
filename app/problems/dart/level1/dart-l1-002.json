@@ -1,0 +1,24 @@
+{
+  "id": "dart-l1-002",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "int calculateSum(int a, int b) {",
+    "  int result = a + b;",
+    "  return result",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-002-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "return文の末尾にセミコロンが欠けています",
+        "en": "Missing semicolon at the end of the return statement"
+      }
+    }
+  ]
+}

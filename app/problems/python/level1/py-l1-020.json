@@ -1,0 +1,25 @@
+{
+  "id": "py-l1-020",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def create_list(n):",
+    "    result = []",
+    "    for i in range(n)",
+    "        result.append(i)",
+    "    return result"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-020-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "for文の末尾にコロン(:)が必要です",
+        "en": "Missing colon (:) at the end of for statement"
+      }
+    }
+  ]
+}

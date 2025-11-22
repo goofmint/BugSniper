@@ -1,0 +1,23 @@
+{
+  "id": "rb-l1-017",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def count_items(list)",
+    "  return list.size()",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-017-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 2,
+      "description": {
+        "ja": "sizeメソッドは引数を取りません。括弧を削除すべきです",
+        "en": "The size method doesn't take arguments. Should remove the parentheses"
+      }
+    }
+  ]
+}

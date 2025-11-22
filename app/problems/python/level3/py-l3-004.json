@@ -1,0 +1,29 @@
+{
+  "id": "py-l3-004",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "class Singleton(type):",
+    "    def __init__(cls, name, bases, attrs):",
+    "        super().__init__(name, bases, attrs)",
+    "        cls._instance = None",
+    "    ",
+    "    def __call__(cls, *args, **kwargs):",
+    "        if cls._instance is None:",
+    "            cls._instance = super().__call__(*args, **kwargs)",
+    "        return cls._instance"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-004-1",
+      "lines": [2, 3, 4],
+      "type": "design",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "メタクラスでは通常__new__でクラスを作成し、__init__は初期化のみを行います",
+        "en": "In metaclasses, typically use __new__ for class creation, __init__ only for initialization"
+      }
+    }
+  ]
+}

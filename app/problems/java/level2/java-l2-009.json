@@ -1,0 +1,31 @@
+{
+  "id": "java-l2-009",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "public class Parent {",
+    "    private void display() {",
+    "        System.out.println(\"Parent\");",
+    "    }",
+    "}",
+    "",
+    "class Child extends Parent {",
+    "    public void display() {",
+    "        System.out.println(\"Child\");",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-009-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "privateメソッドはオーバーライドできません。親クラスのdisplay()メソッドがprivateのため、子クラスは新しいメソッドを定義しているだけで、オーバーライドではありません。",
+        "en": "Cannot override private method. Parent's display() is private, so child class is defining new method, not overriding."
+      }
+    }
+  ]
+}

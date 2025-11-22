@@ -1,0 +1,27 @@
+{
+  "id": "php-l2-006",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "$numbers = ['1', '2', '3', '4', '5'];",
+    "$sum = array_sum($numbers);",
+    "if ($sum === 15) {",
+    "  echo 'Sum is 15';",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-006-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "型の厳密比較===を使用していますが、array_sumは文字列を数値に変換するため型が一致しません",
+        "en": "Using strict comparison === but array_sum converts strings to numbers, types won't match"
+      }
+    }
+  ]
+}

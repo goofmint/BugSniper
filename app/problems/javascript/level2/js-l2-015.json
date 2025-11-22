@@ -1,0 +1,31 @@
+{
+  "id": "js-l2-015",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "class BankAccount {",
+    "  balance = 0;",
+    "  ",
+    "  deposit(amount) {",
+    "    balance += amount;",
+    "  }",
+    "  ",
+    "  getBalance() {",
+    "    return this.balance;",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-015-1",
+      "lines": [5],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "balanceの前にthisが必要です。thisなしでは未定義の変数にアクセスしようとします",
+        "en": "Missing 'this' before balance. Without this, trying to access undefined variable"
+      }
+    }
+  ]
+}

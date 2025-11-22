@@ -1,0 +1,27 @@
+{
+  "id": "dart-l2-002",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "mixin Swimmer {",
+    "  void swim() => print('Swimming');",
+    "}",
+    "",
+    "class Fish extends Swimmer {",
+    "  void dive() => print('Diving');",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-002-1",
+      "lines": [5],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Mixin使用エラー: mixinはextendsではなくwithキーワードで使用します",
+        "en": "Mixin usage error: Mixins should be used with 'with' keyword, not 'extends'"
+      }
+    }
+  ]
+}

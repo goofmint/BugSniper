@@ -1,0 +1,40 @@
+{
+  "id": "java-l2-007",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "public class MathUtils {",
+    "    public int parseInt(String value) {",
+    "        try {",
+    "            return Integer.parseInt(value);",
+    "        } catch (Exception e) {",
+    "            System.out.println(\"Invalid number\");",
+    "        }",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-007-1",
+      "lines": [2, 3, 4, 5, 6, 7, 8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "すべての実行パスでreturn文がありません。catch文で例外を処理した場合、何も返されません。catchブロックでもreturn文が必要です。",
+        "en": "Missing return statement for all paths. When exception is caught, nothing is returned. Need return statement in catch block too."
+      }
+    },
+    {
+      "id": "java-l2-007-2",
+      "lines": [5],
+      "type": "design",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "広すぎる例外のキャッチです。Exceptionではなく、NumberFormatExceptionを具体的にキャッチすべきです。",
+        "en": "Catching too broad exception. Should catch NumberFormatException specifically, not Exception."
+      }
+    }
+  ]
+}

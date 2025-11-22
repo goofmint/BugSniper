@@ -1,0 +1,30 @@
+{
+  "id": "rb-l2-009",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "def create_multiplier(factor)",
+    "  lambda { |n| n * factor }",
+    "end",
+    "",
+    "multipliers = []",
+    "for i in 1..3",
+    "  multipliers << Proc.new { |n| n * i }",
+    "end",
+    "",
+    "puts multipliers[0].call(10)"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-009-1",
+      "lines": [7],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "すべてのProcが同じ変数iを参照するため、ループ後のiの値(4)が使用されます。期待した値になりません",
+        "en": "All Procs reference the same variable i, which will have value 4 after loop. Won't produce expected values"
+      }
+    }
+  ]
+}

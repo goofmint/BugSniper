@@ -1,0 +1,24 @@
+{
+  "id": "py-l1-017",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def is_positive(num):",
+    "    if num > 0;",
+    "        return True",
+    "    return False"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-017-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "if文の末尾はコロン(:)を使います。セミコロン(;)は不正です",
+        "en": "if statement should end with colon (:). Semicolon (;) is invalid"
+      }
+    }
+  ]
+}

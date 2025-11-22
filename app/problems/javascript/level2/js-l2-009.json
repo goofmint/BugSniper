@@ -1,0 +1,27 @@
+{
+  "id": "js-l2-009",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "const arr = [1, 2, 3];",
+    "arr.forEach((item, index) => {",
+    "  if (item === 2) {",
+    "    break;",
+    "  }",
+    "  console.log(item);",
+    "});"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-009-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "forEach内でbreakは使えません。forループまたはsomeメソッドを使う必要があります",
+        "en": "Cannot use break in forEach. Need to use for loop or some method"
+      }
+    }
+  ]
+}

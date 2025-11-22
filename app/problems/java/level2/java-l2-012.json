@@ -1,0 +1,32 @@
+{
+  "id": "java-l2-012",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "public class Shape {",
+    "    protected int width = 10;",
+    "}",
+    "",
+    "class Rectangle extends Shape {",
+    "    private int width = 20;",
+    "    ",
+    "    public void printWidth() {",
+    "        System.out.println(width);",
+    "        System.out.println(super.width);",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-012-1",
+      "lines": [6],
+      "type": "design",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "フィールドの隠蔽（シャドーイング）が発生しています。子クラスのwidthが親クラスのwidthを隠しています。これは混乱を招く可能性があります。異なる名前を使用するか、オーバーライドではなく継承を使用すべきです。",
+        "en": "Field hiding (shadowing) occurs. Child's width hides parent's width. This can cause confusion. Should use different name or inheritance instead of hiding."
+      }
+    }
+  ]
+}

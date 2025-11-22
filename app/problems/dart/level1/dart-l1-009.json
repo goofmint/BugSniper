@@ -1,0 +1,24 @@
+{
+  "id": "dart-l1-009",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  var name = null;",
+    "  String greeting = 'Hello, ' + name;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-009-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "null値との文字列結合エラー: nullとStringの加算演算ができません",
+        "en": "String concatenation with null error: Cannot add String and null"
+      }
+    }
+  ]
+}

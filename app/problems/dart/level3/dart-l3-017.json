@@ -1,0 +1,26 @@
+{
+  "id": "dart-l3-017",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "void main() {",
+    "  var data = {'name': 'Alice', 'age': 30}",
+    "    ..['city'] = 'Tokyo'",
+    "    ..['country'] = 'Japan';",
+    "  print(data);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-017-1",
+      "lines": [3, 4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "カスケード演算子の誤用: Mapの[]演算子はvoidを返すため、カスケードで使用できません",
+        "en": "Cascade operator misuse: Map's [] operator returns void, cannot be used with cascade"
+      }
+    }
+  ]
+}

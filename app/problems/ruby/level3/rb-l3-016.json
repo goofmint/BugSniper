@@ -1,0 +1,36 @@
+{
+  "id": "rb-l3-016",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class ObjectPool",
+    "  def initialize(size)",
+    "    @pool = Array.new(size) { create_object }",
+    "    @mutex = Mutex.new",
+    "  end",
+    "",
+    "  def acquire",
+    "    @mutex.synchronize do",
+    "      @pool.pop",
+    "    end",
+    "  end",
+    "",
+    "  def release(obj)",
+    "    @pool << obj",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-016-1",
+      "lines": [14],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "releaseメソッドがMutexで保護されていないため、複数スレッドから同時にアクセスすると競合状態が発生します",
+        "en": "release method is not protected by Mutex, causing race conditions when accessed concurrently from multiple threads"
+      }
+    }
+  ]
+}

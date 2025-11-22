@@ -1,0 +1,32 @@
+{
+  "id": "rb-l2-018",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "class Report",
+    "  def generate(data)",
+    "    data.sort_by { |item| item[:date] }",
+    "    format_data(data)",
+    "  end",
+    "",
+    "  private",
+    "",
+    "  def format_data(data)",
+    "    data.map { |item| item[:value] }",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-018-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "sort_byの戻り値を使用していないため、dataはソートされません。戻り値を変数に代入するか、sort_by!を使用すべきです",
+        "en": "Not using sort_by return value, so data isn't sorted. Should assign to variable or use sort_by!"
+      }
+    }
+  ]
+}

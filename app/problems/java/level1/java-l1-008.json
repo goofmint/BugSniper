@@ -1,0 +1,36 @@
+{
+  "id": "java-l1-008",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class Division {",
+    "    public double divide(int a, int b) {",
+    "        return a / b;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-008-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "ゼロ除算のチェックがありません。bが0の場合、ArithmeticExceptionが発生します。除算前にチェックが必要です。",
+        "en": "No zero division check. If b is 0, ArithmeticException will occur. Check needed before division."
+      }
+    },
+    {
+      "id": "java-l1-008-2",
+      "lines": [3],
+      "type": "bug",
+      "severity": "normal",
+      "score": 2,
+      "description": {
+        "ja": "整数除算の結果が小数点以下を切り捨てます。double型を返すには、少なくとも1つのオペランドをdoubleにキャストする必要があります。",
+        "en": "Integer division truncates decimals. To return double, at least one operand must be cast to double."
+      }
+    }
+  ]
+}

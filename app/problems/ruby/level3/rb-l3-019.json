@@ -1,0 +1,31 @@
+{
+  "id": "rb-l3-019",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class Resource",
+    "  def initialize",
+    "    @data = allocate_resource",
+    "    ObjectSpace.define_finalizer(self, proc { cleanup })",
+    "  end",
+    "",
+    "  def cleanup",
+    "    puts \"Cleaning up resource\"",
+    "    @data.close if @data",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-019-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "finalizerのprocがselfを参照しているため、オブジェクトがGCされません。finalizerは別のオブジェクトのコンテキストで実行されます",
+        "en": "finalizer proc references self, preventing GC. Finalizers run in context of a different object"
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "rb-l3-006",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class QueryBuilder",
+    "  def initialize",
+    "    @conditions = []",
+    "  end",
+    "",
+    "  def where(condition)",
+    "    @conditions << condition",
+    "    self",
+    "  end",
+    "",
+    "  def build",
+    "    \"SELECT * WHERE #{@conditions.join(' AND ')}\"",
+    "  end",
+    "end",
+    "",
+    "builder = QueryBuilder.new",
+    "query1 = builder.where(\"age > 18\").where(\"active = true\").build",
+    "query2 = builder.where(\"verified = true\").build"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-006-1",
+      "lines": [7, 8],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "メソッドチェーンでselfを返していますが、@conditionsを変更するため、再利用時に前の条件が残ります。不変オブジェクトを返すべきです",
+        "en": "Returns self for method chaining but mutates @conditions, leaving previous conditions when reused. Should return immutable object"
+      }
+    }
+  ]
+}

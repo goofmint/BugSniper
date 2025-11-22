@@ -1,0 +1,37 @@
+{
+  "id": "rb-l3-020",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class Registry",
+    "  @handlers = {}",
+    "",
+    "  class << self",
+    "    def register(name, &block)",
+    "      @handlers[name] = block",
+    "    end",
+    "",
+    "    def call(name, *args)",
+    "      @handlers[name].call(*args) if @handlers[name]",
+    "    end",
+    "  end",
+    "end",
+    "",
+    "class ExtendedRegistry < Registry",
+    "  register :custom, -> { puts \"Custom handler\" }",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-020-1",
+      "lines": [2, 6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "クラスインスタンス変数@handlersは継承されないため、ExtendedRegistryは独自の@handlersを持ちません。親クラスと共有されます",
+        "en": "Class instance variable @handlers is not inherited, so ExtendedRegistry doesn't have its own @handlers. Shared with parent class"
+      }
+    }
+  ]
+}

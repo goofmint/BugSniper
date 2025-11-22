@@ -1,0 +1,24 @@
+{
+  "id": "js-l1-009",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function greet(name) {",
+    "  const message = 'Hello, ' + nama;",
+    "  return message;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-009-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "変数名のタイプミス: 'nama'ではなく'name'を使う必要があります",
+        "en": "Typo in variable name: should use 'name' instead of 'nama'"
+      }
+    }
+  ]
+}

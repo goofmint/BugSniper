@@ -1,0 +1,32 @@
+{
+  "id": "js-l3-005",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "function memoize(fn) {",
+    "  const cache = {};",
+    "  return function(...args) {",
+    "    const key = args;",
+    "    if (cache[key]) {",
+    "      return cache[key];",
+    "    }",
+    "    const result = fn(...args);",
+    "    cache[key] = result;",
+    "    return result;",
+    "  };",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-005-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "配列をキーとして使うと、全て同じキー\"[object Object]\"になります。JSON.stringify(args)を使う必要があります",
+        "en": "Using array as key results in same key \"[object Object]\". Need to use JSON.stringify(args)"
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "rb-l1-005",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def process_data",
+    "  data = fetch_data()",
+    "  result = data.upcase",
+    "  puts results",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-005-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "変数名のタイポ: 'results'は'result'であるべきです。未定義変数エラーが発生します",
+        "en": "Variable name typo: 'results' should be 'result'. This causes an undefined variable error"
+      }
+    }
+  ]
+}

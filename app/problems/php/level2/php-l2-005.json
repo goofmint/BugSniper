@@ -1,0 +1,28 @@
+{
+  "id": "php-l2-005",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "function readFile($filename) {",
+    "  $content = file_get_contents($filename);",
+    "  return $content;",
+    "}",
+    "$data = readFile('data.txt');",
+    "echo $data;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-005-1",
+      "lines": [2, 3, 4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "file_get_contentsの失敗時の例外処理がありません。ファイルが存在しない場合エラーになります",
+        "en": "No exception handling for file_get_contents failure. Will error if file doesn't exist"
+      }
+    }
+  ]
+}

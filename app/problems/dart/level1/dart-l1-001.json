@@ -1,0 +1,24 @@
+{
+  "id": "dart-l1-001",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  String userName = 'Alice';",
+    "  print(usrName);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-001-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "変数名のタイポエラー: 'userName'を'usrName'と誤って記述しています",
+        "en": "Variable name typo: 'userName' is incorrectly written as 'usrName'"
+      }
+    }
+  ]
+}

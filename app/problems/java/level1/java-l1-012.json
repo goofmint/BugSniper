@@ -1,0 +1,29 @@
+{
+  "id": "java-l1-012",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class OffByOne {",
+    "    public int sumArray(int[] arr) {",
+    "        int sum = 0;",
+    "        for (int i = 1; i < arr.length; i++) {",
+    "            sum += arr[i];",
+    "        }",
+    "        return sum;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-012-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 2,
+      "description": {
+        "ja": "オフバイワンエラーです。配列のインデックスは0から始まるため、i=1から開始すると最初の要素がスキップされます。i=0で開始すべきです。",
+        "en": "Off-by-one error. Array indices start at 0, so starting at i=1 skips the first element. Should start at i=0."
+      }
+    }
+  ]
+}

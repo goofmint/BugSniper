@@ -1,0 +1,22 @@
+{
+  "id": "py-l1-009",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def add(a, b, c):",
+    "    return a + b"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-009-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "引数cが合計に含まれていません。a + b + cを返すべきです",
+        "en": "Parameter 'c' is not included in the sum. Should return a + b + c"
+      }
+    }
+  ]
+}

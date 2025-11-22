@@ -1,0 +1,38 @@
+{
+  "id": "java-l3-014",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "import java.util.List;",
+    "import java.util.stream.Collectors;",
+    "import java.util.stream.IntStream;",
+    "",
+    "public class ParallelStreamIssue {",
+    "    private int counter = 0;",
+    "    ",
+    "    public List<Integer> processNumbers() {",
+    "        return IntStream.range(0, 1000)",
+    "            .parallel()",
+    "            .map(i -> {",
+    "                counter++;",
+    "                return i * 2;",
+    "            })",
+    "            .boxed()",
+    "            .collect(Collectors.toList());",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-014-1",
+      "lines": [12],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "並列ストリームでの状態の変更です。parallel()を使用する場合、共有状態（counter）を変更すると競合状態が発生します。並列ストリームではステートレスな操作を行うべきです。",
+        "en": "State mutation in parallel stream. When using parallel(), modifying shared state (counter) causes race conditions. Parallel streams should use stateless operations."
+      }
+    }
+  ]
+}

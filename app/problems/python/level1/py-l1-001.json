@@ -1,0 +1,23 @@
+{
+  "id": "py-l1-001",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def greet(name):",
+    "    message = 'Hello, ' + name",
+    "    return mesage"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-001-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "変数名のタイプミス: 'mesage'ではなく'message'を使う必要があります",
+        "en": "Typo in variable name: should use 'message' instead of 'mesage'"
+      }
+    }
+  ]
+}

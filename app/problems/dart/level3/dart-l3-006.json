@@ -1,0 +1,27 @@
+{
+  "id": "dart-l3-006",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "void main() {",
+    "  var user = User('Alice', 30)",
+    "    ..name = 'Bob'",
+    "    ..age = 25",
+    "    ..printInfo();",
+    "  print(user.name);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-006-1",
+      "lines": [2, 3, 4, 5],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "カスケード演算子の戻り値誤解: printInfo()がvoidを返す場合、カスケードの最後で呼び出すとuserはvoidになります",
+        "en": "Cascade operator return value misunderstanding: If printInfo() returns void, user becomes void after cascade"
+      }
+    }
+  ]
+}

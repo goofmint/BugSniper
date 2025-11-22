@@ -1,0 +1,24 @@
+{
+  "id": "js-l2-007",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "const numbers = [1, 2, 3, 4, 5];",
+    "const doubled = numbers.map(num => {",
+    "  num * 2;",
+    "});"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-007-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "アロー関数でreturn文が省略されていません。returnを追加するか、波括弧を削除する必要があります",
+        "en": "Arrow function missing return. Need to add return or remove braces"
+      }
+    }
+  ]
+}

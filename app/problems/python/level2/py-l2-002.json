@@ -1,0 +1,24 @@
+{
+  "id": "py-l2-002",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "def process_data(items):",
+    "    results = [x * 2 for x in items]",
+    "    filtered = [y for y in results if x > 5]",
+    "    return filtered"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-002-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "リスト内包表記で未定義の変数'x'を使用しています。'y'を使うべきです",
+        "en": "Using undefined variable 'x' in list comprehension, should use 'y'"
+      }
+    }
+  ]
+}

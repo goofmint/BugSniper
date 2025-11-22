@@ -1,0 +1,33 @@
+{
+  "id": "rb-l2-019",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "module Validator",
+    "  def validate",
+    "    raise NotImplementedError",
+    "  end",
+    "end",
+    "",
+    "class UserValidator",
+    "  include Validator",
+    "",
+    "  def validate(user)",
+    "    user.name.present? && user.email.present?",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-019-1",
+      "lines": [3, 10],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "モジュールのvalidateメソッドは引数を取りませんが、クラスのvalidateメソッドは引数を取ります。メソッドシグネチャが一致しません",
+        "en": "Module's validate method takes no arguments but class's validate takes one. Method signatures don't match"
+      }
+    }
+  ]
+}

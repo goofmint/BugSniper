@@ -1,0 +1,26 @@
+{
+  "id": "py-l2-009",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "def get_squares(n):",
+    "    return (x**2 for x in range(n))",
+    "",
+    "squares = get_squares(5)",
+    "print(list(squares))",
+    "print(list(squares))"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-009-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ジェネレータは一度しか消費できません。2回目の呼び出しは空のリストを返します",
+        "en": "Generator can only be consumed once, second call returns empty list"
+      }
+    }
+  ]
+}

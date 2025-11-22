@@ -1,0 +1,23 @@
+{
+  "id": "rb-l1-004",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def get_first_item(items)",
+    "  return items(0)",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-004-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "配列要素のアクセスには[]を使用します。()ではメソッド呼び出しになります",
+        "en": "Array element access uses square brackets []. Parentheses () are for method calls"
+      }
+    }
+  ]
+}

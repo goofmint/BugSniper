@@ -1,0 +1,31 @@
+{
+  "id": "dart-l3-002",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "import 'dart:isolate';",
+    "",
+    "void isolateFunction(SendPort sendPort) {",
+    "  sendPort.send('Hello from isolate');",
+    "}",
+    "",
+    "void main() async {",
+    "  ReceivePort receivePort = ReceivePort();",
+    "  await Isolate.spawn(isolateFunction, receivePort);",
+    "  print(receivePort.first);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-002-1",
+      "lines": [9],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Isolate通信エラー: SendPortではなくReceivePortを渡しています。receivePort.sendPortを渡すべきです",
+        "en": "Isolate communication error: Passing ReceivePort instead of SendPort. Should pass receivePort.sendPort"
+      }
+    }
+  ]
+}

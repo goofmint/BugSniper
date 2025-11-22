@@ -1,0 +1,24 @@
+{
+  "id": "dart-l1-020",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  int count;",
+    "  print(count);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-020-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "未初期化変数の使用: 変数countが初期化されずに使用されています",
+        "en": "Using uninitialized variable: Variable 'count' is used before being initialized"
+      }
+    }
+  ]
+}

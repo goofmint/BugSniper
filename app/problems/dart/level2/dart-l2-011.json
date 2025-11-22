@@ -1,0 +1,24 @@
+{
+  "id": "dart-l2-011",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "class Calculator {",
+    "  int add(int a, int b) => a + b;",
+    "  double add(double a, double b) => a + b;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-011-1",
+      "lines": [2, 3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "メソッドオーバーロードエラー: Dartはメソッドのオーバーロードをサポートしていません",
+        "en": "Method overloading error: Dart doesn't support method overloading"
+      }
+    }
+  ]
+}

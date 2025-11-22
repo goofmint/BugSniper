@@ -1,0 +1,22 @@
+{
+  "id": "py-l1-019",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def concat_strings(str1, str2):",
+    "    return str1 str2"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-019-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "文字列の連結には+演算子が必要です",
+        "en": "String concatenation requires + operator"
+      }
+    }
+  ]
+}

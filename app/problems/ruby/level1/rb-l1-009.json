@@ -1,0 +1,25 @@
+{
+  "id": "rb-l1-009",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def join_strings(arr)",
+    "  result = arr.join(\", \")",
+    "  result",
+    "  return nil",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-009-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "明示的にnilを返しているため、resultの値が返されません。return nilを削除すべきです",
+        "en": "Explicitly returning nil prevents result from being returned. Should remove 'return nil'"
+      }
+    }
+  ]
+}

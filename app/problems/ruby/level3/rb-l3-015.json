@@ -1,0 +1,31 @@
+{
+  "id": "rb-l3-015",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "module Enumerable",
+    "  def my_map",
+    "    result = []",
+    "    each { |item| result << yield(item) }",
+    "    result",
+    "  end",
+    "end",
+    "",
+    "class MyArray < Array",
+    "  include Enumerable",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-015-1",
+      "lines": [1, 10],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "組み込みのEnumerableモジュールを再定義しており、標準ライブラリの動作を壊します。別の名前空間を使用すべきです",
+        "en": "Redefining built-in Enumerable module breaks standard library behavior. Should use different namespace"
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "dart-l2-019",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "enum Status { pending, approved, rejected }",
+    "",
+    "void main() {",
+    "  Status status = Status.pending;",
+    "  String statusName = status;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-019-1",
+      "lines": [5],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "型変換エラー: enum型をString型に暗黙的に変換できません。status.nameを使用してください",
+        "en": "Type conversion error: Cannot implicitly convert enum to String. Use status.name"
+      }
+    }
+  ]
+}

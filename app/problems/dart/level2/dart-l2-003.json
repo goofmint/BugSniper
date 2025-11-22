@@ -1,0 +1,28 @@
+{
+  "id": "dart-l2-003",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "Future<String> fetchData() async {",
+    "  return 'Data';",
+    "}",
+    "",
+    "void main() {",
+    "  String data = fetchData();",
+    "  print(data);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-003-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "非同期処理エラー: Future<String>型をString型に直接代入できません。awaitまたはthenを使用してください",
+        "en": "Async error: Cannot assign Future<String> to String. Use await or then"
+      }
+    }
+  ]
+}

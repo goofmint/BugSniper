@@ -1,0 +1,27 @@
+{
+  "id": "php-l1-016",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "function divide($a, $b) {",
+    "  $result = $a / $b;",
+    "  echo $result;",
+    "}",
+    "divide(10, 2);",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-016-1",
+      "lines": [2, 3, 4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ゼロ除算のチェックがありません。$bが0の場合エラーが発生します",
+        "en": "No check for division by zero. Will error if $b is 0"
+      }
+    }
+  ]
+}

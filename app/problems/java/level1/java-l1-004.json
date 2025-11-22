@@ -1,0 +1,27 @@
+{
+  "id": "java-l1-004",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class TypeMismatch {",
+    "    public static void main(String[] args) {",
+    "        int value = 10;",
+    "        String text = value;",
+    "        System.out.println(text);",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-004-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "型の不一致です。int型をString型に直接代入できません。String.valueOf()やInteger.toString()を使用する必要があります。",
+        "en": "Type mismatch. Cannot assign int to String directly. Should use String.valueOf() or Integer.toString()."
+      }
+    }
+  ]
+}

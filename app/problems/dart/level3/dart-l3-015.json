@@ -1,0 +1,31 @@
+{
+  "id": "dart-l3-015",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "class Repository<T> {",
+    "  List<T> items = [];",
+    "  ",
+    "  void addAll(List<T> newItems) {",
+    "    items.addAll(newItems);",
+    "  }",
+    "  ",
+    "  List<Object> getAllAsObjects() {",
+    "    return items;",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-015-1",
+      "lines": [9],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "共変性エラー: List<T>をList<Object>に変換できません（Dartのリストは不変ではない）",
+        "en": "Covariance error: Cannot convert List<T> to List<Object> (Dart lists are not covariant)"
+      }
+    }
+  ]
+}

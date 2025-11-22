@@ -1,0 +1,31 @@
+{
+  "id": "py-l3-012",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "import weakref",
+    "",
+    "class Cache:",
+    "    def __init__(self):",
+    "        self.items = {}",
+    "    ",
+    "    def add(self, key, obj):",
+    "        self.items[key] = weakref.ref(obj, self.cleanup)",
+    "    ",
+    "    def cleanup(self, ref):",
+    "        del self.items[ref]"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-012-1",
+      "lines": [11],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "weakrefのコールバックは参照オブジェクトを引数に取ります。キーではなく参照で削除しようとしています",
+        "en": "Weakref callback receives reference object, attempting to delete by ref not key"
+      }
+    }
+  ]
+}

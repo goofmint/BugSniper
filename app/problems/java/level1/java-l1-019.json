@@ -1,0 +1,26 @@
+{
+  "id": "java-l1-019",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class ArrayLength {",
+    "    public void printLast(int[] arr) {",
+    "        int lastIndex = arr.length;",
+    "        System.out.println(arr[lastIndex]);",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-019-1",
+      "lines": [3, 4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "配列の範囲外アクセスです。配列の最後の要素のインデックスはlength-1です。arr.lengthではなくarr.length-1を使用すべきです。",
+        "en": "Array index out of bounds. Last element index is length-1. Should use arr.length-1 not arr.length."
+      }
+    }
+  ]
+}

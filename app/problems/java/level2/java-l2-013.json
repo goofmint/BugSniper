@@ -1,0 +1,34 @@
+{
+  "id": "java-l2-013",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "import java.util.HashSet;",
+    "import java.util.Set;",
+    "",
+    "public class CollectionTest {",
+    "    public void testSet() {",
+    "        Set<Integer> numbers = new HashSet<>();",
+    "        numbers.add(1);",
+    "        numbers.add(2);",
+    "        numbers.add(3);",
+    "        ",
+    "        Integer first = numbers.get(0);",
+    "        System.out.println(first);",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-013-1",
+      "lines": [11],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Setインターフェースにget()メソッドは存在しません。Setは順序を保証せず、インデックスによるアクセスをサポートしていません。要素にアクセスするにはイテレータを使用する必要があります。",
+        "en": "Set interface has no get() method. Set doesn't guarantee order and doesn't support index-based access. Must use iterator to access elements."
+      }
+    }
+  ]
+}

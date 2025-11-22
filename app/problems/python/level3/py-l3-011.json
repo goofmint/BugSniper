@@ -1,0 +1,30 @@
+{
+  "id": "py-l3-011",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "import asyncio",
+    "",
+    "async def task1():",
+    "    await asyncio.sleep(1)",
+    "    return 'done'",
+    "",
+    "def main():",
+    "    loop = asyncio.get_event_loop()",
+    "    result = loop.run_until_complete(task1())",
+    "    loop.close()"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-011-1",
+      "lines": [8, 9, 10],
+      "type": "design",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "Python 3.7+では'asyncio.run()'を使用すべきです。イベントループ管理が簡単です",
+        "en": "Should use 'asyncio.run()' in Python 3.7+, simplifies event loop management"
+      }
+    }
+  ]
+}

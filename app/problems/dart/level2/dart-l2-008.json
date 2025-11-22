@@ -1,0 +1,29 @@
+{
+  "id": "dart-l2-008",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "class Animal {",
+    "  final String name;",
+    "  Animal(this.name);",
+    "}",
+    "",
+    "class Dog extends Animal {",
+    "  final String breed;",
+    "  Dog(String name, this.breed);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-008-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "スーパークラスコンストラクタの呼び出し漏れ: 親クラスのコンストラクタを呼び出していません",
+        "en": "Missing super constructor call: Parent class constructor is not called"
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "dart-l1-012",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "bool isEven(int number) {",
+    "  if (number % 2 == 0) {",
+    "    return true;",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-012-1",
+      "lines": [1, 2, 3, 4, 5],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "戻り値の欠如: 関数が全てのパスで値を返していません（奇数の場合の戻り値がない）",
+        "en": "Missing return value: Function doesn't return a value in all code paths (missing return for odd numbers)"
+      }
+    }
+  ]
+}

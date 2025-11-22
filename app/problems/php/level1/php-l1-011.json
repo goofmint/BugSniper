@@ -1,0 +1,27 @@
+{
+  "id": "php-l1-011",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "function calculate($a, $b) {",
+    "  $result = $a + $b;",
+    "  return $reuslt;",
+    "}",
+    "echo calculate(5, 3);",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-011-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "変数名のタイプミス: $resultが$reusltと書かれています",
+        "en": "Variable name typo: $result is misspelled as $reuslt"
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "dart-l1-013",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  int? value;",
+    "  int result = value * 2;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-013-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Null安全性違反: nullable変数をnullチェックなしで演算に使用しています",
+        "en": "Null safety violation: Using nullable variable in operation without null check"
+      }
+    }
+  ]
+}

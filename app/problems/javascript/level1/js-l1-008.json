@@ -1,0 +1,26 @@
+{
+  "id": "js-l1-008",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function isEven(num) {",
+    "  if (num % 2 = 0) {",
+    "    return true;",
+    "  }",
+    "  return false;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-008-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "代入演算子(=)を使っているため、比較演算子(===)を使う必要があります",
+        "en": "Using assignment operator (=) instead of comparison operator (===)"
+      }
+    }
+  ]
+}

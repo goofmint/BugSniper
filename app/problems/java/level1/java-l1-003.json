@@ -1,0 +1,27 @@
+{
+  "id": "java-l1-003",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class Person {",
+    "    private String name;",
+    "    ",
+    "    public void printName() {",
+    "        System.out.println(nmae);",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-003-1",
+      "lines": [5],
+      "type": "bug",
+      "severity": "critical",
+      "score": 2,
+      "description": {
+        "ja": "変数名のタイポです。'nmae'は'name'であるべきです。",
+        "en": "Variable name typo. 'nmae' should be 'name'."
+      }
+    }
+  ]
+}

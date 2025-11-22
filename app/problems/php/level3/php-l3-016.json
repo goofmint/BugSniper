@@ -1,0 +1,37 @@
+{
+  "id": "php-l3-016",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "namespace App\\Services;",
+    "",
+    "use PDO;",
+    "",
+    "class DatabaseService {",
+    "  private $pdo;",
+    "  ",
+    "  public function __construct() {",
+    "    $this->pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');",
+    "  }",
+    "  ",
+    "  public function query($sql) {",
+    "    return $this->pdo->query($sql);",
+    "  }",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-016-1",
+      "lines": [10],
+      "type": "security",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "データベース認証情報がハードコーディングされています。環境変数を使用すべきです",
+        "en": "Database credentials are hardcoded. Should use environment variables"
+      }
+    }
+  ]
+}

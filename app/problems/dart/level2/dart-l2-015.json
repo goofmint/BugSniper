@@ -1,0 +1,30 @@
+{
+  "id": "dart-l2-015",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "class Product {",
+    "  final String name;",
+    "  final double price;",
+    "  ",
+    "  const Product(this.name, this.price);",
+    "  ",
+    "  void updatePrice(double newPrice) {",
+    "    price = newPrice;",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-015-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "finalフィールドへの再代入: finalフィールドは初期化後に変更できません",
+        "en": "Reassignment to final field: final fields cannot be changed after initialization"
+      }
+    }
+  ]
+}

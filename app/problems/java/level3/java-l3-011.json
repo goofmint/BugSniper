@@ -1,0 +1,32 @@
+{
+  "id": "java-l3-011",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "import java.util.Optional;",
+    "",
+    "public class OptionalMisuse {",
+    "    public String getUserName(Long userId) {",
+    "        Optional<String> name = findUserName(userId);",
+    "        return name.get();",
+    "    }",
+    "    ",
+    "    private Optional<String> findUserName(Long userId) {",
+    "        return Optional.empty();",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-011-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Optionalの誤用です。isPresent()でチェックせずにget()を呼び出すと、値が存在しない場合にNoSuchElementExceptionが発生します。orElse()、orElseThrow()、またはisPresent()チェックを使用すべきです。",
+        "en": "Optional misuse. Calling get() without isPresent() check throws NoSuchElementException when value absent. Should use orElse(), orElseThrow(), or isPresent() check."
+      }
+    }
+  ]
+}

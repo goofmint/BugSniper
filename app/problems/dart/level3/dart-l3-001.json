@@ -1,0 +1,29 @@
+{
+  "id": "dart-l3-001",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "import 'dart:async';",
+    "",
+    "void main() async {",
+    "  StreamController<int> controller = StreamController();",
+    "  controller.stream.listen((value) => print(value));",
+    "  controller.add(1);",
+    "  controller.stream.listen((value) => print(value * 2));",
+    "  controller.add(2);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-001-1",
+      "lines": [7],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "単一サブスクリプションストリームエラー: 通常のStreamControllerのストリームは1回しかlistenできません",
+        "en": "Single subscription stream error: Regular StreamController streams can only be listened to once"
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "java-l1-017",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class CaseTypo {",
+    "    public static void main(String[] args) {",
+    "        System.out.Println(\"Hello World\");",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-017-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 2,
+      "description": {
+        "ja": "メソッド名の大文字小文字が間違っています。'Println'ではなく'println'が正しいです。Javaは大文字小文字を区別します。",
+        "en": "Method name case is wrong. Should be 'println' not 'Println'. Java is case-sensitive."
+      }
+    }
+  ]
+}

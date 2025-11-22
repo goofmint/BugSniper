@@ -1,0 +1,30 @@
+{
+  "id": "dart-l2-001",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "class Person {",
+    "  String name;",
+    "  int age;",
+    "",
+    "  Person(this.name, this.age);",
+    "}",
+    "",
+    "void main() {",
+    "  var person = Person('Alice');",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-001-1",
+      "lines": [9],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "コンストラクタ引数の不一致: コンストラクタは2つの引数を要求していますが、1つしか渡されていません",
+        "en": "Constructor argument mismatch: Constructor requires 2 arguments but only 1 is provided"
+      }
+    }
+  ]
+}

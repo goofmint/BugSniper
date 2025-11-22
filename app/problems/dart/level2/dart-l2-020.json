@@ -1,0 +1,24 @@
+{
+  "id": "dart-l2-020",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "Future<int> calculate() async {",
+    "  await Future.delayed(Duration(seconds: 1));",
+    "  return Future.value(42);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-020-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "不要なFutureラップ: async関数内でFuture.valueを返す必要はありません。直接42を返してください",
+        "en": "Unnecessary Future wrapping: No need to return Future.value in async function, return 42 directly"
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "js-l3-010",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "class Animal {",
+    "  constructor(name) {",
+    "    this.name = name;",
+    "  }",
+    "}",
+    "",
+    "class Dog extends Animal {",
+    "  constructor(name, breed) {",
+    "    this.breed = breed;",
+    "    super(name);",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-010-1",
+      "lines": [9, 10],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "super()を呼ぶ前にthisを使用しているため、ReferenceErrorが発生します",
+        "en": "Using this before calling super() causes ReferenceError"
+      }
+    }
+  ]
+}

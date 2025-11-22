@@ -15,8 +15,9 @@ export function Header({ currentLang }: HeaderProps) {
 
   return (
     <header className="flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-900/80 backdrop-blur">
-      <Link to={`/${currentLang}`} className="text-xl font-bold tracking-tight">
-        Bug Sniper
+      <Link to={`/${currentLang}`} className="flex items-center space-x-2 text-xl font-bold tracking-tight">
+        <img src="/images/coderabbit-icon.svg" alt="CodeRabbit" className="w-8 h-8" />
+        <span>Bug Sniper</span>
       </Link>
       <div className="flex items-center space-x-4">
         {/* Language switcher */}

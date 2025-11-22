@@ -1,0 +1,27 @@
+{
+  "id": "dart-l2-016",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "void processData(List<int>? numbers) {",
+    "  numbers?.forEach((n) {",
+    "    if (n < 0) {",
+    "      numbers.clear();",
+    "    }",
+    "  });",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-016-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Null安全性エラー: numbersはnullableですが、?なしでメソッドを呼び出しています",
+        "en": "Null safety error: numbers is nullable but method is called without null-aware operator"
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "rb-l2-016",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "class Person",
+    "  attr_reader :name, :age",
+    "",
+    "  def initialize(name, age)",
+    "    @name = name",
+    "    @age = age",
+    "  end",
+    "",
+    "  def older_than?(other)",
+    "    age > other.age",
+    "  end",
+    "",
+    "  private",
+    "",
+    "  attr_reader :age",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-016-1",
+      "lines": [2, 15],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ageのattr_readerが2回定義されています。また、15行目でprivateにしても、2行目のpublicな定義が残ります",
+        "en": "attr_reader for age is defined twice. Making it private on line 15 doesn't override the public definition on line 2"
+      }
+    }
+  ]
+}

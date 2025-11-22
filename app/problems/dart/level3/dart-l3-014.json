@@ -1,0 +1,30 @@
+{
+  "id": "dart-l3-014",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "import 'dart:async';",
+    "",
+    "Stream<int> getData() async* {",
+    "  await Future.delayed(Duration(seconds: 1));",
+    "  yield 1;",
+    "  await Future.delayed(Duration(seconds: 1));",
+    "  yield 2;",
+    "  throw Exception('Error');",
+    "  yield 3;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-014-1",
+      "lines": [9],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "到達不能コード: 例外の後のyield文は実行されません",
+        "en": "Unreachable code: yield statement after exception will never execute"
+      }
+    }
+  ]
+}

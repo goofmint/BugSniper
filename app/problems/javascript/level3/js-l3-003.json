@@ -1,0 +1,31 @@
+{
+  "id": "js-l3-003",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "function createCounter() {",
+    "  let count = 0;",
+    "  return {",
+    "    increment: () => count++,",
+    "    decrement: () => count--,",
+    "    getCount: () => count",
+    "  };",
+    "}",
+    "",
+    "const counter1 = createCounter();",
+    "const counter2 = counter1;"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-003-1",
+      "lines": [11],
+      "type": "design",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "counter2はcounter1と同じ参照を指しています。独立したカウンターが必要な場合はcreateCounter()を再度呼び出す必要があります",
+        "en": "counter2 points to same reference as counter1. Need to call createCounter() again for independent counter"
+      }
+    }
+  ]
+}

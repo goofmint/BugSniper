@@ -1,0 +1,28 @@
+{
+  "id": "py-l3-009",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "def accumulator():",
+    "    total = 0",
+    "    while True:",
+    "        value = yield",
+    "        if value is None:",
+    "            break",
+    "        total += value",
+    "        yield total"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-009-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "ジェネレータ内で2つのyieldがあると予期しない動作になります。send()との使い方を確認すべきです",
+        "en": "Two yields in generator causes unexpected behavior, should review usage with send()"
+      }
+    }
+  ]
+}

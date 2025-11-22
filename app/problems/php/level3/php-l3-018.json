@@ -1,0 +1,25 @@
+{
+  "id": "php-l3-018",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "$command = $_GET['cmd'];",
+    "$output = shell_exec($command);",
+    "echo '<pre>' . $output . '</pre>';",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-018-1",
+      "lines": [2, 3],
+      "type": "security",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "コマンドインジェクションの脆弱性があります。ユーザー入力を直接shell_execに渡しています",
+        "en": "Command injection vulnerability. Passing user input directly to shell_exec"
+      }
+    }
+  ]
+}

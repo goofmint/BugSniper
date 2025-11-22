@@ -1,0 +1,24 @@
+{
+  "id": "dart-l1-019",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  String? nullableText = null;",
+    "  String text = nullableText;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-019-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Null安全性違反: nullable型をnon-nullable型に代入できません",
+        "en": "Null safety violation: Cannot assign nullable type to non-nullable type"
+      }
+    }
+  ]
+}

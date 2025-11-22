@@ -1,0 +1,24 @@
+{
+  "id": "js-l1-019",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function factorial(n) {",
+    "  if (n === 0) return 1;",
+    "  return n * factorial(n);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-019-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "再帰呼び出しでnをデクリメントしていないため、無限再帰が発生します",
+        "en": "Not decrementing n in recursive call causes infinite recursion"
+      }
+    }
+  ]
+}

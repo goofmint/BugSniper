@@ -1,0 +1,27 @@
+{
+  "id": "php-l3-005",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "session_start();",
+    "$_SESSION['user_id'] = $userId;",
+    "$_SESSION['username'] = $username;",
+    "header('Location: dashboard.php');",
+    "echo 'Redirecting...';",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-005-1",
+      "lines": [5, 6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "header()の後にexit()またはdie()がありません。リダイレクト後もコードが実行される可能性があります",
+        "en": "Missing exit() or die() after header(). Code may continue executing after redirect"
+      }
+    }
+  ]
+}

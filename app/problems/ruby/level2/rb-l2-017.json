@@ -1,0 +1,28 @@
+{
+  "id": "rb-l2-017",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "def cached_users",
+    "  @users ||= User.all",
+    "end",
+    "",
+    "def add_user(user)",
+    "  User.create(user)",
+    "  @users << user",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-017-1",
+      "lines": [7],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "@usersがnilの場合、NoMethodErrorが発生します。キャッシュの初期化を保証する必要があります",
+        "en": "If @users is nil, NoMethodError occurs. Need to ensure cache is initialized"
+      }
+    }
+  ]
+}

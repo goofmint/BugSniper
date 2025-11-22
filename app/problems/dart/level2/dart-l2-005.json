@@ -1,0 +1,27 @@
+{
+  "id": "dart-l2-005",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "void greet({required String name, int age}) {",
+    "  print('Hello, $name, age $age');",
+    "}",
+    "",
+    "void main() {",
+    "  greet(name: 'Alice');",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-005-1",
+      "lines": [1],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "必須パラメータの矛盾: ageパラメータは必須でないのにnullableではありません",
+        "en": "Required parameter inconsistency: age parameter is not required but not nullable"
+      }
+    }
+  ]
+}

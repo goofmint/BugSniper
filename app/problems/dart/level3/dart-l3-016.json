@@ -1,0 +1,35 @@
+{
+  "id": "dart-l3-016",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "typedef Callback = void Function();",
+    "",
+    "class EventManager {",
+    "  List<Callback> _listeners = [];",
+    "  ",
+    "  void addListener(Callback callback) {",
+    "    _listeners.add(callback);",
+    "  }",
+    "  ",
+    "  void notify() {",
+    "    for (var listener in _listeners) {",
+    "      listener();",
+    "    }",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-016-1",
+      "lines": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      "type": "performance",
+      "severity": "normal",
+      "score": 2,
+      "description": {
+        "ja": "メモリリーク: リスナーを削除するメソッドがないため、メモリリークの原因になります",
+        "en": "Memory leak: No method to remove listeners, causing potential memory leaks"
+      }
+    }
+  ]
+}

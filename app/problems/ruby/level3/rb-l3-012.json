@@ -1,0 +1,35 @@
+{
+  "id": "rb-l3-012",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class Validator",
+    "  RULES = []",
+    "",
+    "  def self.validate(rule)",
+    "    RULES << rule",
+    "  end",
+    "",
+    "  def check(data)",
+    "    RULES.all? { |rule| rule.call(data) }",
+    "  end",
+    "end",
+    "",
+    "class UserValidator < Validator",
+    "  validate ->(data) { data[:name].present? }",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-012-1",
+      "lines": [2, 5],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "定数RULESは全サブクラスで共有されます。各サブクラスで独自のルールを持つ場合、クラスインスタンス変数を使用すべきです",
+        "en": "Constant RULES is shared across all subclasses. Should use class instance variables for subclass-specific rules"
+      }
+    }
+  ]
+}

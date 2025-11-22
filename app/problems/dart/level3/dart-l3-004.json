@@ -1,0 +1,29 @@
+{
+  "id": "dart-l3-004",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "typedef IntFunction = int Function(int);",
+    "",
+    "void processNumber(IntFunction func) {",
+    "  print(func(5));",
+    "}",
+    "",
+    "void main() {",
+    "  processNumber((int x) => x.toString());",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-004-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Typedef型不一致: IntFunctionはintを返す必要がありますが、Stringを返す関数を渡しています",
+        "en": "Typedef type mismatch: IntFunction expects int return, but function returns String"
+      }
+    }
+  ]
+}

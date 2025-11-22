@@ -1,0 +1,27 @@
+{
+  "id": "java-l1-011",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class ConstructorError {",
+    "    private String name;",
+    "    ",
+    "    public void ConstructorError(String name) {",
+    "        this.name = name;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-011-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "コンストラクタに戻り値の型が指定されています。コンストラクタは戻り値の型を持たず、void も指定しません。",
+        "en": "Constructor has return type specified. Constructors should not have return types, not even void."
+      }
+    }
+  ]
+}

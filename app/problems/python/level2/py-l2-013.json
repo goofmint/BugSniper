@@ -1,0 +1,23 @@
+{
+  "id": "py-l2-013",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "def get_slice(items):",
+    "    n = len(items)",
+    "    return items[n/2:]"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-013-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "Python 3では'/'は浮動小数点除算です。スライスには整数が必要なので'//'を使うべきです",
+        "en": "In Python 3, '/' is float division. Should use '//' for integer division in slicing"
+      }
+    }
+  ]
+}

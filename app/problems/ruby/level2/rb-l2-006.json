@@ -1,0 +1,28 @@
+{
+  "id": "rb-l2-006",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "def transform_data(data)",
+    "  data.map { |item| item.to_s }",
+    "end",
+    "",
+    "result = transform_data([1, 2, 3])",
+    "result.each do |item|",
+    "  item.upcase!",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-006-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "mapは新しい配列を返すため、元のdataは変更されません。破壊的な変更が必要な場合はmap!を使用すべきです",
+        "en": "map returns a new array without modifying original data. Should use map! if destructive change is needed"
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "php-l3-007",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "class ImageProcessor {",
+    "  private $images = [];",
+    "  ",
+    "  public function loadImages($directory) {",
+    "    $files = glob($directory . '/*.jpg');",
+    "    foreach ($files as $file) {",
+    "      $this->images[] = file_get_contents($file);",
+    "    }",
+    "  }",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-007-1",
+      "lines": [8],
+      "type": "performance",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "すべての画像をメモリに読み込んでいます。メモリリークの可能性があります。必要に応じて読み込むべきです",
+        "en": "Loading all images into memory. Potential memory leak. Should load on demand"
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "py-l1-018",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def print_range(start, end):",
+    "    for i in range(start, end):",
+    "        Print(i)"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-018-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Pythonの組み込み関数は小文字です。'Print'ではなく'print'を使う必要があります",
+        "en": "Python built-in functions are lowercase. Should use 'print' instead of 'Print'"
+      }
+    }
+  ]
+}

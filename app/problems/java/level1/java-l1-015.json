@@ -1,0 +1,26 @@
+{
+  "id": "java-l1-015",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class FloatPrecision {",
+    "    public static void main(String[] args) {",
+    "        float price = 19.99;",
+    "        System.out.println(price);",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-015-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "normal",
+      "score": 2,
+      "description": {
+        "ja": "型の不一致です。リテラル19.99はdouble型ですが、float変数に代入されています。float型には'f'サフィックスが必要です（例: 19.99f）。",
+        "en": "Type mismatch. Literal 19.99 is double but assigned to float. Float requires 'f' suffix (e.g., 19.99f)."
+      }
+    }
+  ]
+}

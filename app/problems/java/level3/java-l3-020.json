@@ -1,0 +1,43 @@
+{
+  "id": "java-l3-020",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "import java.util.*;",
+    "import java.util.stream.Collectors;",
+    "",
+    "public class StreamCollectorIssue {",
+    "    public Map<String, String> convertList(List<String> items) {",
+    "        return items.stream()",
+    "            .collect(Collectors.toMap(",
+    "                item -> item.split(\":\")[0],",
+    "                item -> item.split(\":\")[1]",
+    "            ));",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-020-1",
+      "lines": [7, 8, 9],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "重複キーの処理が欠落しています。toMap()で重複したキーが存在する場合、IllegalStateExceptionが発生します。マージ関数を提供するか、toMap()の3引数版を使用すべきです。",
+        "en": "Missing duplicate key handling. toMap() throws IllegalStateException when duplicate keys exist. Should provide merge function or use 3-argument version of toMap()."
+      }
+    },
+    {
+      "id": "java-l3-020-2",
+      "lines": [8, 9],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "ArrayIndexOutOfBoundsExceptionの可能性があります。split()の結果が期待通りでない場合（':'が含まれない、または複数含まれる）、配列のインデックス[1]にアクセスできない可能性があります。",
+        "en": "Potential ArrayIndexOutOfBoundsException. If split() result is not as expected (no ':' or multiple), may not be able to access array index [1]."
+      }
+    }
+  ]
+}

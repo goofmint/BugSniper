@@ -1,0 +1,31 @@
+{
+  "id": "php-l2-009",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "class Animal {",
+    "  protected $name = 'Unknown';",
+    "}",
+    "",
+    "class Dog extends Animal {",
+    "  public function getName() {",
+    "    return $name;",
+    "  }",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-009-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "親クラスのプロパティにアクセスするには$this->nameを使用する必要があります",
+        "en": "Must use $this->name to access parent class property"
+      }
+    }
+  ]
+}

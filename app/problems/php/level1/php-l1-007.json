@@ -1,0 +1,25 @@
+{
+  "id": "php-l1-007",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$price = 100;",
+    "$quantity = 5;",
+    "echo 'Total: ' . $price * $quantty;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-007-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "変数名のタイプミス: $quantityが$quanttyと書かれています",
+        "en": "Variable name typo: $quantity is misspelled as $quantty"
+      }
+    }
+  ]
+}

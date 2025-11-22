@@ -1,0 +1,29 @@
+{
+  "id": "rb-l1-012",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def check_length(text)",
+    "  if text.length > 10",
+    "    return \"Long\"",
+    "  elsif text.length < 5",
+    "    return \"Short\"",
+    "  esle",
+    "    return \"Medium\"",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-012-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "キーワードのタイポ: 'esle'は'else'であるべきです。構文エラーが発生します",
+        "en": "Keyword typo: 'esle' should be 'else'. This causes a syntax error"
+      }
+    }
+  ]
+}

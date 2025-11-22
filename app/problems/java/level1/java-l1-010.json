@@ -1,0 +1,28 @@
+{
+  "id": "java-l1-010",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class ComparisonError {",
+    "    public boolean isPositive(int num) {",
+    "        if (num = 0) {",
+    "            return false;",
+    "        }",
+    "        return num > 0;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-010-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "比較演算子の誤りです。代入演算子'='が使用されていますが、比較には'=='または'!='を使用すべきです。",
+        "en": "Wrong comparison operator. Assignment operator '=' is used, but should use '==' or '!=' for comparison."
+      }
+    }
+  ]
+}

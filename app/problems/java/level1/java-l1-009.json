@@ -1,0 +1,27 @@
+{
+  "id": "java-l1-009",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class ReturnMissing {",
+    "    public int getMaxValue(int a, int b) {",
+    "        if (a > b) {",
+    "            return a;",
+    "        }",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-009-1",
+      "lines": [2, 3, 4, 5, 6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "すべての実行パスでreturn文がありません。if文がfalseの場合、何も返されません。elseブロックまたはif文の後にreturn文が必要です。",
+        "en": "Missing return statement for all execution paths. When if is false, nothing is returned. Need return in else or after if."
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "js-l2-006",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "async function fetchUserData(userId) {",
+    "  const response = await fetch(`/api/users/${userId}`);",
+    "  const data = response.json();",
+    "  return data;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-006-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "response.json()はPromiseを返すため、awaitが必要です",
+        "en": "response.json() returns a Promise, needs await"
+      }
+    }
+  ]
+}

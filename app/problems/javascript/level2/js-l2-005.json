@@ -1,0 +1,31 @@
+{
+  "id": "js-l2-005",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "class Counter {",
+    "  constructor() {",
+    "    this.count = 0;",
+    "  }",
+    "  increment() {",
+    "    this.count++;",
+    "  }",
+    "}",
+    "",
+    "const counter = new Counter();",
+    "setTimeout(counter.increment, 1000);"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-005-1",
+      "lines": [11],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "メソッドをそのまま渡すとthisのバインディングが失われます。アロー関数またはbindを使う必要があります",
+        "en": "Passing method directly loses 'this' binding. Need to use arrow function or bind"
+      }
+    }
+  ]
+}

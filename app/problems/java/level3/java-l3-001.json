@@ -1,0 +1,31 @@
+{
+  "id": "java-l3-001",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "public class Counter {",
+    "    private int count = 0;",
+    "    ",
+    "    public void increment() {",
+    "        count++;",
+    "    }",
+    "    ",
+    "    public int getCount() {",
+    "        return count;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-001-1",
+      "lines": [5, 9],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "スレッドセーフではありません。複数のスレッドから同時にアクセスされた場合、count++は原子的操作ではないため、競合状態が発生します。synchronizedキーワードまたはAtomicIntegerを使用すべきです。",
+        "en": "Not thread-safe. When accessed by multiple threads, count++ is not atomic and causes race condition. Should use synchronized or AtomicInteger."
+      }
+    }
+  ]
+}

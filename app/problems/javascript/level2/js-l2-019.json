@@ -1,0 +1,28 @@
+{
+  "id": "js-l2-019",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "async function loadData() {",
+    "  try {",
+    "    const data = await fetch('/api/data');",
+    "    return data.json();",
+    "  } catch (error) {",
+    "    console.error(error);",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-019-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "data.json()もPromiseを返すため、awaitが必要です",
+        "en": "data.json() also returns a Promise, needs await"
+      }
+    }
+  ]
+}

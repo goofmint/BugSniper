@@ -1,0 +1,33 @@
+{
+  "id": "rb-l2-001",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "class User",
+    "  attr_accessor :name",
+    "  attr_reader :email",
+    "",
+    "  def initialize(name, email)",
+    "    @name = name",
+    "    @email = email",
+    "  end",
+    "",
+    "  def update_email(new_email)",
+    "    email = new_email",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-001-1",
+      "lines": [11],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ローカル変数を作成しているため、インスタンス変数は更新されません。@emailまたはself.emailを使用すべきです",
+        "en": "Creates a local variable instead of updating instance variable. Should use @email or self.email="
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "rb-l3-010",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class DSL",
+    "  def self.define(&block)",
+    "    instance_eval(&block)",
+    "  end",
+    "",
+    "  def self.method_missing(name, *args, &block)",
+    "    puts \"Defining #{name}\"",
+    "  end",
+    "end",
+    "",
+    "DSL.define do",
+    "  user do",
+    "    name \"Alice\"",
+    "    age 25",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-010-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "instance_evalはクラスのコンテキストで実行されるため、ネストしたブロック(user do...)でselfが変わらず、期待通りに動作しません",
+        "en": "instance_eval executes in class context, so nested blocks (user do...) don't change self as expected"
+      }
+    }
+  ]
+}

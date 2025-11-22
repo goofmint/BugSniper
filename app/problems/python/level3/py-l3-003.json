@@ -1,0 +1,28 @@
+{
+  "id": "py-l3-003",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "class FileManager:",
+    "    def __enter__(self):",
+    "        self.file = open('data.txt', 'w')",
+    "        return self.file",
+    "    ",
+    "    def __exit__(self, exc_type, exc_val, exc_tb):",
+    "        self.file.close()",
+    "        return True"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-003-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "__exit__でTrueを返すと全ての例外が抑制されます。Falseまたは何も返さないべきです",
+        "en": "Returning True in __exit__ suppresses all exceptions, should return False or None"
+      }
+    }
+  ]
+}

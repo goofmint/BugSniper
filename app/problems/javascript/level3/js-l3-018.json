@@ -1,0 +1,24 @@
+{
+  "id": "js-l3-018",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "const a = [1, 2, 3];",
+    "const b = a;",
+    "b.push(4);",
+    "console.log(a.length);"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-018-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "配列bは配列aと同じ参照を指しています。独立したコピーが必要な場合は[...a]を使う必要があります",
+        "en": "Array b points to same reference as array a. Need [...a] for independent copy"
+      }
+    }
+  ]
+}

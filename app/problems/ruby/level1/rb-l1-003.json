@@ -1,0 +1,24 @@
+{
+  "id": "rb-l1-003",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def display_message(user)",
+    "  message = 'Welcome, {user.name}!'",
+    "  puts message",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-003-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "シングルクォートでは文字列補間が機能しません。ダブルクォートと#{...}を使用する必要があります",
+        "en": "String interpolation doesn't work with single quotes. Need to use double quotes and #{...} syntax"
+      }
+    }
+  ]
+}

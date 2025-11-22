@@ -1,0 +1,33 @@
+{
+  "id": "dart-l3-011",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "import 'dart:async';",
+    "",
+    "Future<void> processData() async {",
+    "  final stream = Stream.periodic(",
+    "    Duration(seconds: 1),",
+    "    (count) => count",
+    "  );",
+    "  ",
+    "  await for (var value in stream) {",
+    "    print(value);",
+    "    if (value > 5) break;",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-011-1",
+      "lines": [4, 5, 6, 7],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "無限ストリームのリスク: Stream.periodicは終了条件がないため、メモリリークの原因になります",
+        "en": "Infinite stream risk: Stream.periodic has no end condition, can cause memory leaks"
+      }
+    }
+  ]
+}

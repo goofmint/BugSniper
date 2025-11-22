@@ -1,0 +1,24 @@
+{
+  "id": "dart-l1-014",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  String message = 'Hello';",
+    "  message[0] = 'h';",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-014-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "文字列は不変オブジェクト: Dartの文字列は変更できません",
+        "en": "Strings are immutable: Cannot modify individual characters in Dart strings"
+      }
+    }
+  ]
+}

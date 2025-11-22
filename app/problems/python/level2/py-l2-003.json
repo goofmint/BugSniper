@@ -1,0 +1,26 @@
+{
+  "id": "py-l2-003",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "def read_file(filename):",
+    "    try:",
+    "        with open(filename, 'r') as f:",
+    "            return f.read()",
+    "    except ValueError:",
+    "        return None"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-003-1",
+      "lines": [5],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ファイル操作では'FileNotFoundError'または'IOError'を捕捉すべきです",
+        "en": "Should catch 'FileNotFoundError' or 'IOError' for file operations, not 'ValueError'"
+      }
+    }
+  ]
+}

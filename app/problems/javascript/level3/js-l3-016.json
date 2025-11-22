@@ -1,0 +1,28 @@
+{
+  "id": "js-l3-016",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "const obj = {};",
+    "Object.defineProperty(obj, 'value', {",
+    "  value: 42,",
+    "  writable: false",
+    "});",
+    "",
+    "obj.value = 100;",
+    "console.log(obj.value);"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-016-1",
+      "lines": [7],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "writable: falseなので、代入は無視されます（strictモードではTypeError）",
+        "en": "With writable: false, assignment is ignored (TypeError in strict mode)"
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "java-l1-006",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class SwitchCase {",
+    "    public String getDayType(int day) {",
+    "        String type = \"\";",
+    "        switch(day) {",
+    "            case 1:",
+    "            case 2:",
+    "                type = \"Weekend\";",
+    "            case 3:",
+    "            case 4:",
+    "            case 5:",
+    "                type = \"Weekday\";",
+    "            default:",
+    "                type = \"Invalid\";",
+    "        }",
+    "        return type;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-006-1",
+      "lines": [7, 11, 13],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "breakステートメントが欠落しています。各caseの終わりにbreakがないと、次のcaseに処理が流れてしまいます（フォールスルー）。",
+        "en": "Missing break statements. Without break at the end of each case, execution falls through to the next case."
+      }
+    }
+  ]
+}

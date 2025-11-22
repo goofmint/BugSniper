@@ -1,0 +1,32 @@
+{
+  "id": "java-l2-018",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "public class Singleton {",
+    "    private static Singleton instance;",
+    "    ",
+    "    private Singleton() {}",
+    "    ",
+    "    public Singleton getInstance() {",
+    "        if (instance == null) {",
+    "            instance = new Singleton();",
+    "        }",
+    "        return instance;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-018-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "getInstance()メソッドがstaticではありません。Singletonパターンでは、インスタンスを取得するメソッドはstaticである必要があります。そうでないと、インスタンスなしでメソッドを呼び出せません。",
+        "en": "getInstance() method is not static. In Singleton pattern, the method to get instance must be static, otherwise cannot call without instance."
+      }
+    }
+  ]
+}

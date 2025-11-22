@@ -1,0 +1,39 @@
+{
+  "id": "rb-l2-007",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "class Account",
+    "  def initialize(balance)",
+    "    @balance = balance",
+    "  end",
+    "",
+    "  def withdraw(amount)",
+    "    if @balance >= amount",
+    "      @balance -= amount",
+    "    else",
+    "      raise \"Insufficient funds\"",
+    "    end",
+    "  end",
+    "",
+    "  private",
+    "",
+    "  def balance",
+    "    @balance",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-007-1",
+      "lines": [14, 15, 16, 17, 18],
+      "type": "design",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "privateメソッドbalanceが定義されていますが使用されていません。また、直接@balanceにアクセスしているため不要です",
+        "en": "Private method balance is defined but never used. It's unnecessary since @balance is accessed directly"
+      }
+    }
+  ]
+}

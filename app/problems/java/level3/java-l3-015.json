@@ -1,0 +1,32 @@
+{
+  "id": "java-l3-015",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "import java.io.FileInputStream;",
+    "import java.io.ObjectInputStream;",
+    "",
+    "public class DeserializationExample {",
+    "    public Object loadObject(String filename) throws Exception {",
+    "        FileInputStream fis = new FileInputStream(filename);",
+    "        ObjectInputStream ois = new ObjectInputStream(fis);",
+    "        Object obj = ois.readObject();",
+    "        ois.close();",
+    "        return obj;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-015-1",
+      "lines": [8],
+      "type": "security",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "安全でないデシリアライゼーションです。信頼できないソースからのオブジェクトをデシリアライズすると、任意のコード実行やDoS攻撃のリスクがあります。入力の検証やホワイトリストによる型チェックが必要です。",
+        "en": "Unsafe deserialization. Deserializing objects from untrusted sources risks arbitrary code execution and DoS attacks. Need input validation and whitelist-based type checking."
+      }
+    }
+  ]
+}

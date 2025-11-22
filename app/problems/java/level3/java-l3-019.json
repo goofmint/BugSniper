@@ -1,0 +1,35 @@
+{
+  "id": "java-l3-019",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "import java.util.concurrent.ExecutorService;",
+    "import java.util.concurrent.Executors;",
+    "",
+    "public class ThreadPoolExample {",
+    "    public void processData() {",
+    "        ExecutorService executor = Executors.newFixedThreadPool(10);",
+    "        ",
+    "        for (int i = 0; i < 100; i++) {",
+    "            final int taskId = i;",
+    "            executor.submit(() -> {",
+    "                System.out.println(\"Processing task: \" + taskId);",
+    "            });",
+    "        }",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-019-1",
+      "lines": [6, 7, 8, 9, 10, 11, 12, 13],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "ExecutorServiceがシャットダウンされていません。スレッドプールを作成した後、shutdown()またはshutdownNow()を呼び出さないと、スレッドが残り続け、アプリケーションが終了しません。リソースリークの原因となります。",
+        "en": "ExecutorService not shutdown. After creating thread pool, without calling shutdown() or shutdownNow(), threads remain and application won't terminate. Causes resource leak."
+      }
+    }
+  ]
+}

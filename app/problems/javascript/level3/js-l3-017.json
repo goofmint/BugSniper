@@ -1,0 +1,32 @@
+{
+  "id": "js-l3-017",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "class Singleton {",
+    "  constructor() {",
+    "    if (!Singleton.instance) {",
+    "      Singleton.instance = this;",
+    "    }",
+    "    return Singleton.instance;",
+    "  }",
+    "}",
+    "",
+    "const s1 = new Singleton();",
+    "const s2 = new Singleton();",
+    "console.log(s1 === s2);"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-017-1",
+      "lines": [2, 3, 4, 5, 6, 7],
+      "type": "design",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "コンストラクタでreturnを使うのは非推奨です。静的メソッドgetInstance()を使うべきです",
+        "en": "Using return in constructor is discouraged. Should use static method getInstance()"
+      }
+    }
+  ]
+}

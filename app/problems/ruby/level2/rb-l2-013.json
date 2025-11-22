@@ -1,0 +1,25 @@
+{
+  "id": "rb-l2-013",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "def filter_by_status(items, status)",
+    "  items.select do |item|",
+    "    item[:status] = status",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-013-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "比較演算子==の代わりに代入演算子=を使用しているため、すべての要素のstatusが変更され、全て選択されます",
+        "en": "Using assignment operator = instead of comparison ==, modifying all elements' status and selecting all"
+      }
+    }
+  ]
+}

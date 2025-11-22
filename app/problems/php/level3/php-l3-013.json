@@ -1,0 +1,33 @@
+{
+  "id": "php-l3-013",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "class Cache {",
+    "  private static $data = [];",
+    "  ",
+    "  public static function set($key, $value) {",
+    "    self::$data[$key] = $value;",
+    "  }",
+    "  ",
+    "  public static function get($key) {",
+    "    return self::$data[$key] ?? null;",
+    "  }",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-013-1",
+      "lines": [6],
+      "type": "performance",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "静的配列にデータを無制限に蓄積しています。メモリリークの可能性があります",
+        "en": "Accumulating data in static array without limit. Potential memory leak"
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "php-l3-015",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "session_start();",
+    "",
+    "if (isset($_SESSION['user_id'])) {",
+    "  $userId = $_SESSION['user_id'];",
+    "  $user = getUserById($userId);",
+    "  ",
+    "  setcookie('user_id', $userId, time() + 3600);",
+    "  echo 'Welcome, ' . $user['name'];",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-015-1",
+      "lines": [8],
+      "type": "security",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "ユーザーIDをクッキーに保存しています。改ざん可能でセキュリティリスクがあります",
+        "en": "Storing user ID in cookie. Can be tampered with, security risk"
+      }
+    }
+  ]
+}

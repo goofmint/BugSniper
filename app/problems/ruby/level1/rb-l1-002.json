@@ -1,0 +1,26 @@
+{
+  "id": "rb-l1-002",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def greet_user(name)",
+    "  if name.nil?",
+    "    puts \"Hello, Guest!\"",
+    "  else",
+    "    puts \"Hello, #{name}\"",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-002-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "if文に対応するendキーワードが不足しています。構文エラーが発生します",
+        "en": "Missing 'end' keyword to close the if statement. This causes a syntax error"
+      }
+    }
+  ]
+}

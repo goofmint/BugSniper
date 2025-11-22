@@ -1,0 +1,24 @@
+{
+  "id": "dart-l1-006",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  int count = 10;",
+    "  print(total);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-006-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "未定義変数エラー: 変数'total'が定義されていません",
+        "en": "Undefined variable error: Variable 'total' is not defined"
+      }
+    }
+  ]
+}

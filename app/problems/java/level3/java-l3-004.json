@@ -1,0 +1,32 @@
+{
+  "id": "java-l3-004",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "public class Singleton {",
+    "    private static Singleton instance;",
+    "    ",
+    "    private Singleton() {}",
+    "    ",
+    "    public static Singleton getInstance() {",
+    "        if (instance == null) {",
+    "            instance = new Singleton();",
+    "        }",
+    "        return instance;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-004-1",
+      "lines": [7, 8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "マルチスレッド環境でのSingletonパターンの実装が不完全です。複数のスレッドが同時にgetInstance()を呼び出すと、複数のインスタンスが作成される可能性があります。Double-checked lockingまたはeager initializationを使用すべきです。",
+        "en": "Incomplete Singleton implementation for multi-threading. Multiple threads calling getInstance() simultaneously may create multiple instances. Should use double-checked locking or eager initialization."
+      }
+    }
+  ]
+}

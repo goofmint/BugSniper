@@ -1,0 +1,25 @@
+{
+  "id": "py-l3-002",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "def fibonacci(n):",
+    "    a, b = 0, 1",
+    "    for _ in range(n):",
+    "        a, b = b, a + b",
+    "    return a"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-002-1",
+      "lines": [1, 2, 3, 4, 5],
+      "type": "performance",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "大きなシーケンスにはジェネレータを使用すべきです。'yield'を使ってメモリ効率を改善",
+        "en": "Should use generator with 'yield' for large sequences to improve memory efficiency"
+      }
+    }
+  ]
+}

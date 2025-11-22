@@ -1,0 +1,29 @@
+{
+  "id": "php-l2-012",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "$value = '10';",
+    "if ($value == 10) {",
+    "  echo 'Equal';",
+    "}",
+    "if ($value == '10 items') {",
+    "  echo 'Also equal';",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-012-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "型の緩い比較により、'10'と'10 items'が等しいと判定されます。===を使用すべきです",
+        "en": "Loose comparison makes '10' equal to '10 items'. Should use ==="
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "java-l2-017",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "import java.util.ArrayList;",
+    "",
+    "public class GenericError {",
+    "    public void addElements() {",
+    "        ArrayList list = new ArrayList();",
+    "        list.add(\"Hello\");",
+    "        list.add(123);",
+    "        list.add(45.67);",
+    "        ",
+    "        for (Object obj : list) {",
+    "            String str = (String) obj;",
+    "            System.out.println(str.toUpperCase());",
+    "        }",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-017-1",
+      "lines": [5],
+      "type": "design",
+      "severity": "normal",
+      "score": 2,
+      "description": {
+        "ja": "Raw型の使用です。ジェネリック型を指定せずにArrayListを使用しています。型安全性のために型パラメータを指定すべきです（例: ArrayList<String>）。",
+        "en": "Using raw type. ArrayList is used without generic type. Should specify type parameter for type safety (e.g., ArrayList<String>)."
+      }
+    },
+    {
+      "id": "java-l2-017-2",
+      "lines": [11],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "ClassCastExceptionが発生します。リストにはStringだけでなく、IntegerやDoubleも含まれているため、すべての要素をStringにキャストすることはできません。",
+        "en": "ClassCastException will occur. List contains Integer and Double, not just String, so cannot cast all elements to String."
+      }
+    }
+  ]
+}
