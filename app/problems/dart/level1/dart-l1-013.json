@@ -5,7 +5,9 @@
   "code": [
     "void main() {",
     "  int? value;",
-    "  int result = value * 2;",
+    "  int multiplier = 2;",
+    "  int result = value * multiplier;",
+    "  print(result);",
     "}"
   ],
   "issues": [

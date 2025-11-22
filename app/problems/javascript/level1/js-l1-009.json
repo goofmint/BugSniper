@@ -4,6 +4,7 @@
   "level": 1,
   "code": [
     "function greet(name) {",
+    "  // Initialize variables",
     "  const message = 'Hello, ' + nama;",
     "  return message;",
     "}"
@@ -11,7 +12,9 @@
   "issues": [
     {
       "id": "js-l1-009-1",
-      "lines": [2],
+      "lines": [
+        2
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

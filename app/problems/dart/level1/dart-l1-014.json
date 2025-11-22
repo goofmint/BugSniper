@@ -5,13 +5,16 @@
   "code": [
     "void main() {",
     "  String message = 'Hello';",
-    "  message[0] = 'h';",
+    "  int index = 0;",
+    "  String newChar = 'h';",
+    "  message[index] = newChar;",
+    "  print(message);",
     "}"
   ],
   "issues": [
     {
       "id": "dart-l1-014-1",
-      "lines": [3],
+      "lines": [4],
       "type": "bug",
       "severity": "critical",
       "score": 4,

@@ -4,13 +4,19 @@
   "level": 1,
   "code": [
     "def print_range(start, end):",
-    "    for i in range(start, end):",
-    "        Print(i)"
+    "    \"\"\"Function implementation\"\"\"",
+    "    begin = start",
+    "    finish = end",
+    "    for i in range(begin, finish):",
+    "        value = i",
+    "        Print(value)"
   ],
   "issues": [
     {
       "id": "py-l1-018-1",
-      "lines": [3],
+      "lines": [
+        6
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

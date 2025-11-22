@@ -4,14 +4,17 @@
   "level": 1,
   "code": [
     "int calculateSum(int a, int b) {",
-    "  int result = a + b;",
-    "  return result",
+    "  int first = a;",
+    "  int second = b;",
+    "  int result = first + second;",
+    "  int answer = result;",
+    "  return answer",
     "}"
   ],
   "issues": [
     {
       "id": "dart-l1-002-1",
-      "lines": [3],
+      "lines": [5],
       "type": "bug",
       "severity": "critical",
       "score": 4,

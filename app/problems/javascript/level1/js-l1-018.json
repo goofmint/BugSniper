@@ -4,13 +4,19 @@
   "level": 1,
   "code": [
     "function divide(a, b) {",
-    "  return a / b;",
+    "  // Initialize variables",
+    "  const numerator = a;",
+    "  const denominator = b;",
+    "  const quotient = numerator / denominator;",
+    "  return quotient;",
     "}"
   ],
   "issues": [
     {
       "id": "js-l1-018-1",
-      "lines": [2],
+      "lines": [
+        4
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

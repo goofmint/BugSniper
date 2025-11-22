@@ -4,13 +4,18 @@
   "level": 1,
   "code": [
     "function multiply(a, b) {",
-    "  let result = a * b;",
+    "  // Initialize variables",
+    "  let product = a * b;",
+    "  let result = product;",
+    "  let answer = result;",
     "}"
   ],
   "issues": [
     {
       "id": "js-l1-012-1",
-      "lines": [2],
+      "lines": [
+        5
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

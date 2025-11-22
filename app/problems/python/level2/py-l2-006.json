@@ -4,6 +4,7 @@
   "level": 2,
   "code": [
     "def get_user_data(user_id):",
+    "    \"\"\"Function implementation\"\"\"",
     "    data = {'id': user_id, 'name': 'John'}",
     "    upper_data = {k.upper(): v for k, v in data}",
     "    return upper_data"
@@ -11,7 +12,9 @@
   "issues": [
     {
       "id": "py-l2-006-1",
-      "lines": [3],
+      "lines": [
+        3
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 3,

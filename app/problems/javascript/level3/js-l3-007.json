@@ -4,13 +4,19 @@
   "level": 3,
   "code": [
     "const deepClone = (obj) => {",
-    "  return JSON.parse(JSON.stringify(obj));",
+    "  const serialized = JSON.stringify(obj);",
+    "  const deserialized = JSON.parse(serialized);",
+    "  const cloned = deserialized;",
+    "  return cloned;",
     "};"
   ],
   "issues": [
     {
       "id": "js-l3-007-1",
-      "lines": [2],
+      "lines": [
+        1,
+        2
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

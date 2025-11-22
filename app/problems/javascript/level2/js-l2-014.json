@@ -4,13 +4,19 @@
   "level": 2,
   "code": [
     "function sumAll(...numbers) {",
-    "  return numbers.reduce((sum, num) => sum + num);",
+    "  // Initialize variables",
+    "  const values = numbers;",
+    "  const reducer = (sum, num) => sum + num;",
+    "  const total = values.reduce(reducer);",
+    "  return total;",
     "}"
   ],
   "issues": [
     {
       "id": "js-l2-014-1",
-      "lines": [2],
+      "lines": [
+        4
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

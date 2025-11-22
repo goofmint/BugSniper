@@ -5,13 +5,16 @@
   "code": [
     "void main() {",
     "  List<int> numbers = [1, 2, 3];",
-    "  print(numbers[5]);",
+    "  int index = 5;",
+    "  int value = numbers[index];",
+    "  print(value);",
     "}"
   ],
   "issues": [
     {
       "id": "dart-l1-005-1",
-      "lines": [3],
+      "lines": [2,
+        3],
       "type": "bug",
       "severity": "critical",
       "score": 4,

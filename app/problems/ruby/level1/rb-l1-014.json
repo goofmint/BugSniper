@@ -4,6 +4,7 @@
   "level": 1,
   "code": [
     "def create_greeting(name, time)",
+    "  # Implementation",
     "  greeting = \"Good #{time}, #{Name}!\"",
     "  return greeting",
     "end"
@@ -11,7 +12,9 @@
   "issues": [
     {
       "id": "rb-l1-014-1",
-      "lines": [2],
+      "lines": [
+        2
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

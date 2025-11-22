@@ -5,13 +5,17 @@
   "code": [
     "<?php",
     "$data = ['name' => 'John', 'age' => 30];",
-    "echo 'Name: ' . $data['Name'];",
+    "$prefix = 'Name: ';",
+    "$key = 'Name';",
+    "$message = $prefix . $data[$key];",
+    "echo $message;",
     "?>"
   ],
   "issues": [
     {
       "id": "php-l1-009-1",
-      "lines": [3],
+      "lines": [3,
+        4],
       "type": "bug",
       "severity": "critical",
       "score": 4,

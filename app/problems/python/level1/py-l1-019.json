@@ -4,12 +4,15 @@
   "level": 1,
   "code": [
     "def concat_strings(str1, str2):",
-    "    return str1 str2"
+    "    first = str1",
+    "    second = str2",
+    "    result = first second",
+    "    return result"
   ],
   "issues": [
     {
       "id": "py-l1-019-1",
-      "lines": [2],
+      "lines": [4],
       "type": "bug",
       "severity": "critical",
       "score": 4,

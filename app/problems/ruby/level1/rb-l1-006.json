@@ -4,6 +4,7 @@
   "level": 1,
   "code": [
     "def format_name(first, last)",
+    "  # Implementation",
     "  full_name = \"#{first} #{last}\"",
     "  return full_name.capitilize",
     "end"
@@ -11,7 +12,9 @@
   "issues": [
     {
       "id": "rb-l1-006-1",
-      "lines": [3],
+      "lines": [
+        3
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

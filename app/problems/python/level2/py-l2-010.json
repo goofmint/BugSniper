@@ -4,6 +4,7 @@
   "level": 2,
   "code": [
     "def get_config():",
+    "    \"\"\"Function implementation\"\"\"",
     "    config = {'host': 'localhost'}",
     "    port = config['port']",
     "    return port"
@@ -11,7 +12,9 @@
   "issues": [
     {
       "id": "py-l2-010-1",
-      "lines": [3],
+      "lines": [
+        3
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

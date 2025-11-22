@@ -4,13 +4,18 @@
   "level": 1,
   "code": [
     "def greet(name):",
-    "    message = 'Hello, ' + name",
-    "    return mesage"
+    "    \"\"\"Function implementation\"\"\"",
+    "    greeting = 'Hello, '",
+    "    message = greeting + name",
+    "    result = mesage",
+    "    return result"
   ],
   "issues": [
     {
       "id": "py-l1-001-1",
-      "lines": [3],
+      "lines": [
+        4
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

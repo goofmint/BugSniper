@@ -4,13 +4,19 @@
   "level": 2,
   "code": [
     "function deepEqual(obj1, obj2) {",
-    "  return obj1 === obj2;",
+    "  // Initialize variables",
+    "  const first = obj1;",
+    "  const second = obj2;",
+    "  const isEqual = first === second;",
+    "  return isEqual;",
     "}"
   ],
   "issues": [
     {
       "id": "js-l2-008-1",
-      "lines": [2],
+      "lines": [
+        4
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

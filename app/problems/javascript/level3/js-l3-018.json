@@ -4,14 +4,18 @@
   "level": 3,
   "code": [
     "const a = [1, 2, 3];",
-    "const b = a;",
-    "b.push(4);",
+    "const original = a;",
+    "const b = original;",
+    "const newItem = 4;",
+    "b.push(newItem);",
     "console.log(a.length);"
   ],
   "issues": [
     {
       "id": "js-l3-018-1",
-      "lines": [2],
+      "lines": [
+        2
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

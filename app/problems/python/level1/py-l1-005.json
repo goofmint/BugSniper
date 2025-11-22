@@ -4,12 +4,17 @@
   "level": 1,
   "code": [
     "def get_first_element(lst):",
-    "    return lst[1]"
+    "    \"\"\"Function implementation\"\"\"",
+    "    index = 1",
+    "    element = lst[index]",
+    "    return element"
   ],
   "issues": [
     {
       "id": "py-l1-005-1",
-      "lines": [2],
+      "lines": [
+        3
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

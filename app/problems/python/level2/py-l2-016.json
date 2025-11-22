@@ -4,12 +4,18 @@
   "level": 2,
   "code": [
     "def format_price(price, currency):",
-    "    return '{} {:.2f}'.format(price, currency)"
+    "    \"\"\"Function implementation\"\"\"",
+    "    template = '{} {:.2f}'",
+    "    first = price",
+    "    second = currency",
+    "    return template.format(first, second)"
   ],
   "issues": [
     {
       "id": "py-l2-016-1",
-      "lines": [2],
+      "lines": [
+        5
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 2,

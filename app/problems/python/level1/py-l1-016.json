@@ -4,12 +4,17 @@
   "level": 1,
   "code": [
     "def multiply(a, b):",
-    "    result = a * b"
+    "    \"\"\"Function implementation\"\"\"",
+    "    product = a * b",
+    "    result = product",
+    "    answer = result"
   ],
   "issues": [
     {
       "id": "py-l1-016-1",
-      "lines": [2],
+      "lines": [
+        4
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

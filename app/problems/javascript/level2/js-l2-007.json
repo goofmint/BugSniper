@@ -5,13 +5,17 @@
   "code": [
     "const numbers = [1, 2, 3, 4, 5];",
     "const doubled = numbers.map(num => {",
-    "  num * 2;",
+    "  const multiplier = 2;",
+    "  const value = num * multiplier;",
+    "  value;",
     "});"
   ],
   "issues": [
     {
       "id": "js-l2-007-1",
-      "lines": [3],
+      "lines": [
+        4
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

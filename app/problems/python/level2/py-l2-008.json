@@ -5,13 +5,17 @@
   "code": [
     "class Child(Parent):",
     "    def __init__(self, name, age):",
-    "        super(Child, self).__init__(name)",
-    "        self.age = age"
+    "        parent_class = Child",
+    "        super(parent_class, self).__init__(name)",
+    "        self.age = age",
+    "        self.name = name"
   ],
   "issues": [
     {
       "id": "py-l2-008-1",
-      "lines": [3],
+      "lines": [
+        3
+      ],
       "type": "design",
       "severity": "minor",
       "score": 2,

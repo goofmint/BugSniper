@@ -5,13 +5,16 @@
   "code": [
     "void main() {",
     "  Map<String, int> scores = {'Alice': 90, 'Bob': 85};",
-    "  print(scores['Charlie']);",
+    "  String key = 'Charlie';",
+    "  int? value = scores[key];",
+    "  print(value);",
     "}"
   ],
   "issues": [
     {
       "id": "dart-l1-008-1",
-      "lines": [3],
+      "lines": [2,
+        3],
       "type": "bug",
       "severity": "normal",
       "score": 3,

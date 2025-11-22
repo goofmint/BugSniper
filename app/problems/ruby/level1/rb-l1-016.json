@@ -4,6 +4,7 @@
   "level": 1,
   "code": [
     "def divide_numbers(a, b)",
+    "  # Implementation",
     "  result = a / b",
     "  return result.round(2)",
     "end"
@@ -11,7 +12,9 @@
   "issues": [
     {
       "id": "rb-l1-016-1",
-      "lines": [2],
+      "lines": [
+        2
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

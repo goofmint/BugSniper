@@ -4,13 +4,19 @@
   "level": 1,
   "code": [
     "function square(x) {",
-    "  return x * X;",
+    "  // Initialize variables",
+    "  const base = x;",
+    "  const power = 2;",
+    "  const result = base * X;",
+    "  return result;",
     "}"
   ],
   "issues": [
     {
       "id": "js-l1-020-1",
-      "lines": [2],
+      "lines": [
+        4
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

@@ -5,7 +5,9 @@
   "code": [
     "void main() {",
     "  int count = 10;",
-    "  print(total);",
+    "  int value = count;",
+    "  int result = total;",
+    "  print(result);",
     "}"
   ],
   "issues": [

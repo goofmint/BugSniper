@@ -4,6 +4,7 @@
   "level": 1,
   "code": [
     "def factorial(n):",
+    "    \"\"\"Function implementation\"\"\"",
     "    if n == 0:",
     "        return 1",
     "    return n * factorial(n)"
@@ -11,7 +12,9 @@
   "issues": [
     {
       "id": "py-l1-008-1",
-      "lines": [4],
+      "lines": [
+        4
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

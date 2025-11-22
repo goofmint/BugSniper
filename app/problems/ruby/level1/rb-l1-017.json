@@ -4,13 +4,19 @@
   "level": 1,
   "code": [
     "def count_items(list)",
-    "  return list.size()",
+    "  # Implementation",
+    "  collection = list",
+    "  count = collection.size()",
+    "  result = count",
+    "  return result",
     "end"
   ],
   "issues": [
     {
       "id": "rb-l1-017-1",
-      "lines": [2],
+      "lines": [
+        3
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 2,

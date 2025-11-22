@@ -4,13 +4,20 @@
   "level": 2,
   "code": [
     "function createArray(length, value) {",
-    "  return new Array(length).map(() => value);",
+    "  // Initialize variables",
+    "  const size = length;",
+    "  const arr = new Array(size);",
+    "  const result = arr.map(() => value);",
+    "  return result;",
     "}"
   ],
   "issues": [
     {
       "id": "js-l2-013-1",
-      "lines": [2],
+      "lines": [
+        3,
+        4
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

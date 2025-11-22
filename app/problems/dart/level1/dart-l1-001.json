@@ -4,8 +4,10 @@
   "level": 1,
   "code": [
     "void main() {",
-    "  String userName = 'Alice';",
-    "  print(usrName);",
+    "  String name = 'Alice';",
+    "  String userName = name;",
+    "  String output = usrName;",
+    "  print(output);",
     "}"
   ],
   "issues": [

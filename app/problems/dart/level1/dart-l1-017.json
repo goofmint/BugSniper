@@ -5,7 +5,9 @@
   "code": [
     "void main() {",
     "  double price = 19.99;",
-    "  int roundedPrice = price;",
+    "  double value = price;",
+    "  int roundedPrice = value;",
+    "  print(roundedPrice);",
     "}"
   ],
   "issues": [

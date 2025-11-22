@@ -5,13 +5,15 @@
   "code": [
     "void main() {",
     "  int count;",
-    "  print(count);",
+    "  int value = count;",
+    "  int result = value;",
+    "  print(result);",
     "}"
   ],
   "issues": [
     {
       "id": "dart-l1-020-1",
-      "lines": [3],
+      "lines": [2],
       "type": "bug",
       "severity": "critical",
       "score": 4,

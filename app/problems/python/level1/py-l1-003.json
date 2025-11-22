@@ -4,6 +4,7 @@
   "level": 1,
   "code": [
     "def is_even(num):",
+    "    \"\"\"Function implementation\"\"\"",
     "    if num % 2 = 0:",
     "        return True",
     "    return False"
@@ -11,7 +12,9 @@
   "issues": [
     {
       "id": "py-l1-003-1",
-      "lines": [2],
+      "lines": [
+        2
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

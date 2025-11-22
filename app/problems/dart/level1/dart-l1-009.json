@@ -5,7 +5,9 @@
   "code": [
     "void main() {",
     "  var name = null;",
-    "  String greeting = 'Hello, ' + name;",
+    "  String prefix = 'Hello, ';",
+    "  String greeting = prefix + name;",
+    "  print(greeting);",
     "}"
   ],
   "issues": [

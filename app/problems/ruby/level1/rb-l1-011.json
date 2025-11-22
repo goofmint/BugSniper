@@ -4,6 +4,7 @@
   "level": 1,
   "code": [
     "def double_number(num)",
+    "  # Implementation",
     "  num * 2",
     "  puts \"Number doubled\"",
     "end"
@@ -11,7 +12,9 @@
   "issues": [
     {
       "id": "rb-l1-011-1",
-      "lines": [3],
+      "lines": [
+        3
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

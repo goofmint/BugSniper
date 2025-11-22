@@ -4,14 +4,16 @@
   "level": 1,
   "code": [
     "void main() {",
-    "  int division = 10 / 2;",
+    "  int numerator = 10;",
+    "  int denominator = 2;",
+    "  int division = numerator / denominator;",
     "  print(division);",
     "}"
   ],
   "issues": [
     {
       "id": "dart-l1-015-1",
-      "lines": [2],
+      "lines": [3],
       "type": "bug",
       "severity": "normal",
       "score": 3,

@@ -4,12 +4,18 @@
   "level": 1,
   "code": [
     "def add(a, b, c):",
-    "    return a + b"
+    "    \"\"\"Function implementation\"\"\"",
+    "    first = a",
+    "    second = b",
+    "    total = first + second",
+    "    return total"
   ],
   "issues": [
     {
       "id": "py-l1-009-1",
-      "lines": [2],
+      "lines": [
+        4
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

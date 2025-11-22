@@ -4,6 +4,7 @@
   "level": 1,
   "code": [
     "def calculate_total(price, quantity)",
+    "  # Implementation",
     "  total = price * quanity",
     "  return total",
     "end"
@@ -11,7 +12,9 @@
   "issues": [
     {
       "id": "rb-l1-001-1",
-      "lines": [2],
+      "lines": [
+        2
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

@@ -5,7 +5,9 @@
   "code": [
     "void main() {",
     "  String? nullableText = null;",
-    "  String text = nullableText;",
+    "  String? value = nullableText;",
+    "  String text = value;",
+    "  print(text);",
     "}"
   ],
   "issues": [

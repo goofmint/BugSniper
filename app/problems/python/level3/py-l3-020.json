@@ -4,13 +4,18 @@
   "level": 3,
   "code": [
     "def process_data(items):",
-    "    results = [expensive_computation(x) for x in items]",
-    "    return results"
+    "    \"\"\"Function implementation\"\"\"",
+    "    data = items",
+    "    results = [expensive_computation(x) for x in data]",
+    "    output = results",
+    "    return output"
   ],
   "issues": [
     {
       "id": "py-l3-020-1",
-      "lines": [2],
+      "lines": [
+        3
+      ],
       "type": "performance",
       "severity": "critical",
       "score": 4,

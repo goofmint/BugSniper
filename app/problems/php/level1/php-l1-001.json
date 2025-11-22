@@ -5,7 +5,9 @@
   "code": [
     "<?php",
     "$userName = 'Alice';",
-    "echo 'Hello, ' . $username;",
+    "$greeting = 'Hello, ';",
+    "$message = $greeting . $username;",
+    "echo $message;",
     "?>"
   ],
   "issues": [

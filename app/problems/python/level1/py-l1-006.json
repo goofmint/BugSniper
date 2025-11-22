@@ -4,12 +4,18 @@
   "level": 1,
   "code": [
     "def square(x):",
-    "    return x * X"
+    "    \"\"\"Function implementation\"\"\"",
+    "    base = x",
+    "    power = 2",
+    "    result = base * X",
+    "    return result"
   ],
   "issues": [
     {
       "id": "py-l1-006-1",
-      "lines": [2],
+      "lines": [
+        4
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

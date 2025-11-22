@@ -4,13 +4,20 @@
   "level": 1,
   "code": [
     "def get_last_element(lst):",
-    "    index = len(lst)",
-    "    return lst[index]"
+    "    \"\"\"Function implementation\"\"\"",
+    "    length = len(lst)",
+    "    index = length",
+    "    element = lst[index]",
+    "    return element"
   ],
   "issues": [
     {
       "id": "py-l1-010-1",
-      "lines": [2, 3],
+      "lines": [
+        2,
+        3,
+        4
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

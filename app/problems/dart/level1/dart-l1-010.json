@@ -5,7 +5,9 @@
   "code": [
     "void main() {",
     "  const pi = 3.14;",
-    "  pi = 3.14159;",
+    "  double newValue = 3.14159;",
+    "  pi = newValue;",
+    "  print(pi);",
     "}"
   ],
   "issues": [

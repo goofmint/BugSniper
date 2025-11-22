@@ -4,8 +4,10 @@
   "level": 1,
   "code": [
     "void main() {",
-    "  int age = '25';",
-    "  print(age);",
+    "  String value = '25';",
+    "  int age = value;",
+    "  int years = age;",
+    "  print(years);",
     "}"
   ],
   "issues": [

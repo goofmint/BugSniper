@@ -5,13 +5,17 @@
   "code": [
     "<?php",
     "$userInput = $_GET['search'];",
-    "echo '<div>Search results for: ' . $userInput . '</div>';",
+    "$prefix = '<div>Search results for: ';",
+    "$suffix = '</div>';",
+    "$output = $prefix . $userInput . $suffix;",
+    "echo $output;",
     "?>"
   ],
   "issues": [
     {
       "id": "php-l3-003-1",
-      "lines": [3],
+      "lines": [4,
+        5],
       "type": "security",
       "severity": "critical",
       "score": 4,

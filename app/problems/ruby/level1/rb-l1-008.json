@@ -4,6 +4,7 @@
   "level": 1,
   "code": [
     "def calculate_discount(price, discount)",
+    "  # Implementation",
     "  final_price = price - (price * Discount / 100)",
     "  return final_price",
     "end"
@@ -11,7 +12,9 @@
   "issues": [
     {
       "id": "rb-l1-008-1",
-      "lines": [2],
+      "lines": [
+        2
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

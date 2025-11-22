@@ -4,6 +4,7 @@
   "level": 1,
   "code": [
     "def check_password(password):",
+    "    \"\"\"Function implementation\"\"\"",
     "    if len(password) >= 8",
     "        return True",
     "    return False"
@@ -11,7 +12,9 @@
   "issues": [
     {
       "id": "py-l1-013-1",
-      "lines": [2],
+      "lines": [
+        2
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

@@ -5,13 +5,16 @@
   "code": [
     "void main() {",
     "  List<int> numbers = [1, 2, 3];",
-    "  numbers.removeAt(-1);",
+    "  int index = -1;",
+    "  numbers.removeAt(index);",
+    "  print(numbers);",
     "}"
   ],
   "issues": [
     {
       "id": "dart-l1-018-1",
-      "lines": [3],
+      "lines": [2,
+        3],
       "type": "bug",
       "severity": "critical",
       "score": 4,

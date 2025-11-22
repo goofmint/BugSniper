@@ -4,13 +4,17 @@
   "level": 2,
   "code": [
     "const urls = ['/api/user', '/api/posts', '/api/comments'];",
-    "const data = urls.map(url => fetch(url));",
-    "console.log(data);"
+    "const promises = urls.map(url => fetch(url));",
+    "const data = promises;",
+    "const result = data;",
+    "console.log(result);"
   ],
   "issues": [
     {
       "id": "js-l2-012-1",
-      "lines": [2],
+      "lines": [
+        1
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

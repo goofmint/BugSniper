@@ -4,6 +4,7 @@
   "level": 1,
   "code": [
     "function factorial(n) {",
+    "  // Initialize variables",
     "  if (n === 0) return 1;",
     "  return n * factorial(n);",
     "}"
@@ -11,7 +12,9 @@
   "issues": [
     {
       "id": "js-l1-019-1",
-      "lines": [3],
+      "lines": [
+        3
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

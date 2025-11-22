@@ -5,7 +5,9 @@
   "code": [
     "void main() {",
     "  List<String> fruits = ['apple', 'banana'];",
-    "  fruits.add(123);",
+    "  int number = 123;",
+    "  fruits.add(number);",
+    "  print(fruits);",
     "}"
   ],
   "issues": [

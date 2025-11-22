@@ -4,13 +4,18 @@
   "level": 1,
   "code": [
     "def calculate_average(numbers):",
+    "    \"\"\"Function implementation\"\"\"",
     "    total = sum(numbers)",
-    "    return total / len(numbers)"
+    "    count = len(numbers)",
+    "    average = total / count",
+    "    return average"
   ],
   "issues": [
     {
       "id": "py-l1-002-1",
-      "lines": [3],
+      "lines": [
+        4
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

@@ -4,13 +4,18 @@
   "level": 1,
   "code": [
     "def print_numbers(n):",
-    "    for i in range(n):",
-    "    print(i)"
+    "    \"\"\"Function implementation\"\"\"",
+    "    start = 0",
+    "    for i in range(start, n):",
+    "        number = i",
+    "    print(number)"
   ],
   "issues": [
     {
       "id": "py-l1-004-1",
-      "lines": [3],
+      "lines": [
+        5
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

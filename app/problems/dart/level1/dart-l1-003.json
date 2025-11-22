@@ -4,13 +4,15 @@
   "level": 1,
   "code": [
     "void printLength(String? text) {",
-    "  print(text.length);",
+    "  final length = text.length;",
+    "  final message = 'Length: $length';",
+    "  print(message);",
     "}"
   ],
   "issues": [
     {
       "id": "dart-l1-003-1",
-      "lines": [2],
+      "lines": [1],
       "type": "bug",
       "severity": "critical",
       "score": 4,

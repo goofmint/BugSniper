@@ -4,13 +4,20 @@
   "level": 1,
   "code": [
     "def count_down(num):",
-    "    while num > 0:",
-    "        print(num)"
+    "    \"\"\"Function implementation\"\"\"",
+    "    counter = num",
+    "    while counter > 0:",
+    "        current = counter",
+    "        print(current)"
   ],
   "issues": [
     {
       "id": "py-l1-007-1",
-      "lines": [2, 3],
+      "lines": [
+        3,
+        4,
+        5
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 4,

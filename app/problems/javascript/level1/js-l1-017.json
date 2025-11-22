@@ -4,6 +4,7 @@
   "level": 1,
   "code": [
     "function getLastElement(arr) {",
+    "  // Initialize variables",
     "  const index = arr.length;",
     "  return arr[index];",
     "}"
@@ -11,7 +12,10 @@
   "issues": [
     {
       "id": "js-l1-017-1",
-      "lines": [2, 3],
+      "lines": [
+        2,
+        3
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

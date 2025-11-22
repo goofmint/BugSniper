@@ -4,13 +4,15 @@
   "level": 1,
   "code": [
     "String getName() {",
-    "  return 42;",
+    "  final value = 42;",
+    "  final result = value;",
+    "  return result;",
     "}"
   ],
   "issues": [
     {
       "id": "dart-l1-007-1",
-      "lines": [2],
+      "lines": [3],
       "type": "bug",
       "severity": "critical",
       "score": 4,

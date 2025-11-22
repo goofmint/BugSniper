@@ -4,6 +4,7 @@
   "level": 2,
   "code": [
     "def merge_sets(set1, set2):",
+    "    \"\"\"Function implementation\"\"\"",
     "    result = set1",
     "    result.update(set2)",
     "    return result"
@@ -11,7 +12,9 @@
   "issues": [
     {
       "id": "py-l2-014-1",
-      "lines": [2],
+      "lines": [
+        2
+      ],
       "type": "bug",
       "severity": "normal",
       "score": 3,

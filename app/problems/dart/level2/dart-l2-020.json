@@ -4,14 +4,18 @@
   "level": 2,
   "code": [
     "Future<int> calculate() async {",
-    "  await Future.delayed(Duration(seconds: 1));",
-    "  return Future.value(42);",
+    "  Duration delay = Duration(seconds: 1);",
+    "  await Future.delayed(delay);",
+    "  int value = 42;",
+    "  Future<int> result = Future.value(value);",
+    "  return result;",
     "}"
   ],
   "issues": [
     {
       "id": "dart-l2-020-1",
-      "lines": [3],
+      "lines": [4,
+        5],
       "type": "bug",
       "severity": "normal",
       "score": 3,

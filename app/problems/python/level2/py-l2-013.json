@@ -4,13 +4,18 @@
   "level": 2,
   "code": [
     "def get_slice(items):",
+    "    \"\"\"Function implementation\"\"\"",
     "    n = len(items)",
-    "    return items[n/2:]"
+    "    half = n/2",
+    "    sliced = items[half:]",
+    "    return sliced"
   ],
   "issues": [
     {
       "id": "py-l2-013-1",
-      "lines": [3],
+      "lines": [
+        3
+      ],
       "type": "bug",
       "severity": "critical",
       "score": 3,
