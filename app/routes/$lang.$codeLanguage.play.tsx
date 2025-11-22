@@ -33,7 +33,7 @@ export function loader({ params }: Route.LoaderArgs) {
   }
 
   // Validate code language parameter
-  const validCodeLanguages = ['all', 'javascript', 'php', 'ruby', 'java', 'dart'];
+  const validCodeLanguages = ['javascript', 'python', 'php', 'ruby', 'java', 'dart'];
   if (!validCodeLanguages.includes(codeLanguage)) {
     throw redirect(`/${lang}`);
   }
