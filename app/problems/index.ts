@@ -2,7 +2,7 @@
  * Problem and Issue type definitions for Bug Sniper game
  */
 
-export type CodeLanguage = 'javascript' | 'php' | 'ruby' | 'java' | 'dart';
+export type CodeLanguage = 'javascript' | 'php' | 'ruby' | 'java' | 'dart' | 'python';
 export type CodeLanguageOrAll = CodeLanguage | 'all';
 
 export type IssueType = 'bug' | 'security' | 'performance' | 'design';
@@ -26,8 +26,9 @@ export type Problem = {
 };
 
 // Import all problem JSON files using Vite's glob import
+// Supports: javascript, python, php, ruby, java, dart
 const problemModules = import.meta.glob<{ default: Problem }>(
-  './javascript/level*/*.json',
+  './{javascript,python,php,ruby,java,dart}/level*/*.json',
   { eager: true }
 );
 

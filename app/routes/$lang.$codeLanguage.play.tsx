@@ -19,6 +19,7 @@ type GameState = {
   solvedIssueIds: string[]; // IDs of issues that have been found
   tappedLines: Record<string, number[]>; // Map of problem ID to tapped lines
   problemCount: number; // Number of problems solved
+  usedProblemIds: string[]; // IDs of problems that have been used
 };
 
 /**
@@ -33,7 +34,7 @@ export function loader({ params }: Route.LoaderArgs) {
   }
 
   // Validate code language parameter
-  const validCodeLanguages = ['all', 'javascript', 'php', 'ruby', 'java', 'dart'];
+  const validCodeLanguages = ['javascript', 'python', 'php', 'ruby', 'java', 'dart'];
   if (!validCodeLanguages.includes(codeLanguage)) {
     throw redirect(`/${lang}`);
   }
@@ -64,6 +65,55 @@ function selectRandomProblem(
 }
 
 /**
+ * Check if all problems of a specific level have been used
+ */
+function allLevelProblemsUsed(
+  codeLanguage: CodeLanguageOrAll,
+  level: number,
+  usedIds: string[]
+): boolean {
+  const levelProblems = getProblems(codeLanguage, level);
+  return levelProblems.length > 0 && levelProblems.every((p) => usedIds.includes(p.id));
+}
+
+/**
+ * Select next problem, advancing levels if current level has no available problems
+ */
+function selectNextProblemWithLevelAdvance(
+  codeLanguage: CodeLanguageOrAll,
+  currentLevel: number,
+  usedProblemIds: string[]
+): { problem: Problem | null; level: number } {
+  // Determine starting level
+  let nextLevel = currentLevel;
+
+  // Check if all problems of current level have been used
+  if (allLevelProblemsUsed(codeLanguage, currentLevel, usedProblemIds)) {
+    // Advance to next level (max level 3)
+    nextLevel = Math.min(currentLevel + 1, 3);
+  } else {
+    // Stay at current level
+    nextLevel = currentLevel;
+  }
+
+  // Try to find a problem at the determined level
+  let problem = selectRandomProblem(codeLanguage, nextLevel, usedProblemIds);
+
+  // If no problem found at current level, try advancing to next levels
+  if (!problem && nextLevel < 3) {
+    for (let level = nextLevel + 1; level <= 3; level++) {
+      problem = selectRandomProblem(codeLanguage, level, usedProblemIds);
+      if (problem) {
+        nextLevel = level;
+        break;
+      }
+    }
+  }
+
+  return { problem, level: nextLevel };
+}
+
+/**
  * Game component
  */
 export default function Play({ loaderData }: Route.ComponentProps) {
@@ -81,12 +131,9 @@ export default function Play({ loaderData }: Route.ComponentProps) {
       solvedIssueIds: [],
       tappedLines: {},
       problemCount: 0,
+      usedProblemIds: firstProblem ? [firstProblem.id] : [],
     };
   });
-
-  const [usedProblemIds, setUsedProblemIds] = useState<string[]>(
-    gameState.currentProblem ? [gameState.currentProblem.id] : []
-  );
   const [gameEnded, setGameEnded] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState<{
     type: 'correct' | 'wrong' | 'complete';
@@ -206,12 +253,16 @@ export default function Play({ loaderData }: Route.ComponentProps) {
     }
 
     setGameState((prev) => {
-      // Advance level: 1 → 2 → 3 (max)
-      const nextLevel = Math.min(prev.currentLevel + 1, 3);
-      const nextProblem = selectRandomProblem(codeLanguage, nextLevel, usedProblemIds);
+      // Select next problem and determine level
+      const { problem: nextProblem, level: nextLevel } = selectNextProblemWithLevelAdvance(
+        codeLanguage,
+        prev.currentLevel,
+        prev.usedProblemIds
+      );
 
-      if (nextProblem) {
-        setUsedProblemIds((prevIds) => [...prevIds, nextProblem.id]);
+      if (!nextProblem) {
+        // No more problems available - end the game
+        setGameEnded(true);
       }
 
       return {
@@ -221,9 +272,10 @@ export default function Play({ loaderData }: Route.ComponentProps) {
         score: prev.score + bonusScore,
         solvedIssueIds: [],
         problemCount: prev.problemCount + 1,
+        usedProblemIds: nextProblem ? [...prev.usedProblemIds, nextProblem.id] : prev.usedProblemIds,
       };
     });
-  }, [gameEnded, gameState.currentProblem, gameState.solvedIssueIds, codeLanguage, usedProblemIds]);
+  }, [gameEnded, gameState.currentProblem, gameState.solvedIssueIds, codeLanguage]);
 
   // Show game over screen
   if (gameEnded) {
@@ -295,7 +347,7 @@ export default function Play({ loaderData }: Route.ComponentProps) {
   return (
     <>
       <Header currentLang={lang} />
-      <div className="flex flex-col h-[calc(100vh-56px)]">
+      <div className="flex flex-col h-[calc(100vh-56px)] relative">
         {/* Game stats header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
           <div className="flex items-center space-x-4 text-sm">
@@ -320,10 +372,10 @@ export default function Play({ loaderData }: Route.ComponentProps) {
           </div>
         </div>
 
-        {/* Feedback message */}
+        {/* Floating Feedback message */}
         {feedbackMessage && (
           <div
-            className={`px-4 py-2 text-center text-sm font-semibold ${
+            className={`fixed top-20 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-lg shadow-lg text-center text-sm font-semibold animate-in fade-in slide-in-from-top-2 duration-300 ${
               feedbackMessage.type === 'correct'
                 ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200'
                 : feedbackMessage.type === 'complete'
@@ -380,13 +432,21 @@ export default function Play({ loaderData }: Route.ComponentProps) {
           </pre>
         </div>
 
-        {/* Skip button */}
+        {/* Skip/Next button */}
         <div className="px-4 py-3 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
           <button
             onClick={handleSkip}
-            className="w-full py-2 rounded-md bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition text-sm font-medium"
+            className={`w-full py-2 rounded-md transition text-sm font-medium ${
+              foundIssuesCount > 0
+                ? 'bg-sky-500 text-white hover:bg-sky-600 active:bg-sky-700'
+                : 'bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600'
+            }`}
           >
-            {t('button.skip', lang)}
+            {foundIssuesCount > 0
+              ? lang === 'ja'
+                ? '次へ'
+                : 'Next'
+              : t('button.skip', lang)}
           </button>
         </div>
       </div>
