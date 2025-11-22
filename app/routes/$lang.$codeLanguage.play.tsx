@@ -350,7 +350,7 @@ export default function Play({ loaderData }: Route.ComponentProps) {
   return (
     <>
       <Header currentLang={lang} />
-      <div className="flex flex-col h-[calc(100vh-56px)]">
+      <div className="flex flex-col h-[calc(100vh-56px)] relative">
         {/* Game stats header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
           <div className="flex items-center space-x-4 text-sm">
@@ -375,10 +375,10 @@ export default function Play({ loaderData }: Route.ComponentProps) {
           </div>
         </div>
 
-        {/* Feedback message */}
+        {/* Floating Feedback message */}
         {feedbackMessage && (
           <div
-            className={`px-4 py-2 text-center text-sm font-semibold ${
+            className={`fixed top-20 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-lg shadow-lg text-center text-sm font-semibold animate-in fade-in slide-in-from-top-2 duration-300 ${
               feedbackMessage.type === 'correct'
                 ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200'
                 : feedbackMessage.type === 'complete'
