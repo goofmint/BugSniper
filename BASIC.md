@@ -102,13 +102,14 @@ jobs:
 
 内容：
 
-- `/play` ルート作成
+- `/$lang/$codeLanguage/play` ルート作成（例：`/ja/javascript/play`）
 - GameState（score, combo, timer, currentLevel）
 - 行タップ処理（当たり / 外れ）
 - コンボ計算
 - レベル進行（1→2→3）
 - スキップ機能
 - ゲーム終了処理（フロント内完結）
+- レベル内のデータはランダムに選択
 
 ---
 
@@ -346,13 +347,14 @@ npm create cloudflare@latest -- my-react-router-app --framework=react-router
 
 ### 3.1 ルート一覧
 
-| パス             | 役割                              |
-| ---------------- | --------------------------------- |
-| `/`              | タイトル画面                      |
-| `/play`          | ゲーム画面                        |
-| `/result/create` | ゲーム終了時のスコア登録 `action` |
-| `/result/:id`    | 結果画面（SSR、シェア用）         |
-| `/ranking`       | ランキング一覧画面                |
+| パス                           | 役割                              |
+| ------------------------------ | --------------------------------- |
+| `/`                            | ルート（言語自動判定・リダイレクト） |
+| `/$lang`                       | タイトル画面（例：`/ja`, `/en`）  |
+| `/$lang/$codeLanguage/play`    | ゲーム画面（例：`/ja/javascript/play`） |
+| `/result/create`               | ゲーム終了時のスコア登録 `action` |
+| `/result/:id`                  | 結果画面（SSR、シェア用）         |
+| `/ranking`                     | ランキング一覧画面                |
 
 - ルート定義は `src/routes` 配下に作成する。
 

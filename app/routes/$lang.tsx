@@ -1,6 +1,6 @@
 import { redirect } from 'react-router';
 import type { Route } from './+types/$lang';
-import { SupportedLanguage } from '../locales';
+import type { SupportedLanguage } from '../locales';
 import { Welcome } from '../welcome/welcome';
 import { Header } from '../components/Header';
 
