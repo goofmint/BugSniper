@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { Icon } from '@iconify/react';
 import type { SupportedLanguage } from '../locales';
 import { t } from '../locales';
 import type { CodeLanguageOrAll } from '../problems';
@@ -46,19 +47,31 @@ export function Welcome({ lang }: { lang: SupportedLanguage }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">{t('label.codeLanguage', lang)}</label>
-            <select
-              className="w-full px-3 py-2 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
-              value={codeLanguage}
-              onChange={(e) => setCodeLanguage(e.target.value as CodeLanguageOrAll)}
-            >
-              <option value="all">{t('language.all', lang)}</option>
-              <option value="javascript">{t('language.javascript', lang)}</option>
-              <option value="php">{t('language.php', lang)}</option>
-              <option value="ruby">{t('language.ruby', lang)}</option>
-              <option value="java">{t('language.java', lang)}</option>
-              <option value="dart">{t('language.dart', lang)}</option>
-            </select>
+            <label className="block text-sm font-medium mb-2">{t('label.codeLanguage', lang)}</label>
+            <div className="grid grid-cols-3 gap-3">
+              {[
+                { value: 'all', icon: 'mdi:code-braces', label: t('language.all', lang) },
+                { value: 'javascript', icon: 'vscode-icons:file-type-js-official', label: 'JavaScript' },
+                { value: 'php', icon: 'vscode-icons:file-type-php', label: 'PHP' },
+                { value: 'ruby', icon: 'vscode-icons:file-type-ruby', label: 'Ruby' },
+                { value: 'java', icon: 'vscode-icons:file-type-java', label: 'Java' },
+                { value: 'dart', icon: 'vscode-icons:file-type-dartlang', label: 'Dart' },
+              ].map((item) => (
+                <button
+                  key={item.value}
+                  type="button"
+                  onClick={() => setCodeLanguage(item.value as CodeLanguageOrAll)}
+                  className={`flex flex-col items-center justify-center p-3 rounded-lg border-2 transition-all ${
+                    codeLanguage === item.value
+                      ? 'border-sky-500 bg-sky-50 dark:bg-sky-900/30'
+                      : 'border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-sky-300 dark:hover:border-sky-700'
+                  }`}
+                >
+                  <Icon icon={item.icon} className="text-3xl mb-1" />
+                  <span className="text-xs font-medium">{item.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

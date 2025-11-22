@@ -64,6 +64,17 @@ function selectRandomProblem(
 }
 
 /**
+ * Check if all level 1 problems have been used
+ */
+function allLevel1ProblemsUsed(
+  codeLanguage: CodeLanguageOrAll,
+  usedIds: string[]
+): boolean {
+  const level1Problems = getProblems(codeLanguage, 1);
+  return level1Problems.every((p) => usedIds.includes(p.id));
+}
+
+/**
  * Game component
  */
 export default function Play({ loaderData }: Route.ComponentProps) {
@@ -206,8 +217,23 @@ export default function Play({ loaderData }: Route.ComponentProps) {
     }
 
     setGameState((prev) => {
-      // Advance level: 1 → 2 → 3 (max)
-      const nextLevel = Math.min(prev.currentLevel + 1, 3);
+      // Determine next level
+      // Stay at level 1 until all level 1 problems are used
+      let nextLevel = prev.currentLevel;
+
+      if (prev.currentLevel === 1) {
+        // Check if all level 1 problems have been used
+        if (allLevel1ProblemsUsed(codeLanguage, usedProblemIds)) {
+          nextLevel = 2;
+        } else {
+          nextLevel = 1; // Stay at level 1
+        }
+      } else if (prev.currentLevel === 2) {
+        nextLevel = 3;
+      } else {
+        nextLevel = 3; // Stay at max level
+      }
+
       const nextProblem = selectRandomProblem(codeLanguage, nextLevel, usedProblemIds);
 
       if (nextProblem) {
@@ -380,13 +406,21 @@ export default function Play({ loaderData }: Route.ComponentProps) {
           </pre>
         </div>
 
-        {/* Skip button */}
+        {/* Skip/Next button */}
         <div className="px-4 py-3 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
           <button
             onClick={handleSkip}
-            className="w-full py-2 rounded-md bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition text-sm font-medium"
+            className={`w-full py-2 rounded-md transition text-sm font-medium ${
+              foundIssuesCount > 0
+                ? 'bg-sky-500 text-white hover:bg-sky-600 active:bg-sky-700'
+                : 'bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600'
+            }`}
           >
-            {t('button.skip', lang)}
+            {foundIssuesCount > 0
+              ? lang === 'ja'
+                ? '次へ'
+                : 'Next'
+              : t('button.skip', lang)}
           </button>
         </div>
       </div>
