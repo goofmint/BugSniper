@@ -64,14 +64,15 @@ function selectRandomProblem(
 }
 
 /**
- * Check if all level 1 problems have been used
+ * Check if all problems of a specific level have been used
  */
-function allLevel1ProblemsUsed(
+function allLevelProblemsUsed(
   codeLanguage: CodeLanguageOrAll,
+  level: number,
   usedIds: string[]
 ): boolean {
-  const level1Problems = getProblems(codeLanguage, 1);
-  return level1Problems.every((p) => usedIds.includes(p.id));
+  const levelProblems = getProblems(codeLanguage, level);
+  return levelProblems.length > 0 && levelProblems.every((p) => usedIds.includes(p.id));
 }
 
 /**
@@ -85,17 +86,13 @@ function selectNextProblemWithLevelAdvance(
   // Determine starting level
   let nextLevel = currentLevel;
 
-  if (currentLevel === 1) {
-    // Check if all level 1 problems have been used
-    if (allLevel1ProblemsUsed(codeLanguage, usedProblemIds)) {
-      nextLevel = 2;
-    } else {
-      nextLevel = 1; // Stay at level 1
-    }
-  } else if (currentLevel === 2) {
-    nextLevel = 3;
+  // Check if all problems of current level have been used
+  if (allLevelProblemsUsed(codeLanguage, currentLevel, usedProblemIds)) {
+    // Advance to next level (max level 3)
+    nextLevel = Math.min(currentLevel + 1, 3);
   } else {
-    nextLevel = 3; // Stay at max level
+    // Stay at current level
+    nextLevel = currentLevel;
   }
 
   // Try to find a problem at the determined level
