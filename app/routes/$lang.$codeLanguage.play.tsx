@@ -6,6 +6,7 @@ import { t } from '../locales';
 import type { CodeLanguageOrAll, Problem } from '../problems';
 import { getProblems, calculateScore } from '../problems';
 import { Header } from '../components/Header';
+import { gameConfig } from '../config/game';
 
 /**
  * Game state type
@@ -15,12 +16,13 @@ type GameState = {
   currentLevel: number; // 1 → 2 → 3
   score: number;
   combo: number;
-  remainingSeconds: number; // 60 → 0
+  remainingSeconds: number; // Game time from config → 0
   solvedIssueIds: string[]; // IDs of issues that have been found in current problem
   allSolvedIssueIds: string[]; // IDs of all issues found across all problems
   tappedLines: Record<string, number[]>; // Map of problem ID to tapped lines
   problemCount: number; // Number of problems solved
   usedProblemIds: string[]; // IDs of problems that have been used
+  problemPool: Problem[]; // Pool of problems to be used in this game
 };
 
 /**
@@ -80,72 +82,36 @@ export function loader({ params }: Route.LoaderArgs) {
 }
 
 /**
- * Select a random problem from the available problems for the given level
+ * Initialize problem pool based on game configuration
+ * ゲーム設定に基づいて問題プールを初期化する
  */
-function selectRandomProblem(
-  codeLanguage: CodeLanguageOrAll,
-  level: number,
-  excludeIds: string[] = []
-): Problem | null {
-  const problems = getProblems(codeLanguage, level);
-  const availableProblems = problems.filter((p) => !excludeIds.includes(p.id));
+function initializeProblemPool(codeLanguage: CodeLanguageOrAll): Problem[] {
+  const pool: Problem[] = [];
 
-  if (availableProblems.length === 0) {
-    return null;
+  // For each level, randomly select the configured number of problems
+  for (const [levelStr, count] of Object.entries(gameConfig.problemsPerLevel)) {
+    const level = parseInt(levelStr);
+    const allProblems = getProblems(codeLanguage, level);
+
+    // Shuffle and take the first 'count' problems
+    const shuffled = [...allProblems].sort(() => Math.random() - 0.5);
+    const selected = shuffled.slice(0, Math.min(count, shuffled.length));
+
+    pool.push(...selected);
   }
 
-  const randomIndex = Math.floor(Math.random() * availableProblems.length);
-  return availableProblems[randomIndex];
+  // Shuffle the entire pool
+  return pool.sort(() => Math.random() - 0.5);
 }
 
 /**
- * Check if all problems of a specific level have been used
+ * Select next problem from the problem pool
+ * 問題プールから次の問題を選択する
  */
-function allLevelProblemsUsed(
-  codeLanguage: CodeLanguageOrAll,
-  level: number,
-  usedIds: string[]
-): boolean {
-  const levelProblems = getProblems(codeLanguage, level);
-  return levelProblems.length > 0 && levelProblems.every((p) => usedIds.includes(p.id));
+function selectNextProblemFromPool(pool: Problem[]): Problem | null {
+  return pool.length > 0 ? pool[0] : null;
 }
 
-/**
- * Select next problem, advancing levels if current level has no available problems
- */
-function selectNextProblemWithLevelAdvance(
-  codeLanguage: CodeLanguageOrAll,
-  currentLevel: number,
-  usedProblemIds: string[]
-): { problem: Problem | null; level: number } {
-  // Determine starting level
-  let nextLevel = currentLevel;
-
-  // Check if all problems of current level have been used
-  if (allLevelProblemsUsed(codeLanguage, currentLevel, usedProblemIds)) {
-    // Advance to next level (max level 3)
-    nextLevel = Math.min(currentLevel + 1, 3);
-  } else {
-    // Stay at current level
-    nextLevel = currentLevel;
-  }
-
-  // Try to find a problem at the determined level
-  let problem = selectRandomProblem(codeLanguage, nextLevel, usedProblemIds);
-
-  // If no problem found at current level, try advancing to next levels
-  if (!problem && nextLevel < 3) {
-    for (let level = nextLevel + 1; level <= 3; level++) {
-      problem = selectRandomProblem(codeLanguage, level, usedProblemIds);
-      if (problem) {
-        nextLevel = level;
-        break;
-      }
-    }
-  }
-
-  return { problem, level: nextLevel };
-}
 
 /**
  * Game component
@@ -157,18 +123,20 @@ export default function Play({ loaderData }: Route.ComponentProps) {
 
   // Initialize game state
   const [gameState, setGameState] = useState<GameState>(() => {
-    const firstProblem = selectRandomProblem(codeLanguage, 1);
+    const problemPool = initializeProblemPool(codeLanguage);
+    const firstProblem = selectNextProblemFromPool(problemPool);
     return {
       currentProblem: firstProblem,
-      currentLevel: 1,
+      currentLevel: firstProblem?.level || 1,
       score: 0,
       combo: 0,
-      remainingSeconds: 60,
+      remainingSeconds: gameConfig.totalGameTime,
       solvedIssueIds: [],
       allSolvedIssueIds: [],
       tappedLines: {},
       problemCount: 0,
       usedProblemIds: firstProblem ? [firstProblem.id] : [],
+      problemPool: firstProblem ? problemPool.slice(1) : problemPool,
     };
   });
   const [gameEnded, setGameEnded] = useState(false);
@@ -348,7 +316,7 @@ export default function Play({ loaderData }: Route.ComponentProps) {
     // Bonus for finding all issues
     let bonusScore = 0;
     if (allIssuesSolved && currentProblemIssues.length > 0) {
-      bonusScore = 3;
+      bonusScore = gameConfig.allIssuesFoundBonus;
       setFeedbackMessage({
         type: 'complete',
         text: `+${bonusScore} (All issues found!)`,
@@ -356,12 +324,8 @@ export default function Play({ loaderData }: Route.ComponentProps) {
     }
 
     setGameState((prev) => {
-      // Select next problem and determine level
-      const { problem: nextProblem, level: nextLevel } = selectNextProblemWithLevelAdvance(
-        codeLanguage,
-        prev.currentLevel,
-        prev.usedProblemIds
-      );
+      // Select next problem from pool
+      const nextProblem = selectNextProblemFromPool(prev.problemPool);
 
       if (!nextProblem) {
         // No more problems available - end the game
@@ -371,14 +335,15 @@ export default function Play({ loaderData }: Route.ComponentProps) {
       return {
         ...prev,
         currentProblem: nextProblem,
-        currentLevel: nextLevel,
+        currentLevel: nextProblem?.level || prev.currentLevel,
         score: prev.score + bonusScore,
         solvedIssueIds: [],
         problemCount: prev.problemCount + 1,
         usedProblemIds: nextProblem ? [...prev.usedProblemIds, nextProblem.id] : prev.usedProblemIds,
+        problemPool: nextProblem ? prev.problemPool.slice(1) : prev.problemPool,
       };
     });
-  }, [gameEnded, gameState.currentProblem, gameState.solvedIssueIds, codeLanguage]);
+  }, [gameEnded, gameState.currentProblem, gameState.solvedIssueIds]);
 
   // Show game over screen
   if (gameEnded) {
