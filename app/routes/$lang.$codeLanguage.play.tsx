@@ -139,11 +139,11 @@ export default function Play({ loaderData }: Route.ComponentProps) {
     };
   });
   const [gameEnded, setGameEnded] = useState(false);
-  const [scoreSaved, setScoreSaved] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState<{
     type: 'correct' | 'wrong' | 'complete';
     text: string;
   } | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   // Timer countdown
   useEffect(() => {
@@ -175,7 +175,9 @@ export default function Play({ loaderData }: Route.ComponentProps) {
 
   // Save score when game ends
   useEffect(() => {
-    if (gameEnded && !scoreSaved) {
+    const scoreSaved = fetcher.state === 'idle' && fetcher.data?.success;
+
+    if (gameEnded && !scoreSaved && fetcher.state === 'idle') {
       // Calculate total issues across all problems
       const allProblems = getProblems(codeLanguage, 1)
         .concat(getProblems(codeLanguage, 2))
@@ -208,26 +210,23 @@ export default function Play({ loaderData }: Route.ComponentProps) {
         { payload: JSON.stringify(resultData) },
         { method: 'post', action: '/result/create' }
       );
-
-      setScoreSaved(true);
     }
-  }, [gameEnded, scoreSaved, gameState, codeLanguage, lang, fetcher]);
+  }, [gameEnded, fetcher.state, fetcher.data, gameState, codeLanguage, lang, fetcher]);
 
   // Navigate to result page when score is saved
   useEffect(() => {
-    console.log('[play] Fetcher state:', fetcher.state);
-    console.log('[play] Fetcher data:', fetcher.data);
-
     if (fetcher.data && fetcher.state === 'idle') {
-      const data = fetcher.data as { success: boolean; id: string };
-      console.log('[play] Received data:', data);
+      const data = fetcher.data as { success?: boolean; id?: string; error?: string };
 
       if (data.success && data.id) {
-        console.log('[play] Navigating to result page:', `/result/${data.id}`);
         navigate(`/result/${data.id}`);
+      } else if (data.error) {
+        setError(data.error);
+      } else if (!data.success) {
+        setError(lang === 'ja' ? 'スコアの保存に失敗しました' : 'Failed to save score');
       }
     }
-  }, [fetcher.data, fetcher.state, navigate]);
+  }, [fetcher.data, fetcher.state, navigate, lang]);
 
   /**
    * Handle line tap
@@ -371,6 +370,12 @@ export default function Play({ loaderData }: Route.ComponentProps) {
             {isSaving && (
               <div className="text-sm text-slate-600 dark:text-slate-400 animate-pulse">
                 {lang === 'ja' ? 'スコアを保存中...' : 'Saving score...'}
+              </div>
+            )}
+
+            {error && (
+              <div className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 rounded-md p-3">
+                {error}
               </div>
             )}
 
