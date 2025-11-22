@@ -267,6 +267,9 @@ export default function Play({ loaderData }: Route.ComponentProps) {
 
       if (nextProblem) {
         setUsedProblemIds((prevIds) => [...prevIds, nextProblem.id]);
+      } else {
+        // No more problems available - end the game
+        setGameEnded(true);
       }
 
       return {
