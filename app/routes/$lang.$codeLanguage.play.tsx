@@ -31,13 +31,12 @@ export function meta({ data }: Route.MetaArgs) {
     return [{ title: 'Bug Sniper' }];
   }
 
-  const { lang, codeLanguage } = data;
-  const langName = lang === 'ja' ? '日本語' : 'English';
+  const { codeLanguage } = data;
   const codeLangDisplay = codeLanguage.charAt(0).toUpperCase() + codeLanguage.slice(1);
 
   return [
     {
-      title: `${langName} | ${codeLangDisplay} | Bug Sniper`,
+      title: `${codeLangDisplay} | Bug Sniper`,
     },
   ];
 }
@@ -167,11 +166,10 @@ export default function Play({ loaderData }: Route.ComponentProps) {
   // Update page title with remaining seconds
   useEffect(() => {
     if (typeof document !== 'undefined' && !gameEnded) {
-      const langName = lang === 'ja' ? '日本語' : 'English';
       const codeLangDisplay = codeLanguage.charAt(0).toUpperCase() + codeLanguage.slice(1);
-      document.title = `(${gameState.remainingSeconds}s) ${langName} | ${codeLangDisplay} | Bug Sniper`;
+      document.title = `(${gameState.remainingSeconds}s) ${codeLangDisplay} | Bug Sniper`;
     }
-  }, [gameState.remainingSeconds, lang, codeLanguage, gameEnded]);
+  }, [gameState.remainingSeconds, codeLanguage, gameEnded]);
 
   // Timer countdown
   useEffect(() => {
