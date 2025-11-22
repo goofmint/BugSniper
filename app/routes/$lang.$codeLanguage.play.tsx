@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { redirect } from 'react-router';
+import { redirect, useFetcher, useNavigate } from 'react-router';
 import type { Route } from './+types/$lang.$codeLanguage.play';
 import type { SupportedLanguage } from '../locales';
 import { t } from '../locales';
@@ -16,7 +16,8 @@ type GameState = {
   score: number;
   combo: number;
   remainingSeconds: number; // 60 → 0
-  solvedIssueIds: string[]; // IDs of issues that have been found
+  solvedIssueIds: string[]; // IDs of issues that have been found in current problem
+  allSolvedIssueIds: string[]; // IDs of all issues found across all problems
   tappedLines: Record<string, number[]>; // Map of problem ID to tapped lines
   problemCount: number; // Number of problems solved
   usedProblemIds: string[]; // IDs of problems that have been used
@@ -118,6 +119,8 @@ function selectNextProblemWithLevelAdvance(
  */
 export default function Play({ loaderData }: Route.ComponentProps) {
   const { lang, codeLanguage } = loaderData;
+  const fetcher = useFetcher();
+  const navigate = useNavigate();
 
   // Initialize game state
   const [gameState, setGameState] = useState<GameState>(() => {
@@ -129,6 +132,7 @@ export default function Play({ loaderData }: Route.ComponentProps) {
       combo: 0,
       remainingSeconds: 60,
       solvedIssueIds: [],
+      allSolvedIssueIds: [],
       tappedLines: {},
       problemCount: 0,
       usedProblemIds: firstProblem ? [firstProblem.id] : [],
@@ -139,6 +143,7 @@ export default function Play({ loaderData }: Route.ComponentProps) {
     type: 'correct' | 'wrong' | 'complete';
     text: string;
   } | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   // Timer countdown
   useEffect(() => {
@@ -167,6 +172,61 @@ export default function Play({ loaderData }: Route.ComponentProps) {
       return () => clearTimeout(timeout);
     }
   }, [feedbackMessage]);
+
+  // Save score when game ends
+  useEffect(() => {
+    const scoreSaved = fetcher.state === 'idle' && fetcher.data?.success;
+
+    if (gameEnded && !scoreSaved && fetcher.state === 'idle') {
+      // Calculate total issues across all problems
+      const allProblems = getProblems(codeLanguage, 1)
+        .concat(getProblems(codeLanguage, 2))
+        .concat(getProblems(codeLanguage, 3));
+
+      const usedProblems = allProblems.filter((p) =>
+        gameState.usedProblemIds.includes(p.id)
+      );
+
+      const totalIssues = usedProblems.reduce(
+        (sum, problem) => sum + problem.issues.length,
+        0
+      );
+
+      const issuesFound = gameState.allSolvedIssueIds.length;
+      const accuracy = totalIssues > 0 ? issuesFound / totalIssues : 0;
+
+      // Prepare result data
+      const resultData = {
+        score: gameState.score,
+        issuesFound: issuesFound,
+        totalIssues: totalIssues,
+        accuracy: accuracy,
+        uiLanguage: lang,
+        codeLanguage: codeLanguage,
+      };
+
+      // Submit to result/create action
+      fetcher.submit(
+        { payload: JSON.stringify(resultData) },
+        { method: 'post', action: '/result/create' }
+      );
+    }
+  }, [gameEnded, fetcher.state, fetcher.data, gameState, codeLanguage, lang, fetcher]);
+
+  // Navigate to result page when score is saved
+  useEffect(() => {
+    if (fetcher.data && fetcher.state === 'idle') {
+      const data = fetcher.data as { success?: boolean; id?: string; error?: string };
+
+      if (data.success && data.id) {
+        navigate(`/result/${data.id}`);
+      } else if (data.error) {
+        setError(data.error);
+      } else if (!data.success) {
+        setError(lang === 'ja' ? 'スコアの保存に失敗しました' : 'Failed to save score');
+      }
+    }
+  }, [fetcher.data, fetcher.state, navigate, lang]);
 
   /**
    * Handle line tap
@@ -199,6 +259,7 @@ export default function Play({ loaderData }: Route.ComponentProps) {
           const newCombo = prev.combo + 1;
           const scoreGain = calculateScore(hitIssue.score, newCombo);
           const newSolvedIssueIds = [...prev.solvedIssueIds, hitIssue.id];
+          const newAllSolvedIssueIds = [...prev.allSolvedIssueIds, hitIssue.id];
 
           setFeedbackMessage({
             type: 'correct',
@@ -210,6 +271,7 @@ export default function Play({ loaderData }: Route.ComponentProps) {
             score: prev.score + scoreGain,
             combo: newCombo,
             solvedIssueIds: newSolvedIssueIds,
+            allSolvedIssueIds: newAllSolvedIssueIds,
             tappedLines: newTappedLines,
           };
         } else {
@@ -279,6 +341,8 @@ export default function Play({ loaderData }: Route.ComponentProps) {
 
   // Show game over screen
   if (gameEnded) {
+    const isSaving = fetcher.state === 'submitting' || fetcher.state === 'loading';
+
     return (
       <>
         <Header currentLang={lang} />
@@ -302,8 +366,21 @@ export default function Play({ loaderData }: Route.ComponentProps) {
                   : `Solved ${gameState.problemCount} problems`}
               </div>
             </div>
+
+            {isSaving && (
+              <div className="text-sm text-slate-600 dark:text-slate-400 animate-pulse">
+                {lang === 'ja' ? 'スコアを保存中...' : 'Saving score...'}
+              </div>
+            )}
+
+            {error && (
+              <div className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 rounded-md p-3">
+                {error}
+              </div>
+            )}
+
             <button
-              onClick={() => window.location.href = `/${lang}`}
+              onClick={() => (window.location.href = `/${lang}`)}
               className="w-full py-3 text-lg font-semibold rounded-md bg-sky-500 text-white hover:bg-sky-600 active:bg-sky-700 transition"
             >
               {lang === 'ja' ? 'ホームへ戻る' : 'Back to Home'}
