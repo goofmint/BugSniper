@@ -215,9 +215,15 @@ export default function Play({ loaderData }: Route.ComponentProps) {
 
   // Navigate to result page when score is saved
   useEffect(() => {
+    console.log('[play] Fetcher state:', fetcher.state);
+    console.log('[play] Fetcher data:', fetcher.data);
+
     if (fetcher.data && fetcher.state === 'idle') {
       const data = fetcher.data as { success: boolean; id: string };
+      console.log('[play] Received data:', data);
+
       if (data.success && data.id) {
+        console.log('[play] Navigating to result page:', `/result/${data.id}`);
         navigate(`/result/${data.id}`);
       }
     }
