@@ -24,6 +24,39 @@ type GameState = {
 };
 
 /**
+ * Get proper display name for code language
+ */
+function getCodeLanguageDisplay(codeLanguage: string): string {
+  const languageMap: Record<string, string> = {
+    javascript: 'JavaScript',
+    python: 'Python',
+    php: 'PHP',
+    ruby: 'Ruby',
+    java: 'Java',
+    dart: 'Dart',
+  };
+  return languageMap[codeLanguage] || codeLanguage;
+}
+
+/**
+ * Meta function to set page title
+ */
+export function meta({ data }: Route.MetaArgs) {
+  if (!data) {
+    return [{ title: 'Bug Sniper' }];
+  }
+
+  const { codeLanguage } = data;
+  const codeLangDisplay = getCodeLanguageDisplay(codeLanguage);
+
+  return [
+    {
+      title: `${codeLangDisplay} | Bug Sniper`,
+    },
+  ];
+}
+
+/**
  * Validate route parameters and redirect if invalid
  */
 export function loader({ params }: Route.LoaderArgs) {
@@ -144,6 +177,14 @@ export default function Play({ loaderData }: Route.ComponentProps) {
     text: string;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // Update page title with remaining seconds
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !gameEnded) {
+      const codeLangDisplay = getCodeLanguageDisplay(codeLanguage);
+      document.title = `(${gameState.remainingSeconds}s) ${codeLangDisplay} | Bug Sniper`;
+    }
+  }, [gameState.remainingSeconds, codeLanguage, gameEnded]);
 
   // Timer countdown
   useEffect(() => {

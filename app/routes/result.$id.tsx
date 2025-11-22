@@ -22,6 +22,39 @@ type ScoreRecord = {
 };
 
 /**
+ * Get proper display name for code language
+ */
+function getCodeLanguageDisplay(codeLanguage: string): string {
+  const languageMap: Record<string, string> = {
+    javascript: 'JavaScript',
+    python: 'Python',
+    php: 'PHP',
+    ruby: 'Ruby',
+    java: 'Java',
+    dart: 'Dart',
+  };
+  return languageMap[codeLanguage] || codeLanguage;
+}
+
+/**
+ * Meta function to set page title
+ */
+export function meta({ data }: Route.MetaArgs) {
+  if (!data || !data.score) {
+    return [{ title: 'Result Not Found | Bug Sniper' }];
+  }
+
+  const { score } = data;
+  const codeLangDisplay = getCodeLanguageDisplay(score.code_language);
+
+  return [
+    {
+      title: `${codeLangDisplay} ${score.score}pt | Bug Sniper`,
+    },
+  ];
+}
+
+/**
  * Loader to fetch score data from D1
  */
 export async function loader({ params, context }: Route.LoaderArgs) {
