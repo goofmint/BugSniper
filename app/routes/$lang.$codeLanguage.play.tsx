@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { redirect } from 'react-router';
+import { redirect, useFetcher } from 'react-router';
 import type { Route } from './+types/$lang.$codeLanguage.play';
 import type { SupportedLanguage } from '../locales';
 import { t } from '../locales';
@@ -16,7 +16,8 @@ type GameState = {
   score: number;
   combo: number;
   remainingSeconds: number; // 60 → 0
-  solvedIssueIds: string[]; // IDs of issues that have been found
+  solvedIssueIds: string[]; // IDs of issues that have been found in current problem
+  allSolvedIssueIds: string[]; // IDs of all issues found across all problems
   tappedLines: Record<string, number[]>; // Map of problem ID to tapped lines
   problemCount: number; // Number of problems solved
   usedProblemIds: string[]; // IDs of problems that have been used
@@ -118,6 +119,7 @@ function selectNextProblemWithLevelAdvance(
  */
 export default function Play({ loaderData }: Route.ComponentProps) {
   const { lang, codeLanguage } = loaderData;
+  const fetcher = useFetcher();
 
   // Initialize game state
   const [gameState, setGameState] = useState<GameState>(() => {
@@ -129,12 +131,14 @@ export default function Play({ loaderData }: Route.ComponentProps) {
       combo: 0,
       remainingSeconds: 60,
       solvedIssueIds: [],
+      allSolvedIssueIds: [],
       tappedLines: {},
       problemCount: 0,
       usedProblemIds: firstProblem ? [firstProblem.id] : [],
     };
   });
   const [gameEnded, setGameEnded] = useState(false);
+  const [scoreSaved, setScoreSaved] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState<{
     type: 'correct' | 'wrong' | 'complete';
     text: string;
@@ -168,6 +172,46 @@ export default function Play({ loaderData }: Route.ComponentProps) {
     }
   }, [feedbackMessage]);
 
+  // Save score when game ends
+  useEffect(() => {
+    if (gameEnded && !scoreSaved) {
+      // Calculate total issues across all problems
+      const allProblems = getProblems(codeLanguage, 1)
+        .concat(getProblems(codeLanguage, 2))
+        .concat(getProblems(codeLanguage, 3));
+
+      const usedProblems = allProblems.filter((p) =>
+        gameState.usedProblemIds.includes(p.id)
+      );
+
+      const totalIssues = usedProblems.reduce(
+        (sum, problem) => sum + problem.issues.length,
+        0
+      );
+
+      const issuesFound = gameState.allSolvedIssueIds.length;
+      const accuracy = totalIssues > 0 ? issuesFound / totalIssues : 0;
+
+      // Prepare result data
+      const resultData = {
+        score: gameState.score,
+        issuesFound: issuesFound,
+        totalIssues: totalIssues,
+        accuracy: accuracy,
+        uiLanguage: lang,
+        codeLanguage: codeLanguage,
+      };
+
+      // Submit to result/create action
+      fetcher.submit(
+        { payload: JSON.stringify(resultData) },
+        { method: 'post', action: '/result/create' }
+      );
+
+      setScoreSaved(true);
+    }
+  }, [gameEnded, scoreSaved, gameState, codeLanguage, lang, fetcher]);
+
   /**
    * Handle line tap
    */
@@ -199,6 +243,7 @@ export default function Play({ loaderData }: Route.ComponentProps) {
           const newCombo = prev.combo + 1;
           const scoreGain = calculateScore(hitIssue.score, newCombo);
           const newSolvedIssueIds = [...prev.solvedIssueIds, hitIssue.id];
+          const newAllSolvedIssueIds = [...prev.allSolvedIssueIds, hitIssue.id];
 
           setFeedbackMessage({
             type: 'correct',
@@ -210,6 +255,7 @@ export default function Play({ loaderData }: Route.ComponentProps) {
             score: prev.score + scoreGain,
             combo: newCombo,
             solvedIssueIds: newSolvedIssueIds,
+            allSolvedIssueIds: newAllSolvedIssueIds,
             tappedLines: newTappedLines,
           };
         } else {
@@ -279,6 +325,8 @@ export default function Play({ loaderData }: Route.ComponentProps) {
 
   // Show game over screen
   if (gameEnded) {
+    const isSaving = fetcher.state === 'submitting' || fetcher.state === 'loading';
+
     return (
       <>
         <Header currentLang={lang} />
@@ -302,8 +350,15 @@ export default function Play({ loaderData }: Route.ComponentProps) {
                   : `Solved ${gameState.problemCount} problems`}
               </div>
             </div>
+
+            {isSaving && (
+              <div className="text-sm text-slate-600 dark:text-slate-400 animate-pulse">
+                {lang === 'ja' ? 'スコアを保存中...' : 'Saving score...'}
+              </div>
+            )}
+
             <button
-              onClick={() => window.location.href = `/${lang}`}
+              onClick={() => (window.location.href = `/${lang}`)}
               className="w-full py-3 text-lg font-semibold rounded-md bg-sky-500 text-white hover:bg-sky-600 active:bg-sky-700 transition"
             >
               {lang === 'ja' ? 'ホームへ戻る' : 'Back to Home'}
