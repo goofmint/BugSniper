@@ -20,5 +20,16 @@
   "rules.time": "制限時間は60秒",
   "rules.tap": "バグがある行をタップして指摘",
   "rules.combo": "連続正解でコンボボーナス",
-  "rules.skip": "難しい問題はスキップ可能"
+  "rules.skip": "難しい問題はスキップ可能",
+  "ranking.title": "ランキング",
+  "ranking.period": "期間",
+  "ranking.period.week": "過去7日間",
+  "ranking.rank": "順位",
+  "ranking.player": "プレイヤー",
+  "ranking.score": "スコア",
+  "ranking.accuracy": "正確性",
+  "ranking.date": "日付",
+  "ranking.codeLanguage": "コード言語",
+  "ranking.noData": "データがありません",
+  "ranking.anonymous": "匿名"
 }

@@ -6,4 +6,5 @@ export default [
   route(':lang/:codeLanguage/play', 'routes/$lang.$codeLanguage.play.tsx'),
   route('result/create', 'routes/result.create.tsx'),
   route('result/:id', 'routes/result.$id.tsx'),
+  route('ranking', 'routes/ranking.tsx'),
 ] satisfies RouteConfig;
