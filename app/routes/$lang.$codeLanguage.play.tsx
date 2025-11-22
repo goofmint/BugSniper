@@ -19,6 +19,7 @@ type GameState = {
   solvedIssueIds: string[]; // IDs of issues that have been found
   tappedLines: Record<string, number[]>; // Map of problem ID to tapped lines
   problemCount: number; // Number of problems solved
+  usedProblemIds: string[]; // IDs of problems that have been used
 };
 
 /**
@@ -130,12 +131,9 @@ export default function Play({ loaderData }: Route.ComponentProps) {
       solvedIssueIds: [],
       tappedLines: {},
       problemCount: 0,
+      usedProblemIds: firstProblem ? [firstProblem.id] : [],
     };
   });
-
-  const [usedProblemIds, setUsedProblemIds] = useState<string[]>(
-    gameState.currentProblem ? [gameState.currentProblem.id] : []
-  );
   const [gameEnded, setGameEnded] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState<{
     type: 'correct' | 'wrong' | 'complete';
@@ -259,12 +257,10 @@ export default function Play({ loaderData }: Route.ComponentProps) {
       const { problem: nextProblem, level: nextLevel } = selectNextProblemWithLevelAdvance(
         codeLanguage,
         prev.currentLevel,
-        usedProblemIds
+        prev.usedProblemIds
       );
 
-      if (nextProblem) {
-        setUsedProblemIds((prevIds) => [...prevIds, nextProblem.id]);
-      } else {
+      if (!nextProblem) {
         // No more problems available - end the game
         setGameEnded(true);
       }
@@ -276,9 +272,10 @@ export default function Play({ loaderData }: Route.ComponentProps) {
         score: prev.score + bonusScore,
         solvedIssueIds: [],
         problemCount: prev.problemCount + 1,
+        usedProblemIds: nextProblem ? [...prev.usedProblemIds, nextProblem.id] : prev.usedProblemIds,
       };
     });
-  }, [gameEnded, gameState.currentProblem, gameState.solvedIssueIds, codeLanguage, usedProblemIds]);
+  }, [gameEnded, gameState.currentProblem, gameState.solvedIssueIds, codeLanguage]);
 
   // Show game over screen
   if (gameEnded) {
