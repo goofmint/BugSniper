@@ -1,4 +1,4 @@
-import { redirect, data } from 'react-router';
+import { data } from 'react-router';
 import type { Route } from './+types/result.create';
 import { nanoid } from '../utils/nanoid';
 
@@ -77,8 +77,8 @@ export async function action({ request, context }: Route.ActionArgs) {
       )
       .run();
 
-    // Redirect to result page
-    return redirect(`/result/${id}`);
+    // Return the result ID for client-side navigation
+    return { success: true, id };
   } catch (error) {
     console.error('Failed to save score:', error);
     throw data({ error: 'Failed to save score' }, { status: 500 });

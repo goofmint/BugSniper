@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { redirect, useFetcher } from 'react-router';
+import { redirect, useFetcher, useNavigate } from 'react-router';
 import type { Route } from './+types/$lang.$codeLanguage.play';
 import type { SupportedLanguage } from '../locales';
 import { t } from '../locales';
@@ -120,6 +120,7 @@ function selectNextProblemWithLevelAdvance(
 export default function Play({ loaderData }: Route.ComponentProps) {
   const { lang, codeLanguage } = loaderData;
   const fetcher = useFetcher();
+  const navigate = useNavigate();
 
   // Initialize game state
   const [gameState, setGameState] = useState<GameState>(() => {
@@ -211,6 +212,16 @@ export default function Play({ loaderData }: Route.ComponentProps) {
       setScoreSaved(true);
     }
   }, [gameEnded, scoreSaved, gameState, codeLanguage, lang, fetcher]);
+
+  // Navigate to result page when score is saved
+  useEffect(() => {
+    if (fetcher.data && fetcher.state === 'idle') {
+      const data = fetcher.data as { success: boolean; id: string };
+      if (data.success && data.id) {
+        navigate(`/result/${data.id}`);
+      }
+    }
+  }, [fetcher.data, fetcher.state, navigate]);
 
   /**
    * Handle line tap
