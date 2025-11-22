@@ -22,6 +22,21 @@ type ScoreRecord = {
 };
 
 /**
+ * Get proper display name for code language
+ */
+function getCodeLanguageDisplay(codeLanguage: string): string {
+  const languageMap: Record<string, string> = {
+    javascript: 'JavaScript',
+    python: 'Python',
+    php: 'PHP',
+    ruby: 'Ruby',
+    java: 'Java',
+    dart: 'Dart',
+  };
+  return languageMap[codeLanguage] || codeLanguage;
+}
+
+/**
  * Meta function to set page title
  */
 export function meta({ data }: Route.MetaArgs) {
@@ -30,7 +45,7 @@ export function meta({ data }: Route.MetaArgs) {
   }
 
   const { score } = data;
-  const codeLangDisplay = score.code_language.charAt(0).toUpperCase() + score.code_language.slice(1);
+  const codeLangDisplay = getCodeLanguageDisplay(score.code_language);
 
   return [
     {

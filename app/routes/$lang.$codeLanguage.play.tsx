@@ -24,6 +24,21 @@ type GameState = {
 };
 
 /**
+ * Get proper display name for code language
+ */
+function getCodeLanguageDisplay(codeLanguage: string): string {
+  const languageMap: Record<string, string> = {
+    javascript: 'JavaScript',
+    python: 'Python',
+    php: 'PHP',
+    ruby: 'Ruby',
+    java: 'Java',
+    dart: 'Dart',
+  };
+  return languageMap[codeLanguage] || codeLanguage;
+}
+
+/**
  * Meta function to set page title
  */
 export function meta({ data }: Route.MetaArgs) {
@@ -32,7 +47,7 @@ export function meta({ data }: Route.MetaArgs) {
   }
 
   const { codeLanguage } = data;
-  const codeLangDisplay = codeLanguage.charAt(0).toUpperCase() + codeLanguage.slice(1);
+  const codeLangDisplay = getCodeLanguageDisplay(codeLanguage);
 
   return [
     {
@@ -166,7 +181,7 @@ export default function Play({ loaderData }: Route.ComponentProps) {
   // Update page title with remaining seconds
   useEffect(() => {
     if (typeof document !== 'undefined' && !gameEnded) {
-      const codeLangDisplay = codeLanguage.charAt(0).toUpperCase() + codeLanguage.slice(1);
+      const codeLangDisplay = getCodeLanguageDisplay(codeLanguage);
       document.title = `(${gameState.remainingSeconds}s) ${codeLangDisplay} | Bug Sniper`;
     }
   }, [gameState.remainingSeconds, codeLanguage, gameEnded]);
