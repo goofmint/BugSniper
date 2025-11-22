@@ -75,6 +75,47 @@ function allLevel1ProblemsUsed(
 }
 
 /**
+ * Select next problem, advancing levels if current level has no available problems
+ */
+function selectNextProblemWithLevelAdvance(
+  codeLanguage: CodeLanguageOrAll,
+  currentLevel: number,
+  usedProblemIds: string[]
+): { problem: Problem | null; level: number } {
+  // Determine starting level
+  let nextLevel = currentLevel;
+
+  if (currentLevel === 1) {
+    // Check if all level 1 problems have been used
+    if (allLevel1ProblemsUsed(codeLanguage, usedProblemIds)) {
+      nextLevel = 2;
+    } else {
+      nextLevel = 1; // Stay at level 1
+    }
+  } else if (currentLevel === 2) {
+    nextLevel = 3;
+  } else {
+    nextLevel = 3; // Stay at max level
+  }
+
+  // Try to find a problem at the determined level
+  let problem = selectRandomProblem(codeLanguage, nextLevel, usedProblemIds);
+
+  // If no problem found at current level, try advancing to next levels
+  if (!problem && nextLevel < 3) {
+    for (let level = nextLevel + 1; level <= 3; level++) {
+      problem = selectRandomProblem(codeLanguage, level, usedProblemIds);
+      if (problem) {
+        nextLevel = level;
+        break;
+      }
+    }
+  }
+
+  return { problem, level: nextLevel };
+}
+
+/**
  * Game component
  */
 export default function Play({ loaderData }: Route.ComponentProps) {
@@ -217,24 +258,12 @@ export default function Play({ loaderData }: Route.ComponentProps) {
     }
 
     setGameState((prev) => {
-      // Determine next level
-      // Stay at level 1 until all level 1 problems are used
-      let nextLevel = prev.currentLevel;
-
-      if (prev.currentLevel === 1) {
-        // Check if all level 1 problems have been used
-        if (allLevel1ProblemsUsed(codeLanguage, usedProblemIds)) {
-          nextLevel = 2;
-        } else {
-          nextLevel = 1; // Stay at level 1
-        }
-      } else if (prev.currentLevel === 2) {
-        nextLevel = 3;
-      } else {
-        nextLevel = 3; // Stay at max level
-      }
-
-      const nextProblem = selectRandomProblem(codeLanguage, nextLevel, usedProblemIds);
+      // Select next problem and determine level
+      const { problem: nextProblem, level: nextLevel } = selectNextProblemWithLevelAdvance(
+        codeLanguage,
+        prev.currentLevel,
+        usedProblemIds
+      );
 
       if (nextProblem) {
         setUsedProblemIds((prevIds) => [...prevIds, nextProblem.id]);
