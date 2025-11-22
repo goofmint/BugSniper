@@ -26,8 +26,9 @@ export type Problem = {
 };
 
 // Import all problem JSON files using Vite's glob import
+// Supports: javascript, python, php, ruby, java, dart
 const problemModules = import.meta.glob<{ default: Problem }>(
-  './javascript/level*/*.json',
+  './{javascript,python,php,ruby,java,dart}/level*/*.json',
   { eager: true }
 );
 
