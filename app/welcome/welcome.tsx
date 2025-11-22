@@ -38,6 +38,13 @@ export function Welcome({ lang }: { lang: SupportedLanguage }) {
             </ul>
           </div>
 
+          <Link
+            to={`/${lang}/ranking`}
+            className="block w-full py-3 text-center rounded-md border-2 border-sky-500 text-sky-600 dark:text-sky-400 hover:bg-sky-50 dark:hover:bg-sky-900/30 transition font-medium"
+          >
+            {t('nav.ranking', lang)}
+          </Link>
+
           <div>
             <label className="block text-sm font-medium mb-2">{t('label.codeLanguage', lang)}</label>
             <div className="grid grid-cols-3 gap-3">

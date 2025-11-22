@@ -1,6 +1,7 @@
-import { type LoaderFunctionArgs, type MetaFunction } from 'react-router';
-import { useLoaderData, useLocation } from 'react-router';
-import { t, detectLanguage, type SupportedLanguage } from '~/locales';
+import type { Route } from './+types/$lang.ranking';
+import { redirect } from 'react-router';
+import { useLoaderData } from 'react-router';
+import { t, type SupportedLanguage } from '~/locales';
 import { Header } from '~/components/Header';
 
 type ScoreRecord = {
@@ -15,26 +16,30 @@ type ScoreRecord = {
   created_at: string;
 };
 
-export const meta: MetaFunction = ({ data, location }) => {
-  const searchParams = new URLSearchParams(location.search);
-  const uiLang = (searchParams.get('lang') as SupportedLanguage) || detectLanguage(searchParams);
-
-  const title = t('ranking.title', uiLang);
-  const period = t('ranking.period.week', uiLang);
+export function meta({ params }: Route.MetaArgs) {
+  const lang = params.lang as SupportedLanguage;
+  const title = t('ranking.title', lang);
+  const period = t('ranking.period.week', lang);
 
   return [{ title: `${title} (${period}) | Bug Sniper` }];
-};
+}
 
-export async function loader({ request, context }: LoaderFunctionArgs) {
+export async function loader({ params, request, context }: Route.LoaderArgs) {
+  const lang = params.lang;
+
+  // Validate language parameter
+  if (lang !== 'ja' && lang !== 'en') {
+    throw redirect('/');
+  }
+
   const url = new URL(request.url);
   const codeLanguage = url.searchParams.get('code') || 'all';
-  const uiLanguage = url.searchParams.get('lang') || detectLanguage(url.searchParams);
 
   const db = context.cloudflare.env.DB;
 
   // Get top 50 scores from the last 7 days
   let query: string;
-  let params: string[];
+  let queryParams: string[];
 
   if (codeLanguage === 'all') {
     query = `
@@ -43,7 +48,7 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
       ORDER BY score DESC
       LIMIT 50
     `;
-    params = [];
+    queryParams = [];
   } else {
     query = `
       SELECT * FROM scores
@@ -52,15 +57,15 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
       ORDER BY score DESC
       LIMIT 50
     `;
-    params = [codeLanguage];
+    queryParams = [codeLanguage];
   }
 
-  const result = await db.prepare(query).bind(...params).all();
+  const result = await db.prepare(query).bind(...queryParams).all();
 
   return {
     scores: (result.results || []) as ScoreRecord[],
     codeLanguage,
-    uiLanguage,
+    lang: lang as SupportedLanguage,
   };
 }
 
@@ -78,9 +83,7 @@ function getCodeLanguageDisplay(code: string): string {
 }
 
 export default function Ranking() {
-  const { scores, codeLanguage, uiLanguage } = useLoaderData<typeof loader>();
-  const location = useLocation();
-  const lang = uiLanguage as SupportedLanguage;
+  const { scores, codeLanguage, lang } = useLoaderData<typeof loader>();
 
   const codeLanguages = ['all', 'javascript', 'python', 'php', 'ruby', 'java', 'dart'];
 
@@ -117,12 +120,7 @@ export default function Ranking() {
         <div className="flex overflow-x-auto gap-2 pb-2">
           {codeLanguages.map((code) => {
             const isActive = codeLanguage === code;
-            const searchParams = new URLSearchParams(location.search);
-            searchParams.set('code', code);
-            if (lang) {
-              searchParams.set('lang', lang);
-            }
-            const href = `/ranking?${searchParams.toString()}`;
+            const href = `/${lang}/ranking?code=${code}`;
 
             return (
               <a
