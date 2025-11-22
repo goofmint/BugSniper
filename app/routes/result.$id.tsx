@@ -244,7 +244,7 @@ export default function Result({ loaderData }: Route.ComponentProps) {
               {lang === 'ja' ? 'もう一度プレイ' : 'Play Again'}
             </a>
             <a
-              href="/ranking"
+              href={`/${lang}/ranking`}
               className="flex-1 py-3 text-center rounded-md bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition font-medium"
             >
               {lang === 'ja' ? 'ランキングを見る' : 'View Ranking'}

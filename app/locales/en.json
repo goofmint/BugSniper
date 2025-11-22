@@ -20,5 +20,16 @@
   "rules.time": "60 seconds time limit",
   "rules.tap": "Tap lines with bugs to report them",
   "rules.combo": "Consecutive correct answers for combo bonus",
-  "rules.skip": "Skip difficult problems"
+  "rules.skip": "Skip difficult problems",
+  "ranking.title": "Ranking",
+  "ranking.period": "Period",
+  "ranking.period.week": "Last 7 Days",
+  "ranking.rank": "Rank",
+  "ranking.player": "Player",
+  "ranking.score": "Score",
+  "ranking.accuracy": "Accuracy",
+  "ranking.date": "Date",
+  "ranking.codeLanguage": "Code Language",
+  "ranking.noData": "No data available",
+  "ranking.anonymous": "Anonymous"
 }
