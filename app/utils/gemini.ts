@@ -107,7 +107,15 @@ Note: Output only JSON, without any other explanation.`;
       throw new Error(`Gemini API request failed: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data = (await response.json()) as {
+      candidates?: Array<{
+        content?: {
+          parts?: Array<{
+            text?: string;
+          }>;
+        };
+      }>;
+    };
 
     // Extract text from Gemini response
     const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text;

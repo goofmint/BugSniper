@@ -37,20 +37,37 @@ function getCodeLanguageDisplay(codeLanguage: string): string {
 }
 
 /**
- * Meta function to set page title
+ * Meta function to set page title and OGP tags
  */
 export function meta({ data }: Route.MetaArgs) {
   if (!data || !data.score) {
     return [{ title: 'Result Not Found | Bug Sniper' }];
   }
 
-  const { score } = data;
+  const { score, baseUrl } = data;
   const codeLangDisplay = getCodeLanguageDisplay(score.code_language);
+
+  // Construct full URLs for OGP
+  const url = `${baseUrl}/result/${score.id}`;
+  const ogImageUrl = `${baseUrl}/ogp/${score.id}`;
 
   return [
     {
       title: `${codeLangDisplay} ${score.score}pt | Bug Sniper`,
     },
+    // Open Graph tags
+    { property: 'og:title', content: `Bug Sniper - ${codeLangDisplay} ${score.score}pt` },
+    { property: 'og:description', content: `Found ${score.issues_found}/${score.total_issues} issues with ${(score.accuracy * 100).toFixed(1)}% accuracy` },
+    { property: 'og:image', content: ogImageUrl },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:url', content: url },
+    { property: 'og:type', content: 'website' },
+    // Twitter Card tags
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: `Bug Sniper - ${codeLangDisplay} ${score.score}pt` },
+    { name: 'twitter:description', content: `Found ${score.issues_found}/${score.total_issues} issues with ${(score.accuracy * 100).toFixed(1)}% accuracy` },
+    { name: 'twitter:image', content: ogImageUrl },
   ];
 }
 
@@ -69,6 +86,9 @@ export async function loader({ params, request, context }: Route.LoaderArgs) {
   const url = new URL(request.url);
   const isGameEnd = url.searchParams.get('game_end') === '1';
 
+  // Get the base URL for OGP meta tags
+  const baseUrl = `${url.protocol}//${url.host}`;
+
   try {
     const result = await db
       .prepare('SELECT * FROM scores WHERE id = ?')
@@ -79,7 +99,7 @@ export async function loader({ params, request, context }: Route.LoaderArgs) {
       throw data({ error: 'Score not found' }, { status: 404 });
     }
 
-    return { score: result, isGameEnd };
+    return { score: result, isGameEnd, baseUrl };
   } catch (error) {
     console.error('Failed to fetch score:', error);
     throw data({ error: 'Failed to fetch score' }, { status: 500 });
