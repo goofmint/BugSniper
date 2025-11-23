@@ -32,18 +32,34 @@ function getCodeLanguageDisplay(codeLanguage: string): string {
 }
 
 /**
- * Loader to generate OGP image
+ * Loader to serve OGP image from R2
  */
-export async function loader({ params, context, request }: LoaderFunctionArgs) {
+export async function loader({ params, context }: LoaderFunctionArgs) {
   const { id } = params;
+  const r2 = context.cloudflare.env.R2;
   const db = context.cloudflare.env.DB;
 
-  if (!db) {
-    return new Response('Database not configured', { status: 500 });
+  if (!r2 || !db) {
+    return new Response('R2 or DB not configured', { status: 500 });
   }
 
   try {
-    // Fetch score data from D1
+    // Try to get image from R2
+    const key = `ogp/${id}.png`;
+    const object = await r2.get(key);
+
+    if (object) {
+      // Return cached image from R2
+      return new Response(object.body, {
+        headers: {
+          'Content-Type': 'image/png',
+          'Cache-Control': 'public, max-age=31536000, immutable',
+        },
+      });
+    }
+
+    // If image doesn't exist in R2, return placeholder SVG
+    // (The client will generate and upload the actual image)
     const result = await db
       .prepare('SELECT * FROM scores WHERE id = ?')
       .bind(id)
@@ -53,7 +69,7 @@ export async function loader({ params, context, request }: LoaderFunctionArgs) {
       return new Response('Score not found', { status: 404 });
     }
 
-    // Generate SVG directly (without using satori)
+    // Generate placeholder SVG
     const svg = `
       <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
         <!-- Background -->
@@ -87,22 +103,21 @@ export async function loader({ params, context, request }: LoaderFunctionArgs) {
           ${getCodeLanguageDisplay(result.code_language)}
         </text>
 
-        <!-- CodeRabbit Icon placeholder (using circle for now) -->
+        <!-- CodeRabbit Icon placeholder -->
         <circle cx="1130" cy="570" r="30" fill="#F1DCEE"/>
         <text x="1130" y="580" font-family="Arial, sans-serif" font-size="16" fill="#000000" text-anchor="middle">CR</text>
       </svg>
     `;
 
-    // Return SVG image
     return new Response(svg, {
       headers: {
         'Content-Type': 'image/svg+xml',
-        'Cache-Control': 'public, max-age=31536000, immutable',
+        'Cache-Control': 'public, max-age=60, must-revalidate',
       },
     });
   } catch (error) {
-    console.error('Failed to generate OGP image:', error);
-    return new Response('Failed to generate OGP image', { status: 500 });
+    console.error('Failed to serve OGP image:', error);
+    return new Response('Failed to serve OGP image', { status: 500 });
   }
 }
 

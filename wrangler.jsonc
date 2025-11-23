@@ -20,6 +20,12 @@
 			"database_id": "0668ca11-9885-45e3-b412-968916d5ac81",
 			"remote": true
 		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "R2",
+			"bucket_name": "bug-sniper-ogp"
+		}
 	]
 	/**
 	 * Smart Placement
