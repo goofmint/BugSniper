@@ -1,0 +1,31 @@
+{
+  "id": "rb-l3-007",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class Singleton",
+    "  @@instance = nil",
+    "",
+    "  def self.instance",
+    "    @@instance ||= new",
+    "  end",
+    "",
+    "  def initialize",
+    "    # initialization",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-007-1",
+      "lines": [5],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "||=演算子はスレッドセーフではありません。複数スレッドから同時に呼び出すと複数インスタンスが作成される可能性があります",
+        "en": "||= operator is not thread-safe. Concurrent calls from multiple threads may create multiple instances"
+      }
+    }
+  ]
+}

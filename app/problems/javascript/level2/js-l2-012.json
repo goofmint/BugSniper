@@ -1,0 +1,27 @@
+{
+  "id": "js-l2-012",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "const urls = ['/api/user', '/api/posts', '/api/comments'];",
+    "const promises = urls.map(url => fetch(url));",
+    "const data = promises;",
+    "const result = data;",
+    "console.log(result);"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-012-1",
+      "lines": [
+        1
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "fetchはPromiseを返します。Promise.allとawaitを使ってデータを取得する必要があります",
+        "en": "fetch returns Promises. Need to use Promise.all and await to get data"
+      }
+    }
+  ]
+}

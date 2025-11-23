@@ -1,0 +1,35 @@
+{
+  "id": "rb-l2-014",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "class Configuration",
+    "  attr_accessor :settings",
+    "",
+    "  def initialize",
+    "    @settings = {}",
+    "  end",
+    "",
+    "  def set(key, value)",
+    "    settings[key] = value",
+    "  end",
+    "",
+    "  def get(key)",
+    "    settings(key)",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-014-1",
+      "lines": [13],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "ハッシュアクセスに[]を使うべきところで()を使用しています。settingsメソッドに引数を渡そうとしてエラーになります",
+        "en": "Using () instead of [] for hash access. Tries to pass argument to settings method causing error"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "dart-l2-013",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "abstract class Shape {",
+    "  double area();",
+    "}",
+    "",
+    "class Circle extends Shape {",
+    "  final double radius;",
+    "  Circle(this.radius);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-013-1",
+      "lines": [5, 6, 7, 8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "抽象メソッド未実装: Circleクラスは抽象メソッドarea()を実装していません",
+        "en": "Abstract method not implemented: Circle class doesn't implement abstract method area()"
+      }
+    }
+  ]
+}

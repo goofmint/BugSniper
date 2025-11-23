@@ -1,0 +1,28 @@
+{
+  "id": "php-l2-010",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "try {",
+    "  $result = riskyOperation();",
+    "  echo $result;",
+    "} catch (Exception $e) {",
+    "  echo 'Error: ' . $e->message;",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-010-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "Exceptionのメッセージを取得するには$e->getMessage()メソッドを使用すべきです",
+        "en": "Should use $e->getMessage() method to get exception message"
+      }
+    }
+  ]
+}

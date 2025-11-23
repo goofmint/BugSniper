@@ -1,0 +1,33 @@
+{
+  "id": "php-l2-001",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "class User {",
+    "  private $name;",
+    "  ",
+    "  public function setName($name) {",
+    "    $name = $name;",
+    "  }",
+    "  ",
+    "  public function getName() {",
+    "    return $this->name;",
+    "  }",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-001-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "$this->nameを使用すべきところを$nameに代入しています。プロパティが設定されません",
+        "en": "Assigning to parameter $name instead of $this->name. Property won't be set"
+      }
+    }
+  ]
+}

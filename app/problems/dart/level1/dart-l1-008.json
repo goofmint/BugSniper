@@ -1,0 +1,27 @@
+{
+  "id": "dart-l1-008",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  Map<String, int> scores = {'Alice': 90, 'Bob': 85};",
+    "  String key = 'Charlie';",
+    "  int? value = scores[key];",
+    "  print(value);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-008-1",
+      "lines": [2,
+        3],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "存在しないキーへのアクセス: Mapに'Charlie'キーが存在しないため、nullが返されます",
+        "en": "Accessing non-existent key: Map doesn't contain key 'Charlie', will return null"
+      }
+    }
+  ]
+}

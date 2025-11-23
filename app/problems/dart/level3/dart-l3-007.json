@@ -1,0 +1,33 @@
+{
+  "id": "dart-l3-007",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "import 'dart:async';",
+    "",
+    "Stream<int> countStream() async* {",
+    "  for (int i = 0; i < 1000000; i++) {",
+    "    yield i;",
+    "  }",
+    "}",
+    "",
+    "void main() async {",
+    "  await for (var num in countStream()) {",
+    "    print(num);",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-007-1",
+      "lines": [3, 4, 5, 6, 7],
+      "type": "performance",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "メモリ効率の問題: 大量のデータを生成していますが、バックプレッシャー制御がありません",
+        "en": "Memory efficiency issue: Generating large amount of data without backpressure control"
+      }
+    }
+  ]
+}

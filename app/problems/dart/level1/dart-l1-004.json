@@ -1,0 +1,26 @@
+{
+  "id": "dart-l1-004",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  String value = '25';",
+    "  int age = value;",
+    "  int years = age;",
+    "  print(years);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-004-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "型エラー: int型の変数にString型の値を代入しています",
+        "en": "Type error: Assigning String value to int variable"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "py-l3-005",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "import asyncio",
+    "",
+    "async def fetch_data(url):",
+    "    return f'Data from {url}'",
+    "",
+    "def main():",
+    "    result = fetch_data('http://example.com')",
+    "    print(result)"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-005-1",
+      "lines": [7],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "async関数は'await'で呼び出す必要があります。コルーチンオブジェクトが返されます",
+        "en": "Async function must be called with 'await', returns coroutine object otherwise"
+      }
+    }
+  ]
+}

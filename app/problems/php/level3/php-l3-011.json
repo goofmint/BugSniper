@@ -1,0 +1,27 @@
+{
+  "id": "php-l3-011",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "$pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');",
+    "$stmt = $pdo->prepare('SELECT * FROM users WHERE id = :id');",
+    "$stmt->bindParam(':id', $_GET['id']);",
+    "$stmt->execute();",
+    "$user = $stmt->fetch();",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-011-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "bindParam()は参照渡しです。$_GET['id']は一時変数のため、変数に代入してから使用すべきです",
+        "en": "bindParam() passes by reference. Should assign $_GET['id'] to variable first"
+      }
+    }
+  ]
+}

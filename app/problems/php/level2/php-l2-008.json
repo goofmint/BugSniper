@@ -1,0 +1,26 @@
+{
+  "id": "php-l2-008",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "$items = ['a' => 1, 'b' => 2, 'c' => 3];",
+    "unset($items['b']);",
+    "$values = array_values($items);",
+    "echo $values[2];",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-008-1",
+      "lines": [5],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "要素を削除した後、配列には2つの要素しかありません。インデックス2は範囲外です",
+        "en": "After unset, array has only 2 elements. Index 2 is out of bounds"
+      }
+    }
+  ]
+}

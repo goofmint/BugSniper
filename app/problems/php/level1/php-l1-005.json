@@ -1,0 +1,27 @@
+{
+  "id": "php-l1-005",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "function greet($name) {",
+    "  $message = 'Hello, ' . $name;",
+    "}",
+    "$result = greet('Alice');",
+    "echo $result;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-005-1",
+      "lines": [2, 3],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "関数がreturn文を持っていないため、$resultはnullになります",
+        "en": "Function is missing a return statement, so $result will be null"
+      }
+    }
+  ]
+}

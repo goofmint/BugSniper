@@ -1,0 +1,25 @@
+{
+  "id": "js-l3-009",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "function fibonacci(n, memo = {}) {",
+    "  if (n <= 1) return n;",
+    "  if (memo[n]) return memo[n];",
+    "  return fibonacci(n - 1, memo) + fibonacci(n - 2, memo);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-009-1",
+      "lines": [4],
+      "type": "performance",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "計算結果をmemoに保存していないため、メモ化が機能していません",
+        "en": "Not storing result in memo, memoization not working"
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "php-l3-009",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "if (!isset($_SESSION['user_id'])) {",
+    "  session_start();",
+    "}",
+    "$_SESSION['last_activity'] = time();",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-009-1",
+      "lines": [2, 3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "セッションの開始条件が間違っています。session_status()をチェックすべきです",
+        "en": "Wrong condition for starting session. Should check session_status()"
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "rb-l1-014",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def create_greeting(name, time)",
+    "  # Implementation",
+    "  greeting = \"Good #{time}, #{Name}!\"",
+    "  return greeting",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-014-1",
+      "lines": [
+        2
+      ],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "変数の大文字小文字の誤り: 'Name'は定数として解釈されます。'name'を使用すべきです",
+        "en": "Case sensitivity error: 'Name' is treated as a constant. Should use lowercase 'name'"
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "java-l3-009",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "import java.util.List;",
+    "import java.util.stream.Stream;",
+    "",
+    "public class StreamReuse {",
+    "    public void processData(List<String> data) {",
+    "        Stream<String> stream = data.stream()",
+    "            .filter(s -> s.length() > 5);",
+    "        ",
+    "        long count = stream.count();",
+    "        System.out.println(\"Count: \" + count);",
+    "        ",
+    "        stream.forEach(System.out::println);",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-009-1",
+      "lines": [12],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Streamの再利用エラーです。Streamは一度消費されると再利用できません。count()で消費された後、forEach()を呼び出すとIllegalStateExceptionが発生します。",
+        "en": "Stream reuse error. Stream cannot be reused once consumed. After count() consumes it, calling forEach() throws IllegalStateException."
+      }
+    }
+  ]
+}

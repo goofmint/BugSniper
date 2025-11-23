@@ -1,0 +1,33 @@
+{
+  "id": "py-l3-016",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "class Fibonacci:",
+    "    def __init__(self, n):",
+    "        self.n = n",
+    "        self.a = 0",
+    "        self.b = 1",
+    "        self.count = 0",
+    "    ",
+    "    def __next__(self):",
+    "        if self.count >= self.n:",
+    "            raise StopIteration",
+    "        self.a, self.b = self.b, self.a + self.b",
+    "        self.count += 1",
+    "        return self.a"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-016-1",
+      "lines": [1],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "イテレータプロトコルには__iter__メソッドが必要です。selfを返すべきです",
+        "en": "Iterator protocol requires __iter__ method that returns self"
+      }
+    }
+  ]
+}

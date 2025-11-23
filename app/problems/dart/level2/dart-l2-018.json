@@ -1,0 +1,27 @@
+{
+  "id": "dart-l2-018",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "void main() {",
+    "  var items = [1, 2, 3];",
+    "  var doubled = items.map((item) {",
+    "    return item * 2;",
+    "  });",
+    "  print(doubled[0]);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-018-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Iterableのインデックスアクセスエラー: mapの戻り値はIterableで、[]演算子は使えません",
+        "en": "Iterable index access error: map returns Iterable which doesn't support [] operator"
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "php-l2-018",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "$password = $_POST['password'];",
+    "$hashedPassword = md5($password);",
+    "$query = \"INSERT INTO users (password) VALUES ('$hashedPassword')\";",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-018-1",
+      "lines": [3],
+      "type": "security",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "MD5は暗号学的に安全ではありません。password_hash()を使用すべきです",
+        "en": "MD5 is not cryptographically secure. Should use password_hash()"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "dart-l2-006",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "extension StringExtension on String {",
+    "  String reverse() {",
+    "    return split('').reversed.join();",
+    "  }",
+    "}",
+    "",
+    "void main() {",
+    "  int number = 12345;",
+    "  print(number.reverse());",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-006-1",
+      "lines": [9],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "拡張メソッド適用エラー: String用の拡張メソッドをint型に対して呼び出しています",
+        "en": "Extension method error: Calling String extension method on int type"
+      }
+    }
+  ]
+}

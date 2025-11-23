@@ -1,0 +1,28 @@
+{
+  "id": "py-l1-011",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def divide(a, b):",
+    "    \"\"\"Function implementation\"\"\"",
+    "    numerator = a",
+    "    denominator = b",
+    "    quotient = numerator / denominator",
+    "    return quotient"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-011-1",
+      "lines": [
+        4
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "bが0の場合のチェックがありません。ゼロ除算のエラーハンドリングが必要です",
+        "en": "No check for b being 0. Division by zero error handling is needed"
+      }
+    }
+  ]
+}

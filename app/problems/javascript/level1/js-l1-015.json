@@ -1,0 +1,25 @@
+{
+  "id": "js-l1-015",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "const PI = 3.14;",
+    "function getCircleArea(radius) {",
+    "  PI = 3.14159;",
+    "  return PI * radius * radius;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-015-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "const宣言された変数PIに再代入しようとしているため、TypeErrorが発生します",
+        "en": "Attempting to reassign const variable 'PI' causes a TypeError"
+      }
+    }
+  ]
+}

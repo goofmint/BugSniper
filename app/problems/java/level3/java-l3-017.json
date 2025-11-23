@@ -1,0 +1,46 @@
+{
+  "id": "java-l3-017",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "import java.lang.ref.WeakReference;",
+    "import java.util.ArrayList;",
+    "import java.util.List;",
+    "",
+    "public class WeakRefExample {",
+    "    private List<WeakReference<String>> cache = new ArrayList<>();",
+    "    ",
+    "    public void addToCache(String data) {",
+    "        cache.add(new WeakReference<>(data));",
+    "    }",
+    "    ",
+    "    public String getFromCache(int index) {",
+    "        return cache.get(index).get();",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-017-1",
+      "lines": [13],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "WeakReferenceのnullチェックが欠落しています。WeakReferenceのget()メソッドは、参照先がガベージコレクションされた場合にnullを返すため、NullPointerExceptionが発生する可能性があります。",
+        "en": "Missing null check for WeakReference. get() method returns null when referent is garbage collected, potentially causing NullPointerException."
+      }
+    },
+    {
+      "id": "java-l3-017-2",
+      "lines": [9],
+      "type": "design",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "WeakReferenceの誤用です。String literalは通常、String poolに保持されるため、WeakReferenceを使用しても効果がありません。適切なユースケースではありません。",
+        "en": "WeakReference misuse. String literals are usually held in String pool, making WeakReference ineffective. Not appropriate use case."
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "java-l3-008",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "import java.util.HashMap;",
+    "import java.util.Map;",
+    "",
+    "public class Cache {",
+    "    private static Map<String, byte[]> cache = new HashMap<>();",
+    "    ",
+    "    public void addToCache(String key, byte[] data) {",
+    "        cache.put(key, data);",
+    "    }",
+    "    ",
+    "    public byte[] getFromCache(String key) {",
+    "        return cache.get(key);",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-008-1",
+      "lines": [5, 8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "メモリリークの危険性があります。staticなMapに際限なくデータを追加しており、削除や上限設定がないため、メモリが枯渇する可能性があります。LRUキャッシュやWeakHashMapの使用を検討すべきです。",
+        "en": "Memory leak risk. Unlimited data added to static Map without removal or size limit can exhaust memory. Should consider LRU cache or WeakHashMap."
+      }
+    },
+    {
+      "id": "java-l3-008-2",
+      "lines": [5],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "スレッドセーフではありません。HashMapは同期化されていないため、マルチスレッド環境で使用すると競合状態が発生します。ConcurrentHashMapを使用すべきです。",
+        "en": "Not thread-safe. HashMap is not synchronized, causing race conditions in multi-threaded environment. Should use ConcurrentHashMap."
+      }
+    }
+  ]
+}

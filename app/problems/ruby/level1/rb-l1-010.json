@@ -1,0 +1,26 @@
+{
+  "id": "rb-l1-010",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def get_value(hash, key)",
+    "  return hash[key]",
+    "end",
+    "",
+    "user = { 'name' => 'Alice', 'age' => 25 }",
+    "puts get_value(user, :name)"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-010-1",
+      "lines": [5, 6],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ハッシュは文字列キーで定義されていますが、シンボルキーでアクセスしています。nilが返されます",
+        "en": "Hash is defined with string keys but accessed with symbol key. This returns nil"
+      }
+    }
+  ]
+}

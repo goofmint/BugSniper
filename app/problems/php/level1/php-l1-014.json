@@ -1,0 +1,28 @@
+{
+  "id": "php-l1-014",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$count = 0;",
+    "while ($count < 5)",
+    "{",
+    "  echo $count;",
+    "  $count++;",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-014-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "while文の条件の後にセミコロンがありません（正常に動作しますが、一貫性のためセミコロンは不要です）",
+        "en": "While statement condition should not have a semicolon (works but style issue)"
+      }
+    }
+  ]
+}

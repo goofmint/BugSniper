@@ -1,0 +1,38 @@
+{
+  "id": "rb-l3-002",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "module A",
+    "  def greet",
+    "    \"Hello from A\"",
+    "  end",
+    "end",
+    "",
+    "module B",
+    "  def greet",
+    "    \"Hello from B\"",
+    "  end",
+    "end",
+    "",
+    "class MyClass",
+    "  include A",
+    "  include B",
+    "end",
+    "",
+    "puts MyClass.new.greet"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-002-1",
+      "lines": [14, 15],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "後にincludeされたモジュールBのメソッドが優先されます。モジュールの順序に依存する動作は予測困難です",
+        "en": "Later included module B's method takes precedence. Order-dependent behavior is hard to predict"
+      }
+    }
+  ]
+}

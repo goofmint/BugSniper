@@ -1,0 +1,27 @@
+{
+  "id": "php-l2-004",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "function loadConfig() {",
+    "  include 'config.php';",
+    "}",
+    "loadConfig();",
+    "echo $databaseHost;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-004-1",
+      "lines": [3, 6],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "include文で読み込まれた変数は関数スコープ内にあり、グローバルスコープからアクセスできません",
+        "en": "Variables from included file are in function scope and not accessible globally"
+      }
+    }
+  ]
+}

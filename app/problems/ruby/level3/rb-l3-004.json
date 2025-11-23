@@ -1,0 +1,31 @@
+{
+  "id": "rb-l3-004",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class APIClient",
+    "  @config = {}",
+    "",
+    "  def self.configure",
+    "    yield @config",
+    "  end",
+    "",
+    "  def initialize",
+    "    @api_key = @config[:api_key]",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-004-1",
+      "lines": [2, 9],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "2行目はクラスインスタンス変数、9行目はインスタンス変数で、異なる変数です。9行目の@configは常にnilです",
+        "en": "Line 2 is a class instance variable, line 9 is an instance variable - different variables. @config on line 9 is always nil"
+      }
+    }
+  ]
+}

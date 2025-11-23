@@ -1,0 +1,37 @@
+{
+  "id": "php-l3-020",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "namespace App\\Models;",
+    "",
+    "use DateTime;",
+    "",
+    "class Event {",
+    "  private $date;",
+    "  ",
+    "  public function setDate($dateString) {",
+    "    $this->date = new DateTime($dateString);",
+    "  }",
+    "  ",
+    "  public function getDate() {",
+    "    return $this->date;",
+    "  }",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-020-1",
+      "lines": [10],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "DateTimeコンストラクタは例外をスローする可能性がありますが、例外処理がありません",
+        "en": "DateTime constructor can throw exception but no exception handling"
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "rb-l2-008",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "module Logging",
+    "  def log(message)",
+    "    puts \"[LOG] #{message}\"",
+    "  end",
+    "end",
+    "",
+    "class Service",
+    "  include Logging",
+    "",
+    "  def process",
+    "    log \"Processing...\"",
+    "    # processing logic",
+    "  end",
+    "",
+    "  def log(message)",
+    "    puts \"Service: #{message}\"",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-008-1",
+      "lines": [15, 16, 17],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "クラスで定義されたlogメソッドがモジュールのlogメソッドを上書きするため、期待と異なる動作になります",
+        "en": "The log method defined in class overrides the module's log method, causing unexpected behavior"
+      }
+    }
+  ]
+}

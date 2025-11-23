@@ -1,0 +1,45 @@
+{
+  "id": "java-l3-018",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "import java.util.Arrays;",
+    "import java.util.List;",
+    "",
+    "public class ImmutableExample {",
+    "    private final List<String> items;",
+    "    ",
+    "    public ImmutableExample(String[] data) {",
+    "        this.items = Arrays.asList(data);",
+    "    }",
+    "    ",
+    "    public List<String> getItems() {",
+    "        return items;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-018-1",
+      "lines": [12],
+      "type": "security",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "不変性の違反です。内部のリストへの参照を直接返すことで、外部から内容を変更される可能性があります。Collections.unmodifiableList()でラップするか、コピーを返すべきです。",
+        "en": "Immutability violation. Returning direct reference to internal list allows external modification. Should wrap with Collections.unmodifiableList() or return copy."
+      }
+    },
+    {
+      "id": "java-l3-018-2",
+      "lines": [8],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "外部配列への依存です。Arrays.asList()は元の配列を参照するため、コンストラクタに渡された配列が後で変更されると、このオブジェクトの内容も変更されます。防御的コピーが必要です。",
+        "en": "Dependency on external array. Arrays.asList() references original array, so if passed array is modified later, this object's contents change. Need defensive copy."
+      }
+    }
+  ]
+}

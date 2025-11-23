@@ -1,0 +1,29 @@
+{
+  "id": "php-l2-007",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "class Database {",
+    "  public static $connection;",
+    "  ",
+    "  public function connect() {",
+    "    $connection = mysqli_connect('localhost', 'user', 'pass');",
+    "  }",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-007-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "静的プロパティにアクセスするにはself::$connectionを使用すべきです",
+        "en": "Should use self::$connection to access static property"
+      }
+    }
+  ]
+}

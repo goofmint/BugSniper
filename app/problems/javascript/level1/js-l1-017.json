@@ -1,0 +1,28 @@
+{
+  "id": "js-l1-017",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function getLastElement(arr) {",
+    "  // Initialize variables",
+    "  const index = arr.length;",
+    "  return arr[index];",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-017-1",
+      "lines": [
+        2,
+        3
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "配列の最後の要素はarr[arr.length - 1]です。arr[arr.length]はundefinedを返します",
+        "en": "Last element of array is arr[arr.length - 1]. arr[arr.length] returns undefined"
+      }
+    }
+  ]
+}

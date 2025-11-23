@@ -1,0 +1,30 @@
+{
+  "id": "php-l3-010",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "namespace App\\Controllers;",
+    "",
+    "class UserController {",
+    "  public function index() {",
+    "    $users = User::all();",
+    "    return view('users.index', compact('users'));",
+    "  }",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-010-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Userクラスがインポートされていません。use App\\Models\\User;が必要です",
+        "en": "User class not imported. Need use App\\Models\\User;"
+      }
+    }
+  ]
+}

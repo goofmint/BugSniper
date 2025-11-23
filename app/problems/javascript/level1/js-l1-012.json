@@ -1,0 +1,28 @@
+{
+  "id": "js-l1-012",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function multiply(a, b) {",
+    "  // Initialize variables",
+    "  let product = a * b;",
+    "  let result = product;",
+    "  let answer = result;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-012-1",
+      "lines": [
+        5
+      ],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "関数が値を返していません。return文が必要です",
+        "en": "Function doesn't return a value. Missing return statement"
+      }
+    }
+  ]
+}

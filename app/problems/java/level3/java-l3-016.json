@@ -1,0 +1,36 @@
+{
+  "id": "java-l3-016",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "import java.util.concurrent.locks.Lock;",
+    "import java.util.concurrent.locks.ReentrantLock;",
+    "",
+    "public class LockExample {",
+    "    private Lock lock = new ReentrantLock();",
+    "    private int value = 0;",
+    "    ",
+    "    public void increment() {",
+    "        lock.lock();",
+    "        value++;",
+    "        if (value > 100) {",
+    "            return;",
+    "        }",
+    "        lock.unlock();",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-016-1",
+      "lines": [12],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "ロックのリリース漏れです。early returnの場合、unlock()が呼ばれずにロックが保持されたままになります。try-finallyブロックでunlock()を確実に呼び出すべきです。",
+        "en": "Lock leak. With early return, unlock() is not called and lock remains held. Should use try-finally block to ensure unlock() is called."
+      }
+    }
+  ]
+}

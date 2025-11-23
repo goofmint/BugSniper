@@ -1,0 +1,29 @@
+{
+  "id": "js-l3-020",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "async function retry(fn, maxAttempts) {",
+    "  for (let i = 0; i < maxAttempts; i++) {",
+    "    try {",
+    "      return await fn();",
+    "    } catch (error) {",
+    "      if (i === maxAttempts - 1) throw error;",
+    "    }",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-020-1",
+      "lines": [2, 3, 4, 5, 6, 7, 8],
+      "type": "design",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "リトライの間に遅延がないため、サーバーに過負荷をかける可能性があります",
+        "en": "No delay between retries, may overload server"
+      }
+    }
+  ]
+}

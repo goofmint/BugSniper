@@ -1,0 +1,28 @@
+{
+  "id": "php-l3-003",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "$userInput = $_GET['search'];",
+    "$prefix = '<div>Search results for: ';",
+    "$suffix = '</div>';",
+    "$output = $prefix . $userInput . $suffix;",
+    "echo $output;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-003-1",
+      "lines": [4,
+        5],
+      "type": "security",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "XSS（クロスサイトスクリプティング）の脆弱性があります。htmlspecialchars()でエスケープすべきです",
+        "en": "XSS (Cross-Site Scripting) vulnerability. Should escape with htmlspecialchars()"
+      }
+    }
+  ]
+}

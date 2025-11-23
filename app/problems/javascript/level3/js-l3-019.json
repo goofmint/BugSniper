@@ -1,0 +1,30 @@
+{
+  "id": "js-l3-019",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "const myModule = (function() {",
+    "  var privateVar = 'secret';",
+    "  ",
+    "  return {",
+    "    getPrivate: () => privateVar,",
+    "    setPrivate: (val) => privateVar = val",
+    "  };",
+    "})();",
+    "",
+    "console.log(myModule.privateVar);"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-019-1",
+      "lines": [10],
+      "type": "design",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "privateVarは外部からアクセスできません。getPrivate()メソッドを使う必要があります",
+        "en": "privateVar not accessible from outside. Need to use getPrivate() method"
+      }
+    }
+  ]
+}

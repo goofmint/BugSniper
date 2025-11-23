@@ -1,0 +1,30 @@
+{
+  "id": "rb-l2-003",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "class Product",
+    "  def initialize(name, price)",
+    "    @name = name",
+    "    @price = price",
+    "  end",
+    "",
+    "  def display_info",
+    "    \"#{@name}: $#{price}\"",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-003-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "priceメソッドが定義されていないため、NoMethodErrorが発生します。@priceを使用すべきです",
+        "en": "No price method defined, causing NoMethodError. Should use @price instance variable"
+      }
+    }
+  ]
+}

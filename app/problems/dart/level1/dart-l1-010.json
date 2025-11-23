@@ -1,0 +1,26 @@
+{
+  "id": "dart-l1-010",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  const pi = 3.14;",
+    "  double newValue = 3.14159;",
+    "  pi = newValue;",
+    "  print(pi);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-010-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "定数への再代入エラー: const変数は再代入できません",
+        "en": "Reassignment to constant error: Cannot reassign const variable"
+      }
+    }
+  ]
+}

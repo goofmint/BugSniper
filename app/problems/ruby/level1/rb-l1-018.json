@@ -1,0 +1,26 @@
+{
+  "id": "rb-l1-018",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def is_valid?(value)",
+    "  if value",
+    "    true",
+    "  else",
+    "    false",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-018-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "メソッド定義に対応するendキーワードが不足しています。構文エラーが発生します",
+        "en": "Missing 'end' keyword to close the method definition. This causes a syntax error"
+      }
+    }
+  ]
+}

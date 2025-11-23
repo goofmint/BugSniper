@@ -1,0 +1,27 @@
+{
+  "id": "rb-l1-011",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def double_number(num)",
+    "  # Implementation",
+    "  num * 2",
+    "  puts \"Number doubled\"",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-011-1",
+      "lines": [
+        3
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "puts文が最後の式なので、メソッドはnilを返します。計算結果が返されません",
+        "en": "The puts statement is the last expression, so method returns nil instead of the calculated value"
+      }
+    }
+  ]
+}

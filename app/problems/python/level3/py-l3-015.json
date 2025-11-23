@@ -1,0 +1,32 @@
+{
+  "id": "py-l3-015",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "def process_large_file(filename):",
+    "    def read_chunks():",
+    "        with open(filename, 'r') as f:",
+    "            while True:",
+    "                chunk = f.read(1024)",
+    "                if not chunk:",
+    "                    break",
+    "                yield chunk",
+    "    ",
+    "    gen = read_chunks()",
+    "    for chunk in gen:",
+    "        process(chunk)"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-015-1",
+      "lines": [10, 11, 12],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ジェネレータが例外で終了した場合、close()が呼ばれません。try-finallyで囲むべきです",
+        "en": "Generator close() not called if exception occurs, should wrap in try-finally"
+      }
+    }
+  ]
+}

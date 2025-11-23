@@ -1,0 +1,29 @@
+{
+  "id": "py-l3-006",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "class Node:",
+    "    def __init__(self, value):",
+    "        self.value = value",
+    "        self.parent = None",
+    "        self.children = []",
+    "    ",
+    "    def add_child(self, child):",
+    "        self.children.append(child)",
+    "        child.parent = self"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-006-1",
+      "lines": [4, 9],
+      "type": "performance",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "親子間の循環参照がメモリリークを引き起こす可能性があります。weakrefを使うべきです",
+        "en": "Circular reference between parent and child can cause memory leaks, should use weakref"
+      }
+    }
+  ]
+}

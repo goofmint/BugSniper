@@ -1,0 +1,34 @@
+{
+  "id": "java-l2-008",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "import java.util.HashMap;",
+    "import java.util.Map;",
+    "",
+    "public class UserManager {",
+    "    private Map<String, String> users = new HashMap<>();",
+    "    ",
+    "    public void addUser(String name) {",
+    "        users.put(name, null);",
+    "    }",
+    "    ",
+    "    public int getUserNameLength(String name) {",
+    "        return users.get(name).length();",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-008-1",
+      "lines": [12],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "NullPointerExceptionが発生する可能性があります。get()がnullを返す場合（キーが存在しない、または値がnull）、length()呼び出しで例外が発生します。",
+        "en": "Potential NullPointerException. If get() returns null (key doesn't exist or value is null), length() call will throw exception."
+      }
+    }
+  ]
+}

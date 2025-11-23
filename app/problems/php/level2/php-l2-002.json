@@ -1,0 +1,25 @@
+{
+  "id": "php-l2-002",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "$username = $_GET['username'];",
+    "$query = \"SELECT * FROM users WHERE username = '$username'\";",
+    "$result = mysqli_query($conn, $query);",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-002-1",
+      "lines": [2, 3],
+      "type": "security",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "SQLインジェクションの脆弱性があります。ユーザー入力を直接クエリに埋め込んでいます",
+        "en": "SQL injection vulnerability. User input is directly embedded in query"
+      }
+    }
+  ]
+}

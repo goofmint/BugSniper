@@ -1,0 +1,31 @@
+{
+  "id": "py-l3-014",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "def repeat(times):",
+    "    def decorator(func):",
+    "        def wrapper(*args, **kwargs):",
+    "            for _ in range(times):",
+    "                func(*args, **kwargs)",
+    "        return wrapper",
+    "    return decorator",
+    "",
+    "@repeat",
+    "def greet():",
+    "    print('Hello')"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-014-1",
+      "lines": [9],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "デコレータファクトリには括弧が必要です。'@repeat(3)'のように使うべきです",
+        "en": "Decorator factory requires parentheses, should use like '@repeat(3)'"
+      }
+    }
+  ]
+}

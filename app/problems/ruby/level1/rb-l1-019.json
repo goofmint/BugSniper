@@ -1,0 +1,27 @@
+{
+  "id": "rb-l1-019",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def reverse_string(str)",
+    "  reversed = str.reverse",
+    "  puts \"Reversed: #{reversed}\"",
+    "end",
+    "",
+    "result = reverse_string(\"hello\")",
+    "puts result.upcase"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-019-1",
+      "lines": [3, 7],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "メソッドはputsの戻り値(nil)を返すため、7行目でNoMethodErrorが発生します",
+        "en": "Method returns the value of puts (nil), causing NoMethodError on line 7"
+      }
+    }
+  ]
+}

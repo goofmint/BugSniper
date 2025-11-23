@@ -1,0 +1,25 @@
+{
+  "id": "dart-l1-003",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void printLength(String? text) {",
+    "  final length = text.length;",
+    "  final message = 'Length: $length';",
+    "  print(message);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-003-1",
+      "lines": [1],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "Null安全性違反: nullableな変数textに対してnullチェックなしでプロパティにアクセスしています",
+        "en": "Null safety violation: Accessing property on nullable variable 'text' without null check"
+      }
+    }
+  ]
+}

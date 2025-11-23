@@ -1,0 +1,28 @@
+{
+  "id": "js-l2-016",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "const config = {",
+    "  timeout: 5000,",
+    "  retry: 3",
+    "};",
+    "",
+    "function setConfig(key, value) {",
+    "  config = { ...config, [key]: value };",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-016-1",
+      "lines": [7],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "const宣言された変数configに再代入しようとしているため、TypeErrorが発生します",
+        "en": "Attempting to reassign const variable 'config' causes a TypeError"
+      }
+    }
+  ]
+}

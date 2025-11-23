@@ -1,0 +1,43 @@
+{
+  "id": "js-l3-006",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "class EventLogger {",
+    "  constructor() {",
+    "    this.logs = [];",
+    "    setInterval(function() {",
+    "      this.logs.push(new Date());",
+    "    }, 1000);",
+    "  }",
+    "  ",
+    "  getLogs() {",
+    "    return this.logs;",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-006-1",
+      "lines": [4, 5],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "function()内のthisはwindowを指します。アロー関数を使うか、thisをbindする必要があります",
+        "en": "this in function() refers to window. Need to use arrow function or bind this"
+      }
+    },
+    {
+      "id": "js-l3-006-2",
+      "lines": [4],
+      "type": "performance",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "setIntervalをクリアする方法がないため、メモリリークの可能性があります",
+        "en": "No way to clear setInterval, potential memory leak"
+      }
+    }
+  ]
+}

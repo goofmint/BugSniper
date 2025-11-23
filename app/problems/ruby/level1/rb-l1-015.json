@@ -1,0 +1,27 @@
+{
+  "id": "rb-l1-015",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def sum_array(numbers)",
+    "  total = 0",
+    "  numbers.each do |num|",
+    "    total += number",
+    "  end",
+    "  total",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-015-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "変数名のタイポ: 'number'はブロックパラメータ'num'であるべきです。未定義変数エラーが発生します",
+        "en": "Variable name typo: 'number' should be the block parameter 'num'. This causes an undefined variable error"
+      }
+    }
+  ]
+}

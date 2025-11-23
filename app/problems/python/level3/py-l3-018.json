@@ -1,0 +1,27 @@
+{
+  "id": "py-l3-018",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "class Meta(type):",
+    "    def __new__(mcs, name, bases, namespace):",
+    "        namespace['created_at'] = datetime.now()",
+    "        return super().__new__(mcs, name, bases, namespace)",
+    "",
+    "class Model(metaclass=Meta):",
+    "    pass"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-018-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "メタクラスで属性を設定すると全インスタンスで共有されます。__init__で設定すべきです",
+        "en": "Setting attributes in metaclass shares across all instances, should set in __init__"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "rb-l2-010",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "class Order",
+    "  def initialize(items)",
+    "    @items = items",
+    "  end",
+    "",
+    "  def total",
+    "    @items.reduce(0) { |sum, item|",
+    "      sum + item['price']",
+    "    }",
+    "  end",
+    "end",
+    "",
+    "items = [{ price: 100 }, { price: 200 }]",
+    "order = Order.new(items)",
+    "puts order.total"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-010-1",
+      "lines": [8, 13],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ハッシュはシンボルキーで定義されていますが、文字列キーでアクセスしています。nilが返され計算エラーになります",
+        "en": "Hash is defined with symbol keys but accessed with string keys. Returns nil causing calculation error"
+      }
+    }
+  ]
+}

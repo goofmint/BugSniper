@@ -1,0 +1,28 @@
+{
+  "id": "dart-l3-018",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "class DataProcessor {",
+    "  final List<int> _data = List.filled(1000000, 0);",
+    "  ",
+    "  void process() {",
+    "    var copy = _data;",
+    "    copy[0] = 100;",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-018-1",
+      "lines": [5],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "浅いコピーの問題: リストの参照をコピーしているだけで、元のリストも変更されます",
+        "en": "Shallow copy issue: Only copying reference, original list will also be modified"
+      }
+    }
+  ]
+}

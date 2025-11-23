@@ -1,0 +1,32 @@
+{
+  "id": "py-l3-008",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "def cache(func):",
+    "    cached_results = {}",
+    "    def wrapper(x):",
+    "        if x not in cached_results:",
+    "            cached_results[x] = func(x)",
+    "        return cached_results[x]",
+    "    return wrapper",
+    "",
+    "@cache",
+    "class MathOps:",
+    "    def square(self, x):",
+    "        return x ** 2"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-008-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "クラスデコレータで辞書を共有すると、全インスタンスで状態が共有されます",
+        "en": "Sharing dictionary in class decorator causes state to be shared across all instances"
+      }
+    }
+  ]
+}

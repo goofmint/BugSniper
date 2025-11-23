@@ -1,0 +1,34 @@
+{
+  "id": "java-l3-007",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "import java.util.List;",
+    "import java.util.concurrent.CopyOnWriteArrayList;",
+    "",
+    "public class SharedData {",
+    "    private List<String> data = new CopyOnWriteArrayList<>();",
+    "    ",
+    "    public void process() {",
+    "        for (String item : data) {",
+    "            if (item.startsWith(\"temp_\")) {",
+    "                data.remove(item);",
+    "            }",
+    "        }",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-007-1",
+      "lines": [8, 9, 10, 11, 12],
+      "type": "performance",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "パフォーマンスの問題です。CopyOnWriteArrayListは読み取りが多く書き込みが少ない場合に適していますが、ループ内で削除を行うと、各削除で配列全体がコピーされ、非効率です。removeIf()を使用するか、別のデータ構造を検討すべきです。",
+        "en": "Performance issue. CopyOnWriteArrayList is for read-heavy scenarios, but removing in loop copies entire array each time, very inefficient. Should use removeIf() or consider different data structure."
+      }
+    }
+  ]
+}

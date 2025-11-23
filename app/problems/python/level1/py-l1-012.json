@@ -1,0 +1,26 @@
+{
+  "id": "py-l1-012",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def find_max(numbers):",
+    "    max_num = 0",
+    "    for num in numbers:",
+    "        if num > max_num:",
+    "            max_num = num",
+    "    return max_num"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-012-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "max_numを0で初期化すると、全ての値が負の場合に誤った結果になります",
+        "en": "Initializing max_num to 0 returns incorrect result when all values are negative"
+      }
+    }
+  ]
+}

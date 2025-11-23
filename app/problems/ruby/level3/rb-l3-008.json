@@ -1,0 +1,34 @@
+{
+  "id": "rb-l3-008",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "module Callbacks",
+    "  def self.included(base)",
+    "    base.extend(ClassMethods)",
+    "  end",
+    "",
+    "  module ClassMethods",
+    "    def before_save(method_name)",
+    "      define_method(:save) do",
+    "        send(method_name)",
+    "        super()",
+    "      end",
+    "    end",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-008-1",
+      "lines": [8, 9, 10],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "define_methodで既存のsaveメソッドを上書きしているため、superが正しく動作しません。メソッドエイリアスやprependを使用すべきです",
+        "en": "Overwriting existing save method with define_method prevents super from working correctly. Should use method aliasing or prepend"
+      }
+    }
+  ]
+}

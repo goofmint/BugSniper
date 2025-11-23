@@ -1,0 +1,27 @@
+{
+  "id": "py-l2-006",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "def get_user_data(user_id):",
+    "    \"\"\"Function implementation\"\"\"",
+    "    data = {'id': user_id, 'name': 'John'}",
+    "    upper_data = {k.upper(): v for k, v in data}",
+    "    return upper_data"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-006-1",
+      "lines": [
+        3
+      ],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "辞書内包表記では'data.items()'を使用する必要があります",
+        "en": "Dictionary comprehension requires 'data.items()' to iterate over key-value pairs"
+      }
+    }
+  ]
+}

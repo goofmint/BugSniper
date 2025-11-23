@@ -1,0 +1,28 @@
+{
+  "id": "py-l2-016",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "def format_price(price, currency):",
+    "    \"\"\"Function implementation\"\"\"",
+    "    template = '{} {:.2f}'",
+    "    first = price",
+    "    second = currency",
+    "    return template.format(first, second)"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-016-1",
+      "lines": [
+        5
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 2,
+      "description": {
+        "ja": "フォーマット引数の順序が逆です。通貨記号が先、価格が後であるべきです",
+        "en": "Format arguments are in wrong order, should be currency first, then price"
+      }
+    }
+  ]
+}

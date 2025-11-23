@@ -1,0 +1,27 @@
+{
+  "id": "py-l2-010",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "def get_config():",
+    "    \"\"\"Function implementation\"\"\"",
+    "    config = {'host': 'localhost'}",
+    "    port = config['port']",
+    "    return port"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-010-1",
+      "lines": [
+        3
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "存在しないキーにアクセスするとKeyErrorが発生します。'config.get('port')'を使うべきです",
+        "en": "Accessing non-existent key raises KeyError, should use 'config.get('port')'"
+      }
+    }
+  ]
+}

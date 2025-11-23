@@ -1,0 +1,27 @@
+{
+  "id": "rb-l1-006",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def format_name(first, last)",
+    "  # Implementation",
+    "  full_name = \"#{first} #{last}\"",
+    "  return full_name.capitilize",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-006-1",
+      "lines": [
+        3
+      ],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "メソッド名のタイポ: 'capitilize'は'capitalize'であるべきです。NoMethodErrorが発生します",
+        "en": "Method name typo: 'capitilize' should be 'capitalize'. This causes a NoMethodError"
+      }
+    }
+  ]
+}

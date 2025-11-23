@@ -1,0 +1,26 @@
+{
+  "id": "php-l1-017",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$items = ['apple', 'banana', 'orange'];",
+    "for ($i = 1; $i <= 3; $i++) {",
+    "  echo $items[$i];",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-017-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ループが1から始まっていますが、配列インデックスは0から始まります。インデックス3は範囲外です",
+        "en": "Loop starts at 1 but array indices start at 0. Index 3 is out of bounds"
+      }
+    }
+  ]
+}

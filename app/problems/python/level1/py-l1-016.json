@@ -1,0 +1,27 @@
+{
+  "id": "py-l1-016",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def multiply(a, b):",
+    "    \"\"\"Function implementation\"\"\"",
+    "    product = a * b",
+    "    result = product",
+    "    answer = result"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-016-1",
+      "lines": [
+        4
+      ],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "関数が値を返していません。return文が必要です",
+        "en": "Function doesn't return a value. Missing return statement"
+      }
+    }
+  ]
+}

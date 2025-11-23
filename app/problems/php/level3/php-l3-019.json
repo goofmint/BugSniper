@@ -1,0 +1,33 @@
+{
+  "id": "php-l3-019",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "class Observer {",
+    "  private $subjects = [];",
+    "  ",
+    "  public function attach($subject) {",
+    "    $this->subjects[] = $subject;",
+    "  }",
+    "  ",
+    "  public function detach($subject) {",
+    "    // Detach logic missing",
+    "  }",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-019-1",
+      "lines": [6, 9, 10],
+      "type": "performance",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "オブザーバーパターンでdetachが実装されていないため、メモリリークが発生する可能性があります",
+        "en": "Observer pattern without detach implementation may cause memory leaks"
+      }
+    }
+  ]
+}

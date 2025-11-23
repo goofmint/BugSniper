@@ -1,0 +1,26 @@
+{
+  "id": "dart-l1-016",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  final List<int> nums = [1, 2, 3];",
+    "  List<int> newList = [4, 5, 6];",
+    "  nums = newList;",
+    "  print(nums);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-016-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "final変数への再代入エラー: final変数は一度しか代入できません",
+        "en": "Reassignment to final variable error: final variables can only be assigned once"
+      }
+    }
+  ]
+}

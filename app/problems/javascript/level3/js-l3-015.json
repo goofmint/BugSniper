@@ -1,0 +1,28 @@
+{
+  "id": "js-l3-015",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "function curry(fn) {",
+    "  return function curried(...args) {",
+    "    if (args.length >= fn.length) {",
+    "      return fn(...args);",
+    "    }",
+    "    return (...nextArgs) => curried(...args, nextArgs);",
+    "  };",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-015-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "nextArgsを配列としてスプレッドせずに渡しているため、ネストされた配列になります",
+        "en": "Passing nextArgs without spread creates nested array"
+      }
+    }
+  ]
+}

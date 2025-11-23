@@ -1,0 +1,31 @@
+{
+  "id": "java-l2-003",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "public class Animal {",
+    "    public void makeSound() {",
+    "        System.out.println(\"Some sound\");",
+    "    }",
+    "}",
+    "",
+    "class Dog extends Animal {",
+    "    public void makeSound(int volume) {",
+    "        System.out.println(\"Woof!\");",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-003-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "メソッドのオーバーライドの意図が失敗しています。パラメータが異なるため、これはオーバーロードであり、オーバーライドではありません。親クラスのメソッドシグネチャと一致させる必要があります。",
+        "en": "Method override intention fails. Different parameters make this overload, not override. Must match parent class method signature."
+      }
+    }
+  ]
+}

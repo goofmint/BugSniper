@@ -1,0 +1,27 @@
+{
+  "id": "py-l2-018",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "class Counter:",
+    "    def __init__(self):",
+    "        self._count = 0",
+    "    ",
+    "    @property",
+    "    def count(self, value):",
+    "        self._count = value"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-018-1",
+      "lines": [5, 6, 7],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "@propertyデコレータはゲッターのみです。セッターには@count.setterを使うべきです",
+        "en": "@property decorator is for getters only, should use @count.setter for setter"
+      }
+    }
+  ]
+}

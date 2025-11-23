@@ -1,0 +1,29 @@
+{
+  "id": "py-l2-011",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "def process_file(filename):",
+    "    \"\"\"Function implementation\"\"\"",
+    "    f = open(filename, 'r')",
+    "    data = f.read()",
+    "    return data.strip()"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-011-1",
+      "lines": [
+        2,
+        3,
+        4
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ファイルハンドルが閉じられていません。'with'文を使用すべきです",
+        "en": "File handle is not closed, should use 'with' statement"
+      }
+    }
+  ]
+}

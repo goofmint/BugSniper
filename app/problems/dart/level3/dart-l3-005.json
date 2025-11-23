@@ -1,0 +1,27 @@
+{
+  "id": "dart-l3-005",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "class Logger {",
+    "  factory Logger() {",
+    "    return Logger._internal();",
+    "  }",
+    "  ",
+    "  Logger._internal();",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-005-1",
+      "lines": [2, 3, 4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "無限再帰エラー: ファクトリコンストラクタが自身を呼び出し、無限ループになります",
+        "en": "Infinite recursion error: Factory constructor calls itself, creating infinite loop"
+      }
+    }
+  ]
+}

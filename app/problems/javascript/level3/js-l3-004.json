@@ -1,0 +1,32 @@
+{
+  "id": "js-l3-004",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "const eventEmitter = {",
+    "  events: {},",
+    "  on(event, callback) {",
+    "    if (!this.events[event]) {",
+    "      this.events[event] = [];",
+    "    }",
+    "    this.events[event].push(callback);",
+    "  },",
+    "  emit(event, data) {",
+    "    this.events[event].forEach(cb => cb(data));",
+    "  }",
+    "};"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-004-1",
+      "lines": [10],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "events[event]が存在しない場合にエラーが発生します。存在チェックが必要です",
+        "en": "Will error if events[event] doesn't exist. Need existence check"
+      }
+    }
+  ]
+}

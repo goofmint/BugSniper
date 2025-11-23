@@ -1,0 +1,31 @@
+{
+  "id": "js-l3-012",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "function throttle(func, delay) {",
+    "  let timeout;",
+    "  return function(...args) {",
+    "    if (!timeout) {",
+    "      func(...args);",
+    "      timeout = setTimeout(() => {",
+    "        timeout = null;",
+    "      }, delay);",
+    "    }",
+    "  };",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-012-1",
+      "lines": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "type": "design",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "thisのコンテキストが保持されていません。関数内でconst self = thisを使うか、アロー関数でfuncを呼ぶ必要があります",
+        "en": "this context not preserved. Need to use const self = this or call func with arrow function"
+      }
+    }
+  ]
+}

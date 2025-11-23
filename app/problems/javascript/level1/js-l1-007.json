@@ -1,0 +1,25 @@
+{
+  "id": "js-l1-007",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function calculate(a, b) {",
+    "  const sum = a + b;",
+    "  const sum = a * b;",
+    "  return sum;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-007-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "同じ変数名sumを2回宣言しているため、SyntaxErrorが発生します",
+        "en": "Declaring variable 'sum' twice causes a SyntaxError"
+      }
+    }
+  ]
+}

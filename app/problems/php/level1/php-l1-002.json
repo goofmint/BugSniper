@@ -1,0 +1,27 @@
+{
+  "id": "php-l1-002",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$total = 0;",
+    "for ($i = 0; $i < 10; $i++) {",
+    "  $total += $i",
+    "}",
+    "echo $total;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-002-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "セミコロンが欠落しています。PHP文は必ずセミコロンで終わる必要があります",
+        "en": "Missing semicolon. PHP statements must end with a semicolon"
+      }
+    }
+  ]
+}

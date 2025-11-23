@@ -1,0 +1,28 @@
+{
+  "id": "php-l1-006",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$age = 18;",
+    "if ($age = 21) {",
+    "  echo 'You can drink';",
+    "} else {",
+    "  echo 'Too young';",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-006-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "比較には==を使用すべきですが、代入演算子=が使われています",
+        "en": "Assignment operator = is used instead of comparison operator =="
+      }
+    }
+  ]
+}

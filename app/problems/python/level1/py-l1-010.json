@@ -1,0 +1,30 @@
+{
+  "id": "py-l1-010",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def get_last_element(lst):",
+    "    \"\"\"Function implementation\"\"\"",
+    "    length = len(lst)",
+    "    index = length",
+    "    element = lst[index]",
+    "    return element"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-010-1",
+      "lines": [
+        2,
+        3,
+        4
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "リストの最後の要素はlst[-1]またはlst[len(lst) - 1]です。lst[len(lst)]はIndexErrorを引き起こします",
+        "en": "Last element of list is lst[-1] or lst[len(lst) - 1]. lst[len(lst)] causes IndexError"
+      }
+    }
+  ]
+}

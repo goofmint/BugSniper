@@ -1,0 +1,27 @@
+{
+  "id": "js-l2-020",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "function debounce(func, delay) {",
+    "  let timeout;",
+    "  return function(...args) {",
+    "    clearTimeout(timeout);",
+    "    timeout = setTimeout(func(...args), delay);",
+    "  };",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-020-1",
+      "lines": [5],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "func(...args)は即座に実行されます。アロー関数でラップする必要があります: () => func(...args)",
+        "en": "func(...args) executes immediately. Need to wrap in arrow function: () => func(...args)"
+      }
+    }
+  ]
+}

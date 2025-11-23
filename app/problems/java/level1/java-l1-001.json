@@ -1,0 +1,26 @@
+{
+  "id": "java-l1-001",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class Calculator {",
+    "    public int add(int a, int b) {",
+    "        int result = a + b",
+    "        return result;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-001-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "セミコロンが欠落しています。Java文の終わりには必ずセミコロンが必要です。",
+        "en": "Missing semicolon. Every Java statement must end with a semicolon."
+      }
+    }
+  ]
+}

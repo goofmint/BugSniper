@@ -1,0 +1,28 @@
+{
+  "id": "py-l3-020",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "def process_data(items):",
+    "    \"\"\"Function implementation\"\"\"",
+    "    data = items",
+    "    results = [expensive_computation(x) for x in data]",
+    "    output = results",
+    "    return output"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-020-1",
+      "lines": [
+        3
+      ],
+      "type": "performance",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "大きなリストではメモリを大量消費します。ジェネレータ式'()'を使うべきです",
+        "en": "List comprehension with large data consumes excessive memory, should use generator expression '()'"
+      }
+    }
+  ]
+}

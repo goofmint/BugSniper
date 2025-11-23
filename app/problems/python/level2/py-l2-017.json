@@ -1,0 +1,26 @@
+{
+  "id": "py-l2-017",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "import json",
+    "",
+    "def save_data(data, filename):",
+    "    with open(filename, 'w') as f:",
+    "        json.dump(data, f)",
+    "    return True"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-017-1",
+      "lines": [5],
+      "type": "design",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "JSON出力を読みやすくするために'indent'パラメータを追加すべきです",
+        "en": "Should add 'indent' parameter for readable JSON output"
+      }
+    }
+  ]
+}

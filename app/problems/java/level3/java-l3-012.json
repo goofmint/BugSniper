@@ -1,0 +1,29 @@
+{
+  "id": "java-l3-012",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "import java.util.List;",
+    "import java.util.ArrayList;",
+    "",
+    "public class GenericWildcard {",
+    "    public void addNumber(List<? extends Number> numbers) {",
+    "        numbers.add(new Integer(10));",
+    "        numbers.add(new Double(20.5));",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-012-1",
+      "lines": [6, 7],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "ジェネリクスのワイルドカードの誤用です。'? extends Number'は読み取り専用であり、要素を追加できません（nullを除く）。要素を追加するには'? super Number'を使用するか、具体的な型を指定すべきです。",
+        "en": "Generic wildcard misuse. '? extends Number' is read-only and cannot add elements (except null). To add elements, use '? super Number' or specify concrete type."
+      }
+    }
+  ]
+}

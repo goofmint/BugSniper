@@ -1,0 +1,32 @@
+{
+  "id": "php-l3-001",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "namespace App\\Models;",
+    "",
+    "use Database\\Connection;",
+    "",
+    "class User {",
+    "  public function save() {",
+    "    $db = new Connection();",
+    "    return $db->insert($this);",
+    "  }",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-001-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "名前空間なしでクラス名を使用しています。\\Database\\Connectionまたはuse文の修正が必要です",
+        "en": "Using class name without proper namespace. Need \\Database\\Connection or fix use statement"
+      }
+    }
+  ]
+}

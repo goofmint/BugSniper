@@ -1,0 +1,27 @@
+{
+  "id": "java-l1-005",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class NullPointer {",
+    "    public static void main(String[] args) {",
+    "        String message = null;",
+    "        int length = message.length();",
+    "        System.out.println(length);",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-005-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "NullPointerExceptionが発生します。nullオブジェクトに対してメソッドを呼び出すことはできません。使用前にnullチェックが必要です。",
+        "en": "NullPointerException will occur. Cannot call methods on null objects. Null check is required before use."
+      }
+    }
+  ]
+}

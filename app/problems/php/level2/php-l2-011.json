@@ -1,0 +1,25 @@
+{
+  "id": "php-l2-011",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "require 'config.php';",
+    "require 'config.php';",
+    "require 'helpers.php';",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-011-1",
+      "lines": [2, 3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "同じファイルを2回requireしています。2回目でfatal errorが発生します。require_onceを使用すべきです",
+        "en": "Requiring same file twice causes fatal error. Should use require_once"
+      }
+    }
+  ]
+}

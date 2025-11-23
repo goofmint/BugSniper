@@ -1,0 +1,29 @@
+{
+  "id": "java-l2-016",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "abstract class Animal {",
+    "    public abstract void makeSound();",
+    "}",
+    "",
+    "class Cat extends Animal {",
+    "    private void makeSound() {",
+    "        System.out.println(\"Meow\");",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-016-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "アクセス修飾子が弱められています。親クラスの抽象メソッドはpublicですが、実装がprivateになっています。オーバーライド時はアクセスレベルを弱めることはできません。",
+        "en": "Weaker access modifier. Parent's abstract method is public, but implementation is private. Cannot reduce access level when overriding."
+      }
+    }
+  ]
+}

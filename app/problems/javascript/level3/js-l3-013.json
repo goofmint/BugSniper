@@ -1,0 +1,28 @@
+{
+  "id": "js-l3-013",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "const obj1 = { a: 1, b: { c: 2 } };",
+    "const original = obj1;",
+    "const obj2 = { ...original };",
+    "const newValue = 3;",
+    "obj2.b.c = newValue;",
+    "console.log(obj1.b.c);"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-013-1",
+      "lines": [
+        2
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "スプレッド演算子は浅いコピーです。ネストされたオブジェクトbは同じ参照を共有します",
+        "en": "Spread operator is shallow copy. Nested object b shares same reference"
+      }
+    }
+  ]
+}

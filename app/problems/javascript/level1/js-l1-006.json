@@ -1,0 +1,27 @@
+{
+  "id": "js-l1-006",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function reverseString(str) {",
+    "  let result = '';",
+    "  for (let i = str.length; i >= 0; i--) {",
+    "    result += str[i];",
+    "  }",
+    "  return result;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-006-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "インデックスがstr.lengthから始まるため、最初にundefinedが追加されます。str.length - 1から開始すべきです",
+        "en": "Starting index at str.length adds undefined first. Should start at str.length - 1"
+      }
+    }
+  ]
+}

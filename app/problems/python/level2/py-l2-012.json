@@ -1,0 +1,25 @@
+{
+  "id": "py-l2-012",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "def create_multipliers(n):",
+    "    funcs = []",
+    "    for i in range(n):",
+    "        funcs.append(lambda x: x * i)",
+    "    return funcs"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-012-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ラムダ関数は'i'への遅延バインディングを使用します。全て同じ値を参照します",
+        "en": "Lambda uses late binding for 'i', all functions will reference the same final value"
+      }
+    }
+  ]
+}

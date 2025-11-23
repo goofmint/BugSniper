@@ -1,0 +1,27 @@
+{
+  "id": "rb-l1-008",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def calculate_discount(price, discount)",
+    "  # Implementation",
+    "  final_price = price - (price * Discount / 100)",
+    "  return final_price",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-008-1",
+      "lines": [
+        2
+      ],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "変数の大文字小文字の誤り: 'Discount'は定数として解釈されます。'discount'を使用すべきです",
+        "en": "Case sensitivity error: 'Discount' is treated as a constant. Should use lowercase 'discount'"
+      }
+    }
+  ]
+}

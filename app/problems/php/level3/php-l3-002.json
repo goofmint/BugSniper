@@ -1,0 +1,37 @@
+{
+  "id": "php-l3-002",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "trait Logger {",
+    "  public function log($message) {",
+    "    echo $message;",
+    "  }",
+    "}",
+    "",
+    "trait FileLogger {",
+    "  public function log($message) {",
+    "    file_put_contents('log.txt', $message);",
+    "  }",
+    "}",
+    "",
+    "class Application {",
+    "  use Logger, FileLogger;",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-002-1",
+      "lines": [15],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "トレイトの競合があります。両方のトレイトにlog()メソッドがあり、insteadof句で解決する必要があります",
+        "en": "Trait conflict. Both traits have log() method, needs insteadof clause to resolve"
+      }
+    }
+  ]
+}

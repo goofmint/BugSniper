@@ -1,0 +1,41 @@
+{
+  "id": "rb-l2-012",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "class Animal",
+    "  def speak",
+    "    \"Some sound\"",
+    "  end",
+    "end",
+    "",
+    "class Dog < Animal",
+    "  def initialize(name)",
+    "    @name = name",
+    "  end",
+    "",
+    "  def speak",
+    "    \"#{@name} says Woof!\"",
+    "  end",
+    "",
+    "  def bark",
+    "    speak",
+    "  end",
+    "",
+    "  private :speak",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-012-1",
+      "lines": [20],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "speakメソッドをprivateにした後、継承元の動作が変わります。また、barkから呼び出せますが、外部から直接呼び出せなくなります",
+        "en": "Making speak private changes inherited behavior. While bark can call it, external calls will fail"
+      }
+    }
+  ]
+}

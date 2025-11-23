@@ -1,0 +1,43 @@
+{
+  "id": "rb-l2-020",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "class ShoppingCart",
+    "  def initialize",
+    "    @items = []",
+    "  end",
+    "",
+    "  def add_item(item)",
+    "    @items << item",
+    "  end",
+    "",
+    "  def items",
+    "    @items",
+    "  end",
+    "",
+    "  def clear",
+    "    @items = []",
+    "  end",
+    "end",
+    "",
+    "cart = ShoppingCart.new",
+    "cart.add_item(\"Apple\")",
+    "items_ref = cart.items",
+    "cart.clear",
+    "puts items_ref"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-020-1",
+      "lines": [10, 11],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "内部配列への直接参照を返しているため、外部から変更可能です。items.dupまたはitems.freezeを返すべきです",
+        "en": "Returns direct reference to internal array, allowing external modification. Should return items.dup or items.freeze"
+      }
+    }
+  ]
+}

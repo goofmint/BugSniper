@@ -1,0 +1,28 @@
+{
+  "id": "py-l3-001",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "def timing_decorator(func):",
+    "    def wrapper(*args, **kwargs):",
+    "        start = time.time()",
+    "        result = func(*args, **kwargs)",
+    "        end = time.time()",
+    "        print(f'Time: {end - start}')",
+    "        return result",
+    "    return wrapper"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-001-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "functools.wrapsを使用して元の関数のメタデータを保持すべきです",
+        "en": "Should use functools.wraps to preserve original function metadata"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "php-l1-008",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$numbers = [1, 2, 3, 4, 5];",
+    "$sum = 0;",
+    "foreach ($numbers as $num) {",
+    "  $sum += $number;",
+    "}",
+    "echo $sum;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-008-1",
+      "lines": [5],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "foreachのループ変数$numが$numberとして参照されています",
+        "en": "Foreach loop variable $num is referenced as $number"
+      }
+    }
+  ]
+}

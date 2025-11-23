@@ -1,0 +1,28 @@
+{
+  "id": "php-l2-019",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "$numbers = [1, 2, 3, 4, 5];",
+    "$result = array_map(function($n) {",
+    "  $multiplier = 2;",
+    "  return $n * $multiplier;",
+    "}, $numbers);",
+    "$multiplier = 10;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-019-1",
+      "lines": [3, 4],
+      "type": "performance",
+      "severity": "minor",
+      "score": 2,
+      "description": {
+        "ja": "クロージャ内で毎回$multiplierを定義しています。外部で定義してuse句で渡すべきです",
+        "en": "Defining $multiplier inside closure every iteration. Should define outside and use 'use'"
+      }
+    }
+  ]
+}

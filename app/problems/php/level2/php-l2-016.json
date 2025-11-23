@@ -1,0 +1,27 @@
+{
+  "id": "php-l2-016",
+  "codeLanguage": "php",
+  "level": 2,
+  "code": [
+    "<?php",
+    "$json = '{\"name\": \"John\", \"age\": 30}';",
+    "$data = json_decode($json);",
+    "if ($data) {",
+    "  echo $data['name'];",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l2-016-1",
+      "lines": [5],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "json_decodeはデフォルトでオブジェクトを返します。$data->nameまたはjson_decode($json, true)を使用すべきです",
+        "en": "json_decode returns object by default. Use $data->name or json_decode($json, true)"
+      }
+    }
+  ]
+}

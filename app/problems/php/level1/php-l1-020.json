@@ -1,0 +1,29 @@
+{
+  "id": "php-l1-020",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "function getMax($a, $b) {",
+    "  if ($a > $b) {",
+    "    return $a;",
+    "  }",
+    "}",
+    "$max = getMax(5, 10);",
+    "echo $max;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-020-1",
+      "lines": [2, 3, 4, 5],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "$b > $aの場合にreturn文がないため、nullが返されます",
+        "en": "Missing return statement for when $b > $a, will return null"
+      }
+    }
+  ]
+}

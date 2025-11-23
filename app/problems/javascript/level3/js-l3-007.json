@@ -1,0 +1,29 @@
+{
+  "id": "js-l3-007",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "const deepClone = (obj) => {",
+    "  const serialized = JSON.stringify(obj);",
+    "  const deserialized = JSON.parse(serialized);",
+    "  const cloned = deserialized;",
+    "  return cloned;",
+    "};"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-007-1",
+      "lines": [
+        1,
+        2
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "この方法は関数、undefined、Symbolを失います。また循環参照にも対応できません",
+        "en": "This method loses functions, undefined, and Symbols. Also can't handle circular references"
+      }
+    }
+  ]
+}

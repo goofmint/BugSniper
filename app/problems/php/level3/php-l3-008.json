@@ -1,0 +1,37 @@
+{
+  "id": "php-l3-008",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "class Database {",
+    "  private static $instance;",
+    "  private $connection;",
+    "  ",
+    "  public function __construct() {",
+    "    $this->connection = new PDO('mysql:host=localhost', 'user', 'pass');",
+    "  }",
+    "  ",
+    "  public static function getInstance() {",
+    "    if (self::$instance === null) {",
+    "      self::$instance = new Database();",
+    "    }",
+    "    return self::$instance;",
+    "  }",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-008-1",
+      "lines": [6],
+      "type": "design",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "シングルトンパターンのコンストラクタがpublicです。privateにすべきです",
+        "en": "Singleton pattern has public constructor. Should be private"
+      }
+    }
+  ]
+}

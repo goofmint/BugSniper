@@ -1,0 +1,31 @@
+{
+  "id": "rb-l2-005",
+  "codeLanguage": "ruby",
+  "level": 2,
+  "code": [
+    "class Calculator",
+    "  attr_writer :value",
+    "",
+    "  def initialize",
+    "    @value = 0",
+    "  end",
+    "",
+    "  def add(num)",
+    "    value += num",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l2-005-1",
+      "lines": [9],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "attr_writerはreaderを提供しないため、valueメソッドが存在せずNoMethodErrorが発生します。attr_accessorを使用すべきです",
+        "en": "attr_writer doesn't provide a reader, so value method doesn't exist causing NoMethodError. Should use attr_accessor"
+      }
+    }
+  ]
+}

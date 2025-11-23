@@ -1,0 +1,26 @@
+{
+  "id": "dart-l2-004",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "void main() {",
+    "  List<int> numbers = [1, 2, 3, 4, 5];",
+    "  for (var num in numbers) {",
+    "    numbers.remove(num);",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-004-1",
+      "lines": [3, 4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "並行変更エラー: イテレーション中にコレクションを変更するとConcurrentModificationErrorが発生します",
+        "en": "Concurrent modification error: Modifying collection during iteration causes ConcurrentModificationError"
+      }
+    }
+  ]
+}

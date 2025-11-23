@@ -1,0 +1,26 @@
+{
+  "id": "php-l1-018",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$discount = 0.1;",
+    "$price = 100;",
+    "$finalPrice = $price - $price * discount;",
+    "echo $finalPrice;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-018-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "変数の前に$記号がありません。$discountとすべきところがdiscountになっています",
+        "en": "Missing $ symbol before variable name. Should be $discount not discount"
+      }
+    }
+  ]
+}

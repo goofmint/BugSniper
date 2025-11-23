@@ -1,0 +1,26 @@
+{
+  "id": "dart-l1-015",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  int numerator = 10;",
+    "  int denominator = 2;",
+    "  int division = numerator / denominator;",
+    "  print(division);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-015-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "型エラー: 除算演算子/はdouble型を返しますが、int型変数に代入しています",
+        "en": "Type error: Division operator / returns double, but assigning to int variable"
+      }
+    }
+  ]
+}

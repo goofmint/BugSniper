@@ -1,0 +1,26 @@
+{
+  "id": "dart-l2-017",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "class Point {",
+    "  int x, y;",
+    "  ",
+    "  Point(this.x, this.y);",
+    "  Point.origin() : x = 0, y = 0;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-017-1",
+      "lines": [5],
+      "type": "design",
+      "severity": "normal",
+      "score": 2,
+      "description": {
+        "ja": "名前付きコンストラクタの初期化リスト構文エラー: 初期化リストでthis.xではなくx = 0を使用しています",
+        "en": "Named constructor initializer syntax: Should use this() delegation or correct initializer syntax"
+      }
+    }
+  ]
+}

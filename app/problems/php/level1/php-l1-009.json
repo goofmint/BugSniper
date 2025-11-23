@@ -1,0 +1,28 @@
+{
+  "id": "php-l1-009",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$data = ['name' => 'John', 'age' => 30];",
+    "$prefix = 'Name: ';",
+    "$key = 'Name';",
+    "$message = $prefix . $data[$key];",
+    "echo $message;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-009-1",
+      "lines": [3,
+        4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "配列キーの大文字小文字が一致していません。'name'が'Name'として参照されています",
+        "en": "Array key case mismatch. 'name' is referenced as 'Name'"
+      }
+    }
+  ]
+}

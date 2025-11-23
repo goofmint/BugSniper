@@ -1,0 +1,28 @@
+{
+  "id": "py-l1-002",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def calculate_average(numbers):",
+    "    \"\"\"Function implementation\"\"\"",
+    "    total = sum(numbers)",
+    "    count = len(numbers)",
+    "    average = total / count",
+    "    return average"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-002-1",
+      "lines": [
+        4
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "numbersが空リストの場合、ZeroDivisionErrorが発生します",
+        "en": "Will cause ZeroDivisionError when numbers is an empty list"
+      }
+    }
+  ]
+}

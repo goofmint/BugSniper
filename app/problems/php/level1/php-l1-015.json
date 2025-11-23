@@ -1,0 +1,25 @@
+{
+  "id": "php-l1-015",
+  "codeLanguage": "php",
+  "level": 1,
+  "code": [
+    "<?php",
+    "$str = \"Hello\";",
+    "$length = strlen($str);",
+    "echo 'Length: ' . $lenght;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l1-015-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "変数名のタイプミス: $lengthが$lenghtと書かれています",
+        "en": "Variable name typo: $length is misspelled as $lenght"
+      }
+    }
+  ]
+}

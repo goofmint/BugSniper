@@ -1,0 +1,26 @@
+{
+  "id": "dart-l1-011",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  List<String> fruits = ['apple', 'banana'];",
+    "  int number = 123;",
+    "  fruits.add(number);",
+    "  print(fruits);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-011-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "型不一致エラー: List<String>にint型の値を追加しようとしています",
+        "en": "Type mismatch error: Trying to add int to List<String>"
+      }
+    }
+  ]
+}

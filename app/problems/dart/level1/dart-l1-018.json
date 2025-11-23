@@ -1,0 +1,27 @@
+{
+  "id": "dart-l1-018",
+  "codeLanguage": "dart",
+  "level": 1,
+  "code": [
+    "void main() {",
+    "  List<int> numbers = [1, 2, 3];",
+    "  int index = -1;",
+    "  numbers.removeAt(index);",
+    "  print(numbers);",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l1-018-1",
+      "lines": [2,
+        3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "無効なインデックス: removeAtに負のインデックスを渡すとRangeErrorが発生します",
+        "en": "Invalid index: Passing negative index to removeAt causes RangeError"
+      }
+    }
+  ]
+}

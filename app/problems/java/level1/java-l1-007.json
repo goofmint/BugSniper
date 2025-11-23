@@ -1,0 +1,28 @@
+{
+  "id": "java-l1-007",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class InfiniteLoop {",
+    "    public void countdown() {",
+    "        int i = 10;",
+    "        while (i > 0) {",
+    "            System.out.println(i);",
+    "        }",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-007-1",
+      "lines": [4, 5, 6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "無限ループです。ループカウンタiが減少しないため、条件が永遠に真のままです。i--を追加する必要があります。",
+        "en": "Infinite loop. Loop counter i is never decremented, so condition remains true forever. Need to add i--."
+      }
+    }
+  ]
+}

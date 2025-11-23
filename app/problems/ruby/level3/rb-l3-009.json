@@ -1,0 +1,35 @@
+{
+  "id": "rb-l3-009",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class LazyLoader",
+    "  def initialize",
+    "    @data = nil",
+    "  end",
+    "",
+    "  def data",
+    "    @data ||= load_large_dataset",
+    "  end",
+    "",
+    "  private",
+    "",
+    "  def load_large_dataset",
+    "    Array.new(1_000_000) { |i| { id: i, data: \"x\" * 1000 } }",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-009-1",
+      "lines": [13],
+      "type": "performance",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "大量のオブジェクトを一度にメモリに読み込んでいます。遅延評価やストリーミング処理を使用してメモリ使用量を削減すべきです",
+        "en": "Loading massive objects into memory at once. Should use lazy evaluation or streaming to reduce memory usage"
+      }
+    }
+  ]
+}

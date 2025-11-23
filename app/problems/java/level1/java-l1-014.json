@@ -1,0 +1,28 @@
+{
+  "id": "java-l1-014",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class VariableScope {",
+    "    public int calculate() {",
+    "        if (true) {",
+    "            int result = 100;",
+    "        }",
+    "        return result;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-014-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "変数のスコープエラーです。resultはif文のブロック内で宣言されているため、ブロック外からアクセスできません。",
+        "en": "Variable scope error. result is declared inside if block and cannot be accessed outside the block."
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "py-l3-019",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "import asyncio",
+    "",
+    "async def fetch_data(url):",
+    "    try:",
+    "        data = await get_data(url)",
+    "        return data",
+    "    except Exception as e:",
+    "        print(f'Error: {e}')",
+    "        raise"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-019-1",
+      "lines": [7, 8, 9],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "asyncio例外は適切に処理すべきです。CancelledErrorは再raiseが必要です",
+        "en": "Asyncio exceptions should be handled properly, CancelledError must be re-raised"
+      }
+    }
+  ]
+}

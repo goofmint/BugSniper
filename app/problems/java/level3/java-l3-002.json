@@ -1,0 +1,34 @@
+{
+  "id": "java-l3-002",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "import java.util.ArrayList;",
+    "import java.util.List;",
+    "",
+    "public class EventManager {",
+    "    private List<EventListener> listeners = new ArrayList<>();",
+    "    ",
+    "    public void addListener(EventListener listener) {",
+    "        listeners.add(listener);",
+    "    }",
+    "    ",
+    "    public void removeAllListeners() {",
+    "        listeners.clear();",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-002-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "メモリリークの可能性があります。リスナーを追加するだけで削除するメソッドがありません。長期間実行されるアプリケーションでは、使われなくなったリスナーがメモリに残り続けます。",
+        "en": "Potential memory leak. Only adds listeners without individual removal method. Unused listeners remain in memory in long-running applications."
+      }
+    }
+  ]
+}

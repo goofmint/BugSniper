@@ -1,0 +1,29 @@
+{
+  "id": "js-l1-020",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function square(x) {",
+    "  // Initialize variables",
+    "  const base = x;",
+    "  const power = 2;",
+    "  const result = base * X;",
+    "  return result;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-020-1",
+      "lines": [
+        4
+      ],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "変数名の大文字小文字が間違っています。'X'ではなく'x'を使う必要があります",
+        "en": "Variable name case mismatch. Should use 'x' instead of 'X'"
+      }
+    }
+  ]
+}

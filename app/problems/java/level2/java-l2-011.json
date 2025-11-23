@@ -1,0 +1,32 @@
+{
+  "id": "java-l2-011",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "public class DataValidator {",
+    "    public void validate(String data) throws Exception {",
+    "        if (data == null) {",
+    "            throw new Exception();",
+    "        }",
+    "    }",
+    "    ",
+    "    public void process(String data) {",
+    "        validate(data);",
+    "        System.out.println(\"Processing: \" + data);",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-011-1",
+      "lines": [9],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "チェック例外が処理されていません。validate()がExceptionを投げる可能性がありますが、process()メソッドで例外をキャッチまたはthrows宣言していません。",
+        "en": "Checked exception not handled. validate() can throw Exception, but process() doesn't catch or declare it with throws."
+      }
+    }
+  ]
+}

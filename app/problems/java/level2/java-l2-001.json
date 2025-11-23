@@ -1,0 +1,26 @@
+{
+  "id": "java-l2-001",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "public class StringComparison {",
+    "    public boolean checkPassword(String input) {",
+    "        String correctPassword = \"secret123\";",
+    "        return input == correctPassword;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-001-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "文字列の比較に==演算子を使用しています。文字列の内容を比較するには.equals()メソッドを使用すべきです。==は参照を比較します。",
+        "en": "Using == operator for string comparison. Should use .equals() method to compare string contents. == compares references."
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "py-l2-005",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "def append_item(item, items=[]):",
+    "    items.append(item)",
+    "    return items",
+    "",
+    "list1 = append_item(1)",
+    "list2 = append_item(2)"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-005-1",
+      "lines": [1],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ミュータブルなデフォルト引数は共有されます。'items=None'を使用すべきです",
+        "en": "Mutable default argument is shared across calls, should use 'items=None'"
+      }
+    }
+  ]
+}

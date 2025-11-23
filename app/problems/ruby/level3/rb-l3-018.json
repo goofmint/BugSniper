@@ -1,0 +1,37 @@
+{
+  "id": "rb-l3-018",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class StringRefinement",
+    "  refine String do",
+    "    def shout",
+    "      upcase + \"!\"",
+    "    end",
+    "  end",
+    "end",
+    "",
+    "class MessageSender",
+    "  using StringRefinement",
+    "",
+    "  def send_message(msg)",
+    "    puts msg.shout",
+    "  end",
+    "end",
+    "",
+    "MessageSender.new.send_message(\"hello\")"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-018-1",
+      "lines": [1, 2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "refineはモジュール内でのみ使用できます。クラス内でのrefineは構文エラーになります",
+        "en": "refine can only be used inside a module. Using refine inside a class causes a syntax error"
+      }
+    }
+  ]
+}

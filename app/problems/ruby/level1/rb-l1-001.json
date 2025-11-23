@@ -1,0 +1,27 @@
+{
+  "id": "rb-l1-001",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def calculate_total(price, quantity)",
+    "  # Implementation",
+    "  total = price * quanity",
+    "  return total",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-001-1",
+      "lines": [
+        2
+      ],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "変数名のタイポ: 'quanity'は'quantity'であるべきです。未定義変数エラーが発生します",
+        "en": "Variable name typo: 'quanity' should be 'quantity'. This causes an undefined variable error"
+      }
+    }
+  ]
+}

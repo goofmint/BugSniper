@@ -1,0 +1,32 @@
+{
+  "id": "java-l2-020",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "public class Employee {",
+    "    String name;",
+    "    int age;",
+    "    ",
+    "    public boolean equals(Object obj) {",
+    "        if (obj instanceof Employee) {",
+    "            Employee other = (Employee) obj;",
+    "            return this.name.equals(other.name) && this.age == other.age;",
+    "        }",
+    "        return false;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-020-1",
+      "lines": [5, 6, 7, 8, 9, 10, 11],
+      "type": "design",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "equals()をオーバーライドする場合、hashCode()もオーバーライドする必要があります。これはJavaの契約であり、HashMapやHashSetなどのコレクションで正しく動作するために必要です。",
+        "en": "When overriding equals(), must also override hashCode(). This is Java contract and required for correct behavior in collections like HashMap and HashSet."
+      }
+    }
+  ]
+}

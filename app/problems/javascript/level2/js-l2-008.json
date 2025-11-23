@@ -1,0 +1,29 @@
+{
+  "id": "js-l2-008",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "function deepEqual(obj1, obj2) {",
+    "  // Initialize variables",
+    "  const first = obj1;",
+    "  const second = obj2;",
+    "  const isEqual = first === second;",
+    "  return isEqual;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-008-1",
+      "lines": [
+        4
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "オブジェクトの参照を比較しているだけです。プロパティを再帰的に比較する必要があります",
+        "en": "Only comparing object references. Need to recursively compare properties"
+      }
+    }
+  ]
+}

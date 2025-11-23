@@ -1,0 +1,31 @@
+{
+  "id": "java-l2-005",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "public class Counter {",
+    "    private int count = 0;",
+    "    ",
+    "    public static void increment() {",
+    "        count++;",
+    "    }",
+    "    ",
+    "    public static int getCount() {",
+    "        return count;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-005-1",
+      "lines": [5, 9],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "staticメソッドから非staticフィールドにアクセスしています。staticメソッドはインスタンスフィールドにアクセスできません。countをstaticにするか、メソッドを非staticにする必要があります。",
+        "en": "Accessing non-static field from static method. Static methods cannot access instance fields. Must make count static or methods non-static."
+      }
+    }
+  ]
+}

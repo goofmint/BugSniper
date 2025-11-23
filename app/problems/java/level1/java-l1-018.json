@@ -1,0 +1,27 @@
+{
+  "id": "java-l1-018",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class BooleanLogic {",
+    "    public boolean checkAge(int age) {",
+    "        if (age >= 18 && age <= 65);",
+    "            return true;",
+    "        return false;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-018-1",
+      "lines": [3],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "if文の後に不要なセミコロンがあります。これにより、if文が空のステートメントとなり、常にreturn trueが実行されます。",
+        "en": "Unwanted semicolon after if statement. This makes the if an empty statement, causing return true to always execute."
+      }
+    }
+  ]
+}

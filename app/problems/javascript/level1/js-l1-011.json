@@ -1,0 +1,26 @@
+{
+  "id": "js-l1-011",
+  "codeLanguage": "javascript",
+  "level": 1,
+  "code": [
+    "function compareNumbers(a, b) {",
+    "  if (a == b) {",
+    "    return 'equal';",
+    "  }",
+    "  return 'not equal';",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l1-011-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "緩い比較(==)は型変換を行います。厳密等価(===)を使うべきです",
+        "en": "Loose equality (==) performs type coercion. Should use strict equality (===)"
+      }
+    }
+  ]
+}

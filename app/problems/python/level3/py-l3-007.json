@@ -1,0 +1,28 @@
+{
+  "id": "py-l3-007",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "class Temperature:",
+    "    def __get__(self, obj, objtype=None):",
+    "        return obj._temp",
+    "    ",
+    "    def __set__(self, obj, value):",
+    "        if value < -273.15:",
+    "            raise ValueError('Too cold')",
+    "        self._temp = value"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-007-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "ディスクリプタでは'self._temp'ではなく'obj._temp'に値を設定すべきです",
+        "en": "In descriptor, should set value on 'obj._temp' not 'self._temp'"
+      }
+    }
+  ]
+}

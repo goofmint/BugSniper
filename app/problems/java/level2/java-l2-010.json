@@ -1,0 +1,36 @@
+{
+  "id": "java-l2-010",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "import java.util.ArrayList;",
+    "import java.util.List;",
+    "",
+    "public class ListExample {",
+    "    public void processItems() {",
+    "        List<String> items = new ArrayList<>();",
+    "        items.add(\"Apple\");",
+    "        items.add(\"Banana\");",
+    "        ",
+    "        String first = items.get(0);",
+    "        items.clear();",
+    "        ",
+    "        System.out.println(first.toUpperCase());",
+    "        System.out.println(items.get(0));",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-010-1",
+      "lines": [14],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "IndexOutOfBoundsExceptionが発生します。clear()の後、リストが空になっているため、get(0)を呼び出すと例外が発生します。",
+        "en": "IndexOutOfBoundsException will occur. After clear(), the list is empty, so calling get(0) throws exception."
+      }
+    }
+  ]
+}

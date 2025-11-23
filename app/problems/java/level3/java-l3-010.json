@@ -1,0 +1,40 @@
+{
+  "id": "java-l3-010",
+  "codeLanguage": "java",
+  "level": 3,
+  "code": [
+    "public class DeadlockExample {",
+    "    private final Object lock1 = new Object();",
+    "    private final Object lock2 = new Object();",
+    "    ",
+    "    public void method1() {",
+    "        synchronized(lock1) {",
+    "            synchronized(lock2) {",
+    "                System.out.println(\"Method 1\");",
+    "            }",
+    "        }",
+    "    }",
+    "    ",
+    "    public void method2() {",
+    "        synchronized(lock2) {",
+    "            synchronized(lock1) {",
+    "                System.out.println(\"Method 2\");",
+    "            }",
+    "        }",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l3-010-1",
+      "lines": [6, 7, 14, 15],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "デッドロックの可能性があります。method1はlock1→lock2の順でロックを取得し、method2はlock2→lock1の順で取得します。2つのスレッドが同時に実行すると、互いに待ち続けるデッドロック状態になります。ロックの取得順序を統一すべきです。",
+        "en": "Deadlock potential. method1 acquires lock1→lock2, method2 acquires lock2→lock1. Two threads executing simultaneously can deadlock waiting for each other. Should unify lock acquisition order."
+      }
+    }
+  ]
+}

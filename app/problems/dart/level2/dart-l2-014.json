@@ -1,0 +1,29 @@
+{
+  "id": "dart-l2-014",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "void main() async {",
+    "  await for (var value in getNumbers()) {",
+    "    print(value);",
+    "  }",
+    "}",
+    "",
+    "List<int> getNumbers() {",
+    "  return [1, 2, 3, 4, 5];",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-014-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "await forの使用エラー: await forはStream用で、ListではなくStream<int>が必要です",
+        "en": "await for usage error: await for is for Streams, requires Stream<int> not List"
+      }
+    }
+  ]
+}

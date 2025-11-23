@@ -1,0 +1,35 @@
+{
+  "id": "rb-l3-014",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class CachedQuery",
+    "  def self.cache",
+    "    @cache ||= {}",
+    "  end",
+    "",
+    "  def self.fetch(key)",
+    "    cache[key] ||= yield",
+    "  end",
+    "",
+    "  def self.clear",
+    "    @cache = {}",
+    "  end",
+    "end",
+    "",
+    "result = CachedQuery.fetch('users') { User.all }"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-014-1",
+      "lines": [7],
+      "type": "performance",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "キャッシュに有効期限がないため、古いデータが永続的に残ります。TTLやサイズ制限を実装すべきです",
+        "en": "Cache has no expiration, causing stale data to persist indefinitely. Should implement TTL or size limits"
+      }
+    }
+  ]
+}

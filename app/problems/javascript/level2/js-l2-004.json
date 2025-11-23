@@ -1,0 +1,26 @@
+{
+  "id": "js-l2-004",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "const buttons = document.querySelectorAll('button');",
+    "for (var i = 0; i < buttons.length; i++) {",
+    "  buttons[i].addEventListener('click', function() {",
+    "    console.log('Button ' + i + ' clicked');",
+    "  });",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-004-1",
+      "lines": [2, 3, 4],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "varを使っているためクロージャの問題が発生します。letを使うか、即時関数でiを保持する必要があります",
+        "en": "Using var causes closure issue. Should use let or capture i with IIFE"
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "rb-l3-005",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class DataProcessor",
+    "  def process_in_parallel(items)",
+    "    @results = []",
+    "    threads = items.map do |item|",
+    "      Thread.new do",
+    "        result = process_item(item)",
+    "        @results << result",
+    "      end",
+    "    end",
+    "    threads.each(&:join)",
+    "    @results",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-005-1",
+      "lines": [7],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "配列への<<操作はスレッドセーフではありません。複数スレッドから同時にアクセスすると競合状態が発生します",
+        "en": "Array << operation is not thread-safe. Concurrent access from multiple threads causes race conditions"
+      }
+    }
+  ]
+}

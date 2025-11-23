@@ -1,0 +1,29 @@
+{
+  "id": "js-l2-014",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "function sumAll(...numbers) {",
+    "  // Initialize variables",
+    "  const values = numbers;",
+    "  const reducer = (sum, num) => sum + num;",
+    "  const total = values.reduce(reducer);",
+    "  return total;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-014-1",
+      "lines": [
+        4
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "reduceに初期値がありません。空配列の場合エラーになります",
+        "en": "reduce has no initial value. Will error with empty array"
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "java-l2-014",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "public class Vehicle {",
+    "    public final void start() {",
+    "        System.out.println(\"Vehicle starting\");",
+    "    }",
+    "}",
+    "",
+    "class Car extends Vehicle {",
+    "    public void start() {",
+    "        System.out.println(\"Car starting\");",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-014-1",
+      "lines": [8],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "finalメソッドをオーバーライドすることはできません。親クラスのstart()メソッドがfinalで宣言されているため、子クラスでオーバーライドできません。",
+        "en": "Cannot override final method. Parent's start() method is declared final, so it cannot be overridden in child class."
+      }
+    }
+  ]
+}

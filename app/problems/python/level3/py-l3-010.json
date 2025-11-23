@@ -1,0 +1,29 @@
+{
+  "id": "py-l3-010",
+  "codeLanguage": "python",
+  "level": 3,
+  "code": [
+    "class DatabaseConnection:",
+    "    def __enter__(self):",
+    "        self.conn = connect_to_db()",
+    "        return self.conn",
+    "    ",
+    "    def __exit__(self, exc_type, exc_val, exc_tb):",
+    "        self.conn.close()",
+    "        if exc_type is DatabaseError:",
+    "            return True"
+  ],
+  "issues": [
+    {
+      "id": "py-l3-010-1",
+      "lines": [8, 9],
+      "type": "security",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "特定の例外のみを抑制すべきです。全てのDatabaseErrorを隠すのは危険です",
+        "en": "Suppressing specific exceptions only is safer, hiding all DatabaseErrors is dangerous"
+      }
+    }
+  ]
+}

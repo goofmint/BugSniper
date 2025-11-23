@@ -1,0 +1,27 @@
+{
+  "id": "rb-l1-016",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def divide_numbers(a, b)",
+    "  # Implementation",
+    "  result = a / b",
+    "  return result.round(2)",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-016-1",
+      "lines": [
+        2
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "整数の除算は小数点以下を切り捨てます。少なくとも一方をFloatに変換する必要があります",
+        "en": "Integer division truncates decimals. Need to convert at least one operand to Float"
+      }
+    }
+  ]
+}

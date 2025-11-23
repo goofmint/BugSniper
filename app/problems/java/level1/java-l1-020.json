@@ -1,0 +1,29 @@
+{
+  "id": "java-l1-020",
+  "codeLanguage": "java",
+  "level": 1,
+  "code": [
+    "public class VariableInit {",
+    "    public int getTotal() {",
+    "        int total;",
+    "        for (int i = 0; i < 10; i++) {",
+    "            total += i;",
+    "        }",
+    "        return total;",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l1-020-1",
+      "lines": [3, 5],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "変数が初期化されていません。ローカル変数totalは使用前に初期化する必要があります。total = 0で初期化すべきです。",
+        "en": "Variable not initialized. Local variable total must be initialized before use. Should initialize with total = 0."
+      }
+    }
+  ]
+}

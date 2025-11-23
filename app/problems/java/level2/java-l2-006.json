@@ -1,0 +1,30 @@
+{
+  "id": "java-l2-006",
+  "codeLanguage": "java",
+  "level": 2,
+  "code": [
+    "interface Drawable {",
+    "    void draw();",
+    "    void resize(int width, int height);",
+    "}",
+    "",
+    "class Circle implements Drawable {",
+    "    public void draw() {",
+    "        System.out.println(\"Drawing circle\");",
+    "    }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "java-l2-006-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "インターフェースの実装が不完全です。Drawableインターフェースのresize()メソッドが実装されていません。すべてのインターフェースメソッドを実装する必要があります。",
+        "en": "Incomplete interface implementation. resize() method from Drawable interface is not implemented. All interface methods must be implemented."
+      }
+    }
+  ]
+}

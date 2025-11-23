@@ -1,0 +1,33 @@
+{
+  "id": "dart-l3-009",
+  "codeLanguage": "dart",
+  "level": 3,
+  "code": [
+    "import 'dart:async';",
+    "",
+    "void main() async {",
+    "  StreamController<int> controller = StreamController();",
+    "  ",
+    "  controller.stream.listen((data) {",
+    "    print(data);",
+    "  });",
+    "  ",
+    "  for (int i = 0; i < 1000; i++) {",
+    "    controller.add(i);",
+    "  }",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l3-009-1",
+      "lines": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "リソースリーク: StreamControllerがcloseされていません",
+        "en": "Resource leak: StreamController is not closed"
+      }
+    }
+  ]
+}

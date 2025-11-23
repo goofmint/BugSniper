@@ -1,0 +1,27 @@
+{
+  "id": "py-l1-003",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def is_even(num):",
+    "    \"\"\"Function implementation\"\"\"",
+    "    if num % 2 = 0:",
+    "        return True",
+    "    return False"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-003-1",
+      "lines": [
+        2
+      ],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "代入演算子(=)を使っているため、比較演算子(==)を使う必要があります",
+        "en": "Using assignment operator (=) instead of comparison operator (==)"
+      }
+    }
+  ]
+}

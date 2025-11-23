@@ -1,0 +1,30 @@
+{
+  "id": "js-l2-013",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "function createArray(length, value) {",
+    "  // Initialize variables",
+    "  const size = length;",
+    "  const arr = new Array(size);",
+    "  const result = arr.map(() => value);",
+    "  return result;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-013-1",
+      "lines": [
+        3,
+        4
+      ],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "new Array(length)は空のスロットを作成するため、mapは動作しません。Array.from()またはfill()を使う必要があります",
+        "en": "new Array(length) creates empty slots, map won't work. Need Array.from() or fill()"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "dart-l2-012",
+  "codeLanguage": "dart",
+  "level": 2,
+  "code": [
+    "class User {",
+    "  String _name;",
+    "  ",
+    "  User(this._name);",
+    "  ",
+    "  String get name => _name;",
+    "  void set name(String value) => _name = value;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "dart-l2-012-1",
+      "lines": [7],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "セッターの戻り値型エラー: setterはvoidではなく、戻り値型を指定しません",
+        "en": "Setter return type error: Setters should not specify void as return type"
+      }
+    }
+  ]
+}

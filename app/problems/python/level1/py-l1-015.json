@@ -1,0 +1,27 @@
+{
+  "id": "py-l1-015",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def compare_values(a, b):",
+    "    if a == b:",
+    "        return 'equal'",
+    "    elif a > b",
+    "        return 'greater'",
+    "    else:",
+    "        return 'less'"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-015-1",
+      "lines": [4],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "elif文の末尾にコロン(:)が必要です",
+        "en": "Missing colon (:) at the end of elif statement"
+      }
+    }
+  ]
+}

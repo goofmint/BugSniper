@@ -1,0 +1,37 @@
+{
+  "id": "rb-l3-017",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class EventEmitter",
+    "  def initialize",
+    "    @listeners = Hash.new { |h, k| h[k] = [] }",
+    "  end",
+    "",
+    "  def on(event, &block)",
+    "    @listeners[event] << block",
+    "  end",
+    "",
+    "  def emit(event, *args)",
+    "    @listeners[event].each { |listener| listener.call(*args) }",
+    "  end",
+    "",
+    "  def off(event, &block)",
+    "    @listeners[event].delete(block)",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-017-1",
+      "lines": [15],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "ブロックオブジェクトの同一性比較は失敗します。同じコードのブロックでも異なるオブジェクトとして扱われるため、削除できません",
+        "en": "Block object identity comparison fails. Same code blocks are treated as different objects and can't be deleted"
+      }
+    }
+  ]
+}

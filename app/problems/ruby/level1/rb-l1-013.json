@@ -1,0 +1,28 @@
+{
+  "id": "rb-l1-013",
+  "codeLanguage": "ruby",
+  "level": 1,
+  "code": [
+    "def find_max(numbers)",
+    "  max = numbers[0]",
+    "  numbers.each do |num|",
+    "    if num > max",
+    "      max = num",
+    "    end",
+    "  max",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l1-013-1",
+      "lines": [7],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "eachブロックに対応するendキーワードが不足しています。構文エラーが発生します",
+        "en": "Missing 'end' keyword to close the each block. This causes a syntax error"
+      }
+    }
+  ]
+}

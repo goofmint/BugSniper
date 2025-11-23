@@ -1,0 +1,25 @@
+{
+  "id": "php-l3-012",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "$filename = $_GET['file'];",
+    "$content = file_get_contents('uploads/' . $filename);",
+    "echo $content;",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-012-1",
+      "lines": [2, 3],
+      "type": "security",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "パストラバーサルの脆弱性があります。../などを使用してファイルシステムを操作できます",
+        "en": "Path traversal vulnerability. Can access file system using ../ etc"
+      }
+    }
+  ]
+}

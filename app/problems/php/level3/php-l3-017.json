@@ -1,0 +1,35 @@
+{
+  "id": "php-l3-017",
+  "codeLanguage": "php",
+  "level": 3,
+  "code": [
+    "<?php",
+    "class DataProcessor {",
+    "  public function process() {",
+    "    $data = [];",
+    "    for ($i = 0; $i < 1000000; $i++) {",
+    "      $data[] = $this->fetchRecord($i);",
+    "    }",
+    "    return $data;",
+    "  }",
+    "  ",
+    "  private function fetchRecord($id) {",
+    "    return ['id' => $id, 'data' => str_repeat('x', 1000)];",
+    "  }",
+    "}",
+    "?>"
+  ],
+  "issues": [
+    {
+      "id": "php-l3-017-1",
+      "lines": [4, 5, 6],
+      "type": "performance",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "大量のデータをメモリに格納しています。ジェネレータやイテレータを使用すべきです",
+        "en": "Storing large amount of data in memory. Should use generator or iterator"
+      }
+    }
+  ]
+}

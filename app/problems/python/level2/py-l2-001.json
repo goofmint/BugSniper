@@ -1,0 +1,27 @@
+{
+  "id": "py-l2-001",
+  "codeLanguage": "python",
+  "level": 2,
+  "code": [
+    "class Calculator:",
+    "    def __init__(self):",
+    "        self.result = 0",
+    "    ",
+    "    def add(self, value):",
+    "        result = result + value",
+    "        return result"
+  ],
+  "issues": [
+    {
+      "id": "py-l2-001-1",
+      "lines": [6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 3,
+      "description": {
+        "ja": "インスタンス変数にアクセスするには'self.result'を使用する必要があります",
+        "en": "Missing 'self.' prefix: should use 'self.result' to access instance variable"
+      }
+    }
+  ]
+}

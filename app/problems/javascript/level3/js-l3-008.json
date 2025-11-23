@@ -1,0 +1,28 @@
+{
+  "id": "js-l3-008",
+  "codeLanguage": "javascript",
+  "level": 3,
+  "code": [
+    "async function processItems(items) {",
+    "  const results = [];",
+    "  items.forEach(async (item) => {",
+    "    const result = await processItem(item);",
+    "    results.push(result);",
+    "  });",
+    "  return results;",
+    "}"
+  ],
+  "issues": [
+    {
+      "id": "js-l3-008-1",
+      "lines": [3, 4, 5, 6],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "forEachはawaitを待ちません。for...ofループまたはPromise.allを使う必要があります",
+        "en": "forEach doesn't wait for await. Need to use for...of loop or Promise.all"
+      }
+    }
+  ]
+}

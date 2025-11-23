@@ -1,0 +1,30 @@
+{
+  "id": "py-l1-007",
+  "codeLanguage": "python",
+  "level": 1,
+  "code": [
+    "def count_down(num):",
+    "    \"\"\"Function implementation\"\"\"",
+    "    counter = num",
+    "    while counter > 0:",
+    "        current = counter",
+    "        print(current)"
+  ],
+  "issues": [
+    {
+      "id": "py-l1-007-1",
+      "lines": [
+        3,
+        4,
+        5
+      ],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "whileループ内でnumをデクリメントしていないため、無限ループが発生します",
+        "en": "Infinite loop occurs because 'num' is never decremented inside the while loop"
+      }
+    }
+  ]
+}

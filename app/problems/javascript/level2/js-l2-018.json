@@ -1,0 +1,28 @@
+{
+  "id": "js-l2-018",
+  "codeLanguage": "javascript",
+  "level": 2,
+  "code": [
+    "const numbers = [1, 2, 3, 4, 5];",
+    "const initialValue = 0;",
+    "const sum = numbers.reduce((total, num) => {",
+    "  const result = total + num;",
+    "  result;",
+    "}, initialValue);"
+  ],
+  "issues": [
+    {
+      "id": "js-l2-018-1",
+      "lines": [
+        4
+      ],
+      "type": "bug",
+      "severity": "critical",
+      "score": 4,
+      "description": {
+        "ja": "アキュムレータを返していません。return文が必要です",
+        "en": "Not returning accumulator. Missing return statement"
+      }
+    }
+  ]
+}

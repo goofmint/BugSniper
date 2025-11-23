@@ -1,0 +1,32 @@
+{
+  "id": "rb-l3-001",
+  "codeLanguage": "ruby",
+  "level": 3,
+  "code": [
+    "class DynamicModel",
+    "  def method_missing(method_name, *args)",
+    "    if method_name.to_s.start_with?('find_by_')",
+    "      attribute = method_name.to_s.sub('find_by_', '')",
+    "      find_by_attribute(attribute, args.first)",
+    "    end",
+    "  end",
+    "",
+    "  def find_by_attribute(attr, value)",
+    "    # implementation",
+    "  end",
+    "end"
+  ],
+  "issues": [
+    {
+      "id": "rb-l3-001-1",
+      "lines": [2],
+      "type": "bug",
+      "severity": "normal",
+      "score": 3,
+      "description": {
+        "ja": "method_missingを定義していますが、respond_to_missing?を定義していません。respond_to?メソッドが正しく動作しません",
+        "en": "Defines method_missing but not respond_to_missing?. The respond_to? method won't work correctly"
+      }
+    }
+  ]
+}
