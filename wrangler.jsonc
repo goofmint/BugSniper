@@ -25,7 +25,8 @@
 	"r2_buckets": [
 		{
 			"binding": "R2",
-			"bucket_name": "bug-sniper-img"
+			"bucket_name": "bug-sniper-img",
+			"preview_bucket_name": "bug-sniper-img-preview"
 		}
 	]
 	/**
