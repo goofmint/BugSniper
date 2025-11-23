@@ -228,7 +228,8 @@ export default function Play({ loaderData }: Route.ComponentProps) {
       const data = fetcher.data as { success?: boolean; id?: string; error?: string };
 
       if (data.success && data.id) {
-        navigate(`/result/${data.id}`);
+        // Add enable_feedback parameter to show LLM feedback to the player
+        navigate(`/result/${data.id}?enable_feedback=1`);
       } else if (data.error) {
         setError(data.error);
       } else if (!data.success) {

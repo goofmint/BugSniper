@@ -57,13 +57,17 @@ export function meta({ data }: Route.MetaArgs) {
 /**
  * Loader to fetch score data from D1
  */
-export async function loader({ params, context }: Route.LoaderArgs) {
+export async function loader({ params, request, context }: Route.LoaderArgs) {
   const { id } = params;
   const db = context.cloudflare.env.DB;
 
   if (!db) {
     throw data({ error: 'Database not configured' }, { status: 500 });
   }
+
+  // Check if feedback should be shown (only for players who just finished the game)
+  const url = new URL(request.url);
+  const showFeedback = url.searchParams.get('enable_feedback') === '1';
 
   try {
     const result = await db
@@ -75,7 +79,7 @@ export async function loader({ params, context }: Route.LoaderArgs) {
       throw data({ error: 'Score not found' }, { status: 404 });
     }
 
-    return { score: result };
+    return { score: result, showFeedback };
   } catch (error) {
     console.error('Failed to fetch score:', error);
     throw data({ error: 'Failed to fetch score' }, { status: 500 });
@@ -119,16 +123,36 @@ export async function action({ params, request, context }: Route.ActionArgs) {
 }
 
 /**
+ * LLM Feedback type (matches the structure from gemini.ts)
+ */
+type LLMFeedback = {
+  summary: string;
+  strengths: string[];
+  weakPoints: string[];
+  advice: string[];
+};
+
+/**
  * Result page component
  */
 export default function Result({ loaderData }: Route.ComponentProps) {
-  const { score } = loaderData;
+  const { score, showFeedback } = loaderData;
   const fetcher = useFetcher();
   const lang = (score.ui_language as SupportedLanguage) || 'en';
 
   // Check if name update is in progress
   const isUpdating = fetcher.state === 'submitting';
   const hasName = score.player_name !== null;
+
+  // Parse LLM feedback if available
+  let llmFeedback: LLMFeedback | null = null;
+  if (showFeedback && score.llm_feedback) {
+    try {
+      llmFeedback = JSON.parse(score.llm_feedback);
+    } catch (error) {
+      console.error('Failed to parse LLM feedback:', error);
+    }
+  }
 
   return (
     <>
@@ -234,6 +258,82 @@ export default function Result({ loaderData }: Route.ComponentProps) {
               </fetcher.Form>
             )}
           </div>
+
+          {/* LLM Feedback Section - Only shown when enable_feedback=1 */}
+          {llmFeedback && (
+            <div className="bg-gradient-to-br from-sky-50 to-blue-50 dark:from-slate-800 dark:to-slate-700 rounded-lg p-6 space-y-4 border border-sky-200 dark:border-slate-600">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="text-lg font-bold text-sky-700 dark:text-sky-300">
+                  {lang === 'ja' ? '🤖 AI フィードバック' : '🤖 AI Feedback'}
+                </div>
+              </div>
+
+              {/* Summary */}
+              <div>
+                <p className="text-slate-800 dark:text-slate-200">{llmFeedback.summary}</p>
+              </div>
+
+              {/* Strengths */}
+              {llmFeedback.strengths.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-semibold text-emerald-700 dark:text-emerald-400 mb-2">
+                    {lang === 'ja' ? '✨ 強み' : '✨ Strengths'}
+                  </h3>
+                  <ul className="space-y-1">
+                    {llmFeedback.strengths.map((strength, index) => (
+                      <li
+                        key={index}
+                        className="text-sm text-slate-700 dark:text-slate-300 flex items-start gap-2"
+                      >
+                        <span className="text-emerald-600 dark:text-emerald-400 mt-0.5">•</span>
+                        <span>{strength}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Weak Points */}
+              {llmFeedback.weakPoints.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-semibold text-orange-700 dark:text-orange-400 mb-2">
+                    {lang === 'ja' ? '💡 改善点' : '💡 Areas for Improvement'}
+                  </h3>
+                  <ul className="space-y-1">
+                    {llmFeedback.weakPoints.map((point, index) => (
+                      <li
+                        key={index}
+                        className="text-sm text-slate-700 dark:text-slate-300 flex items-start gap-2"
+                      >
+                        <span className="text-orange-600 dark:text-orange-400 mt-0.5">•</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Advice */}
+              {llmFeedback.advice.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-semibold text-sky-700 dark:text-sky-400 mb-2">
+                    {lang === 'ja' ? '🎯 アドバイス' : '🎯 Advice'}
+                  </h3>
+                  <ul className="space-y-1">
+                    {llmFeedback.advice.map((tip, index) => (
+                      <li
+                        key={index}
+                        className="text-sm text-slate-700 dark:text-slate-300 flex items-start gap-2"
+                      >
+                        <span className="text-sky-600 dark:text-sky-400 mt-0.5">•</span>
+                        <span>{tip}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3">
