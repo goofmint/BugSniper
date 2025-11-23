@@ -182,3 +182,10 @@ export async function loader({ params, context, request }: LoaderFunctionArgs) {
     return new Response('Failed to generate OGP image', { status: 500 });
   }
 }
+
+/**
+ * This route only returns images via loader, so we export a null component
+ */
+export default function OgpImage() {
+  return null;
+}

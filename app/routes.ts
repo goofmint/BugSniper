@@ -7,4 +7,5 @@ export default [
   route(':lang/ranking', 'routes/$lang.ranking.tsx'),
   route('result/create', 'routes/result.create.tsx'),
   route('result/:id', 'routes/result.$id.tsx'),
+  route('ogp/:id', 'routes/ogp.$id.tsx'),
 ] satisfies RouteConfig;
