@@ -178,7 +178,7 @@ export default function Result({ loaderData }: Route.ComponentProps) {
                 <span className="text-slate-600 dark:text-slate-400">
                   {lang === 'ja' ? 'コード言語' : 'Code Language'}:
                 </span>
-                <span className="font-medium capitalize">{score.code_language}</span>
+                <span className="font-medium">{getCodeLanguageDisplay(score.code_language)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-600 dark:text-slate-400">
