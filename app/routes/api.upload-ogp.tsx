@@ -33,16 +33,31 @@ export async function action({ request, context }: ActionFunctionArgs) {
 
     // Convert base64 to buffer
     const base64Data = imageData.replace(/^data:image\/png;base64,/, '');
+    console.log('[OGP Upload] Base64 data length:', base64Data.length);
+
     const buffer = Uint8Array.from(atob(base64Data), (c) => c.charCodeAt(0));
+    console.log('[OGP Upload] Buffer size:', buffer.length, 'bytes');
 
     // Upload to R2
     const key = `ogp/${scoreId}.png`;
-    await r2.put(key, buffer, {
+    console.log('[OGP Upload] Uploading to R2 with key:', key);
+
+    const r2Result = await r2.put(key, buffer, {
       httpMetadata: {
         contentType: 'image/png',
         cacheControl: 'public, max-age=31536000, immutable',
       },
     });
+
+    console.log('[OGP Upload] R2 put result:', r2Result);
+
+    // Verify upload by attempting to get the object
+    const verifyGet = await r2.get(key);
+    if (!verifyGet) {
+      console.error('[OGP Upload] Verification failed: Object not found in R2 after upload');
+      throw new Error('Upload verification failed: Object not found in R2');
+    }
+    console.log('[OGP Upload] Upload verified, object exists in R2');
 
     // Get R2 public URL
     // Note: You need to configure R2 public access or custom domain
