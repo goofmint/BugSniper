@@ -1,5 +1,3 @@
-import satori from 'satori';
-import { Resvg, initWasm } from '@resvg/resvg-wasm';
 import type { LoaderFunctionArgs } from 'react-router';
 
 /**
@@ -55,125 +53,50 @@ export async function loader({ params, context, request }: LoaderFunctionArgs) {
       return new Response('Score not found', { status: 404 });
     }
 
-    // Fetch CodeRabbit icon
-    const iconUrl = new URL('/images/coderabbit-icon.png', request.url);
-    const iconResponse = await fetch(iconUrl.toString());
-    const iconBuffer = await iconResponse.arrayBuffer();
-    const iconBase64 = btoa(String.fromCharCode(...new Uint8Array(iconBuffer)));
+    // Generate SVG directly (without using satori)
+    const svg = `
+      <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background -->
+        <rect width="1200" height="630" fill="#000000"/>
 
-    // Fetch font (using Google Fonts API)
-    const fontResponse = await fetch(
-      'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff'
-    );
-    const fontData = await fontResponse.arrayBuffer();
+        <!-- Border -->
+        <rect x="4" y="4" width="1192" height="622" fill="none" stroke="#F1DCEE" stroke-width="8"/>
 
-    // Generate SVG using satori
-    const svg = await satori(
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: '#000000',
-          border: '8px solid #F1DCEE',
-          position: 'relative',
-          fontFamily: 'Inter',
-          color: '#ffffff',
-        }}
-      >
-        {/* Title */}
-        <div
-          style={{
-            fontSize: 48,
-            fontWeight: 'bold',
-            marginBottom: 30,
-          }}
-        >
+        <!-- Title -->
+        <text x="600" y="150" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle">
           Bug Sniper
-        </div>
-        {/* Score */}
-        <div
-          style={{
-            fontSize: 96,
-            fontWeight: 'bold',
-            color: '#38bdf8',
-            marginBottom: 20,
-          }}
-        >
-          {result.score} pt
-        </div>
-        {/* Stats */}
-        <div
-          style={{
-            display: 'flex',
-            gap: 60,
-            fontSize: 32,
-            marginBottom: 20,
-          }}
-        >
-          <div>Issues Found: {result.issues_found}/{result.total_issues}</div>
-          <div>Accuracy: {(result.accuracy * 100).toFixed(1)}%</div>
-        </div>
-        {/* Code Language */}
-        <div
-          style={{
-            fontSize: 28,
-            color: '#94a3b8',
-          }}
-        >
-          {getCodeLanguageDisplay(result.code_language)}
-        </div>
-        {/* CodeRabbit Icon (bottom right) */}
-        <img
-          src={`data:image/png;base64,${iconBase64}`}
-          style={{
-            position: 'absolute',
-            bottom: 20,
-            right: 20,
-            width: 60,
-            height: 60,
-          }}
-        />
-      </div>,
-      {
-        width: 1200,
-        height: 630,
-        fonts: [
-          {
-            name: 'Inter',
-            data: fontData,
-            weight: 400,
-            style: 'normal',
-          },
-        ],
-      }
-    );
+        </text>
 
-    // Initialize resvg-wasm
-    const resvgWasm = await fetch(
-      'https://unpkg.com/@resvg/resvg-wasm/index_bg.wasm'
-    ).then((res) => res.arrayBuffer());
+        <!-- Score -->
+        <text x="600" y="280" font-family="Arial, sans-serif" font-size="96" font-weight="bold" fill="#38bdf8" text-anchor="middle">
+          ${result.score} pt
+        </text>
 
-    await initWasm(resvgWasm);
+        <!-- Issues Found -->
+        <text x="400" y="370" font-family="Arial, sans-serif" font-size="32" fill="#ffffff" text-anchor="middle">
+          Issues Found: ${result.issues_found}/${result.total_issues}
+        </text>
 
-    // Convert SVG to PNG
-    const resvg = new Resvg(svg, {
-      fitTo: {
-        mode: 'width',
-        value: 1200,
-      },
-    });
+        <!-- Accuracy -->
+        <text x="800" y="370" font-family="Arial, sans-serif" font-size="32" fill="#ffffff" text-anchor="middle">
+          Accuracy: ${(result.accuracy * 100).toFixed(1)}%
+        </text>
 
-    const pngData = resvg.render();
-    const pngBuffer = pngData.asPng();
+        <!-- Code Language -->
+        <text x="600" y="430" font-family="Arial, sans-serif" font-size="28" fill="#94a3b8" text-anchor="middle">
+          ${getCodeLanguageDisplay(result.code_language)}
+        </text>
 
-    // Return PNG image
-    return new Response(new Uint8Array(pngBuffer), {
+        <!-- CodeRabbit Icon placeholder (using circle for now) -->
+        <circle cx="1130" cy="570" r="30" fill="#F1DCEE"/>
+        <text x="1130" y="580" font-family="Arial, sans-serif" font-size="16" fill="#000000" text-anchor="middle">CR</text>
+      </svg>
+    `;
+
+    // Return SVG image
+    return new Response(svg, {
       headers: {
-        'Content-Type': 'image/png',
+        'Content-Type': 'image/svg+xml',
         'Cache-Control': 'public, max-age=31536000, immutable',
       },
     });
