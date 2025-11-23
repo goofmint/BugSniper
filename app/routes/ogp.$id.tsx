@@ -35,20 +35,24 @@ function getCodeLanguageDisplay(codeLanguage: string): string {
  * Loader to serve OGP image from R2
  */
 export async function loader({ params, context }: LoaderFunctionArgs) {
+  console.log('[OGP Loader] Called with ID:', params.id);
   const { id } = params;
   const r2 = context.cloudflare.env.R2;
   const db = context.cloudflare.env.DB;
 
   if (!r2 || !db) {
+    console.error('[OGP Loader] R2 or DB not configured');
     return new Response('R2 or DB not configured', { status: 500 });
   }
 
   try {
     // Try to get image from R2
     const key = `ogp/${id}.png`;
+    console.log('[OGP Loader] Fetching from R2:', key);
     const object = await r2.get(key);
 
     if (object) {
+      console.log('[OGP Loader] Image found in R2, returning PNG');
       // Return cached image from R2
       return new Response(object.body, {
         headers: {
@@ -58,6 +62,7 @@ export async function loader({ params, context }: LoaderFunctionArgs) {
       });
     }
 
+    console.log('[OGP Loader] Image not found in R2, generating SVG placeholder');
     // If image doesn't exist in R2, return placeholder SVG
     // (The client will generate and upload the actual image)
     const result = await db
@@ -66,6 +71,7 @@ export async function loader({ params, context }: LoaderFunctionArgs) {
       .first<ScoreRecord>();
 
     if (!result) {
+      console.error('[OGP Loader] Score not found in DB');
       return new Response('Score not found', { status: 404 });
     }
 
@@ -109,6 +115,7 @@ export async function loader({ params, context }: LoaderFunctionArgs) {
       </svg>
     `;
 
+    console.log('[OGP Loader] Returning SVG placeholder');
     return new Response(svg, {
       headers: {
         'Content-Type': 'image/svg+xml',
@@ -116,7 +123,7 @@ export async function loader({ params, context }: LoaderFunctionArgs) {
       },
     });
   } catch (error) {
-    console.error('Failed to serve OGP image:', error);
+    console.error('[OGP Loader] Failed to serve OGP image:', error);
     return new Response('Failed to serve OGP image', { status: 500 });
   }
 }
