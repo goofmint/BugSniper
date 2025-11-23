@@ -1,9 +1,11 @@
 import { data } from 'react-router';
 import { useFetcher } from 'react-router';
+import { useEffect, useRef } from 'react';
 import type { Route } from './+types/result.$id';
 import { Header } from '../components/Header';
 import type { SupportedLanguage } from '../locales';
 import { t } from '../locales';
+import { generateOGPImageBase64 } from '../utils/imageGenerator';
 
 /**
  * Score record type from D1
@@ -19,6 +21,7 @@ type ScoreRecord = {
   player_name: string | null;
   created_at: string;
   llm_feedback: string | null;
+  ogp_image_url: string | null;
 };
 
 /**
@@ -37,20 +40,38 @@ function getCodeLanguageDisplay(codeLanguage: string): string {
 }
 
 /**
- * Meta function to set page title
+ * Meta function to set page title and OGP tags
  */
 export function meta({ data }: Route.MetaArgs) {
   if (!data || !data.score) {
     return [{ title: 'Result Not Found | Bug Sniper' }];
   }
 
-  const { score } = data;
+  const { score, baseUrl } = data;
   const codeLangDisplay = getCodeLanguageDisplay(score.code_language);
+
+  // Construct full URLs for OGP
+  const url = `${baseUrl}/result/${score.id}`;
+  // Use R2 URL if available, otherwise fall back to route-based URL
+  const ogImageUrl = score.ogp_image_url || `${baseUrl}/ogp/${score.id}`;
 
   return [
     {
       title: `${codeLangDisplay} ${score.score}pt | Bug Sniper`,
     },
+    // Open Graph tags
+    { property: 'og:title', content: `Bug Sniper - ${codeLangDisplay} ${score.score}pt` },
+    { property: 'og:description', content: `Found ${score.issues_found}/${score.total_issues} issues with ${(score.accuracy * 100).toFixed(1)}% accuracy` },
+    { property: 'og:image', content: ogImageUrl },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:url', content: url },
+    { property: 'og:type', content: 'website' },
+    // Twitter Card tags
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: `Bug Sniper - ${codeLangDisplay} ${score.score}pt` },
+    { name: 'twitter:description', content: `Found ${score.issues_found}/${score.total_issues} issues with ${(score.accuracy * 100).toFixed(1)}% accuracy` },
+    { name: 'twitter:image', content: ogImageUrl },
   ];
 }
 
@@ -69,6 +90,9 @@ export async function loader({ params, request, context }: Route.LoaderArgs) {
   const url = new URL(request.url);
   const isGameEnd = url.searchParams.get('game_end') === '1';
 
+  // Get the base URL for OGP meta tags
+  const baseUrl = `${url.protocol}//${url.host}`;
+
   try {
     const result = await db
       .prepare('SELECT * FROM scores WHERE id = ?')
@@ -79,7 +103,7 @@ export async function loader({ params, request, context }: Route.LoaderArgs) {
       throw data({ error: 'Score not found' }, { status: 404 });
     }
 
-    return { score: result, isGameEnd };
+    return { score: result, isGameEnd, baseUrl };
   } catch (error) {
     console.error('Failed to fetch score:', error);
     throw data({ error: 'Failed to fetch score' }, { status: 500 });
@@ -138,11 +162,44 @@ type LLMFeedback = {
 export default function Result({ loaderData }: Route.ComponentProps) {
   const { score, isGameEnd } = loaderData;
   const fetcher = useFetcher();
+  const ogpFetcher = useFetcher();
   const lang = (score.ui_language as SupportedLanguage) || 'en';
+  const uploadedRef = useRef(false);
 
   // Check if name update is in progress
   const isUpdating = fetcher.state === 'submitting';
   const hasName = score.player_name !== null;
+
+  // Generate and upload OGP image when page loads (only for game end, once)
+  useEffect(() => {
+    if (isGameEnd && typeof window !== 'undefined' && !uploadedRef.current) {
+      uploadedRef.current = true;
+
+      generateOGPImageBase64({
+        score: score.score,
+        issuesFound: score.issues_found,
+        totalIssues: score.total_issues,
+        accuracy: score.accuracy,
+        codeLanguage: score.code_language,
+      })
+        .then((base64Image) => {
+          // Upload using useFetcher
+          const formData = new FormData();
+          formData.append('scoreId', score.id);
+          formData.append('image', base64Image);
+
+          ogpFetcher.submit(formData, {
+            method: 'POST',
+            action: '/api/upload-ogp',
+          });
+        })
+        .catch((error) => {
+          console.error('Failed to generate OGP image:', error);
+          uploadedRef.current = false; // Reset on error to allow retry
+        });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isGameEnd, score.id]);
 
   // Parse LLM feedback if available (always shown now)
   let llmFeedback: LLMFeedback | null = null;

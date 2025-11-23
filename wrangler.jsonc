@@ -8,7 +8,8 @@
 	"compatibility_date": "2025-04-04",
 	"main": "./workers/app.ts",
 	"vars": {
-		"VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare"
+		"VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare",
+		"R2_PUBLIC_URL": "https://pub-REPLACE_WITH_YOUR_R2_HASH.r2.dev"
 	},
 	"observability": {
 		"enabled": true
@@ -18,6 +19,14 @@
 			"binding": "DB",
 			"database_name": "bug-sniper",
 			"database_id": "0668ca11-9885-45e3-b412-968916d5ac81",
+			"remote": true
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "R2",
+			"bucket_name": "bug-sniper-img",
+			"preview_bucket_name": "bug-sniper-img",
 			"remote": true
 		}
 	]
