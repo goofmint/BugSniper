@@ -1,6 +1,8 @@
 import { data } from 'react-router';
 import type { Route } from './+types/result.create';
 import { nanoid } from '../utils/nanoid';
+import { generateFeedback } from '../utils/gemini';
+import type { LLMFeedback } from '../utils/gemini';
 
 /**
  * Type definition for game result data
@@ -56,14 +58,39 @@ export async function action({ request, context }: Route.ActionArgs) {
   const id = nanoid();
   const createdAt = new Date().toISOString();
 
+  // Generate LLM feedback
+  let llmFeedback: LLMFeedback | null = null;
+  const geminiApiKey = context.cloudflare.env.GEMINI_API_KEY;
+
+  if (geminiApiKey) {
+    try {
+      llmFeedback = await generateFeedback(
+        {
+          score: result.score,
+          issuesFound: result.issuesFound,
+          totalIssues: result.totalIssues,
+          accuracy: result.accuracy,
+          uiLanguage: result.uiLanguage,
+          codeLanguage: result.codeLanguage,
+        },
+        geminiApiKey
+      );
+    } catch (error) {
+      console.error('Failed to generate LLM feedback:', error);
+      // Continue without feedback - this is not critical
+    }
+  } else {
+    console.warn('GEMINI_API_KEY not configured - skipping LLM feedback generation');
+  }
+
   try {
-    // Insert into D1 database
+    // Insert into D1 database with LLM feedback
     await db
       .prepare(
         `INSERT INTO scores (
           id, score, issues_found, total_issues, accuracy,
-          ui_language, code_language, created_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+          ui_language, code_language, created_at, llm_feedback
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
       )
       .bind(
         id,
@@ -73,7 +100,8 @@ export async function action({ request, context }: Route.ActionArgs) {
         result.accuracy,
         result.uiLanguage,
         result.codeLanguage,
-        createdAt
+        createdAt,
+        llmFeedback ? JSON.stringify(llmFeedback) : null
       )
       .run();
 
