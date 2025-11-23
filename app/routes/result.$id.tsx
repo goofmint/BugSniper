@@ -6,6 +6,7 @@ import { Header } from '../components/Header';
 import type { SupportedLanguage } from '../locales';
 import { t } from '../locales';
 import { generateOGPImageBase64 } from '../utils/imageGenerator';
+import { Icon } from '@iconify/react';
 
 /**
  * Score record type from D1
@@ -461,27 +462,17 @@ export default function Result({ loaderData }: Route.ComponentProps) {
 
               {/* Copy URL */}
               <div className="text-center">
-                <div className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+                <button
+                  onClick={() => {
+                    const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+                    const url = `${baseUrl}/result/${score.id}`;
+                    navigator.clipboard.writeText(url);
+                  }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition font-medium"
+                >
+                  <Icon icon="lucide:copy" className="w-5 h-5" />
                   {lang === 'ja' ? 'URLをコピー' : 'Copy URL'}
-                </div>
-                <div className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    readOnly
-                    value={`${typeof window !== 'undefined' ? window.location.origin : ''}/result/${score.id}`}
-                    className="flex-1 px-3 py-2 text-sm rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
-                    onClick={(e) => e.currentTarget.select()}
-                  />
-                  <button
-                    onClick={() => {
-                      const url = `${typeof window !== 'undefined' ? window.location.origin : ''}/result/${score.id}`;
-                      navigator.clipboard.writeText(url);
-                    }}
-                    className="px-4 py-2 text-sm rounded-md bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition font-medium whitespace-nowrap"
-                  >
-                    {lang === 'ja' ? 'コピー' : 'Copy'}
-                  </button>
-                </div>
+                </button>
               </div>
             </div>
           )}
