@@ -6,6 +6,7 @@ import { Header } from '../components/Header';
 import type { SupportedLanguage } from '../locales';
 import { t } from '../locales';
 import { generateOGPImageBase64 } from '../utils/imageGenerator';
+import { Icon } from '@iconify/react';
 
 /**
  * Score record type from D1
@@ -160,7 +161,7 @@ type LLMFeedback = {
  * Result page component
  */
 export default function Result({ loaderData }: Route.ComponentProps) {
-  const { score, isGameEnd } = loaderData;
+  const { score, isGameEnd, baseUrl } = loaderData;
   const fetcher = useFetcher();
   const ogpFetcher = useFetcher();
   const lang = (score.ui_language as SupportedLanguage) || 'en';
@@ -429,26 +430,46 @@ export default function Result({ loaderData }: Route.ComponentProps) {
 
           {/* Share Link - Only shown for game end */}
           {isGameEnd && (
-            <div className="text-center">
-              <div className="text-sm text-slate-600 dark:text-slate-400 mb-2">
-                {lang === 'ja' ? 'この結果をシェア' : 'Share this result'}
+            <div className="space-y-4">
+              {/* Share on X (Twitter) */}
+              <div className="text-center">
+                <div className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+                  {lang === 'ja' ? 'Xでシェア' : 'Share on X'}
+                </div>
+                <a
+                  href={(() => {
+                    const codeLangDisplay = getCodeLanguageDisplay(score.code_language);
+                    const accuracy = (score.accuracy * 100).toFixed(1);
+                    const resultUrl = `${baseUrl}/result/${score.id}`;
+
+                    const tweetText = lang === 'ja'
+                      ? `コードのバグを発見するゲーム、Bug Sniperの${codeLangDisplay}で${score.score}点を獲得しました！（正解率：${accuracy}%）\n\n${resultUrl}\n\nDeveloped with #CodeRabbit`
+                      : `I scored ${score.score} points in Bug Sniper (${codeLangDisplay})! (Accuracy: ${accuracy}%)\n\n${resultUrl}\n\nDeveloped with #CodeRabbit`;
+
+                    return `https://x.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+                  })()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-black dark:bg-white text-white dark:text-black hover:bg-slate-800 dark:hover:bg-slate-100 transition font-medium"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                  {lang === 'ja' ? 'Xでシェア' : 'Share on X'}
+                </a>
               </div>
-              <div className="flex items-center gap-2">
-                <input
-                  type="text"
-                  readOnly
-                  value={`${typeof window !== 'undefined' ? window.location.origin : ''}/result/${score.id}`}
-                  className="flex-1 px-3 py-2 text-sm rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
-                  onClick={(e) => e.currentTarget.select()}
-                />
+
+              {/* Copy URL */}
+              <div className="text-center">
                 <button
                   onClick={() => {
-                    const url = `${typeof window !== 'undefined' ? window.location.origin : ''}/result/${score.id}`;
+                    const url = `${baseUrl}/result/${score.id}`;
                     navigator.clipboard.writeText(url);
                   }}
-                  className="px-4 py-2 text-sm rounded-md bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition font-medium whitespace-nowrap"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition font-medium"
                 >
-                  {lang === 'ja' ? 'コピー' : 'Copy'}
+                  <Icon icon="lucide:copy" className="w-5 h-5" />
+                  {lang === 'ja' ? 'URLをコピー' : 'Copy URL'}
                 </button>
               </div>
             </div>
