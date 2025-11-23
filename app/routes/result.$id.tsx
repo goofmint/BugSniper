@@ -65,9 +65,9 @@ export async function loader({ params, request, context }: Route.LoaderArgs) {
     throw data({ error: 'Database not configured' }, { status: 500 });
   }
 
-  // Check if feedback should be shown (only for players who just finished the game)
+  // Check if this is the player who just finished the game
   const url = new URL(request.url);
-  const showFeedback = url.searchParams.get('enable_feedback') === '1';
+  const isGameEnd = url.searchParams.get('game_end') === '1';
 
   try {
     const result = await db
@@ -79,7 +79,7 @@ export async function loader({ params, request, context }: Route.LoaderArgs) {
       throw data({ error: 'Score not found' }, { status: 404 });
     }
 
-    return { score: result, showFeedback };
+    return { score: result, isGameEnd };
   } catch (error) {
     console.error('Failed to fetch score:', error);
     throw data({ error: 'Failed to fetch score' }, { status: 500 });
@@ -136,7 +136,7 @@ type LLMFeedback = {
  * Result page component
  */
 export default function Result({ loaderData }: Route.ComponentProps) {
-  const { score, showFeedback } = loaderData;
+  const { score, isGameEnd } = loaderData;
   const fetcher = useFetcher();
   const lang = (score.ui_language as SupportedLanguage) || 'en';
 
@@ -144,9 +144,9 @@ export default function Result({ loaderData }: Route.ComponentProps) {
   const isUpdating = fetcher.state === 'submitting';
   const hasName = score.player_name !== null;
 
-  // Parse LLM feedback if available
+  // Parse LLM feedback if available (always shown now)
   let llmFeedback: LLMFeedback | null = null;
-  if (showFeedback && score.llm_feedback) {
+  if (score.llm_feedback) {
     try {
       llmFeedback = JSON.parse(score.llm_feedback);
     } catch (error) {
@@ -217,49 +217,62 @@ export default function Result({ loaderData }: Route.ComponentProps) {
 
           {/* Player Name Section */}
           <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-6">
-            {hasName ? (
+            {isGameEnd ? (
+              // Game end view: Show name input or registered name
+              hasName ? (
+                <div className="text-center">
+                  <div className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+                    {lang === 'ja' ? 'プレイヤー名' : 'Player Name'}
+                  </div>
+                  <div className="text-xl font-semibold">{score.player_name}</div>
+                </div>
+              ) : (
+                <fetcher.Form method="post" className="space-y-3">
+                  <label className="block">
+                    <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                      {lang === 'ja'
+                        ? 'プレイヤー名を登録（任意）'
+                        : 'Register Player Name (Optional)'}
+                    </span>
+                    <input
+                      type="text"
+                      name="playerName"
+                      maxLength={50}
+                      required
+                      disabled={isUpdating}
+                      className="mt-1 w-full px-3 py-2 rounded-md bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 disabled:opacity-50"
+                      placeholder={lang === 'ja' ? 'あなたの名前' : 'Your name'}
+                    />
+                  </label>
+                  <button
+                    type="submit"
+                    disabled={isUpdating}
+                    className="w-full py-2 rounded-md bg-sky-500 text-white hover:bg-sky-600 active:bg-sky-700 transition disabled:opacity-50 font-medium"
+                  >
+                    {isUpdating
+                      ? lang === 'ja'
+                        ? '登録中...'
+                        : 'Saving...'
+                      : lang === 'ja'
+                        ? '名前を登録'
+                        : 'Save Name'}
+                  </button>
+                </fetcher.Form>
+              )
+            ) : (
+              // Shared link view: Show name as text or "Unregistered"
               <div className="text-center">
                 <div className="text-sm text-slate-600 dark:text-slate-400 mb-2">
                   {lang === 'ja' ? 'プレイヤー名' : 'Player Name'}
                 </div>
-                <div className="text-xl font-semibold">{score.player_name}</div>
+                <div className="text-xl font-semibold">
+                  {score.player_name || (lang === 'ja' ? '未登録ユーザー' : 'Unregistered User')}
+                </div>
               </div>
-            ) : (
-              <fetcher.Form method="post" className="space-y-3">
-                <label className="block">
-                  <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                    {lang === 'ja'
-                      ? 'プレイヤー名を登録（任意）'
-                      : 'Register Player Name (Optional)'}
-                  </span>
-                  <input
-                    type="text"
-                    name="playerName"
-                    maxLength={50}
-                    required
-                    disabled={isUpdating}
-                    className="mt-1 w-full px-3 py-2 rounded-md bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 disabled:opacity-50"
-                    placeholder={lang === 'ja' ? 'あなたの名前' : 'Your name'}
-                  />
-                </label>
-                <button
-                  type="submit"
-                  disabled={isUpdating}
-                  className="w-full py-2 rounded-md bg-sky-500 text-white hover:bg-sky-600 active:bg-sky-700 transition disabled:opacity-50 font-medium"
-                >
-                  {isUpdating
-                    ? lang === 'ja'
-                      ? '登録中...'
-                      : 'Saving...'
-                    : lang === 'ja'
-                      ? '名前を登録'
-                      : 'Save Name'}
-                </button>
-              </fetcher.Form>
             )}
           </div>
 
-          {/* LLM Feedback Section - Only shown when enable_feedback=1 */}
+          {/* LLM Feedback Section - Always shown if available */}
           {llmFeedback && (
             <div className="bg-gradient-to-br from-sky-50 to-blue-50 dark:from-slate-800 dark:to-slate-700 rounded-lg p-6 space-y-4 border border-sky-200 dark:border-slate-600">
               <div className="flex items-center gap-2 mb-3">
@@ -341,7 +354,13 @@ export default function Result({ loaderData }: Route.ComponentProps) {
               href={`/${lang}`}
               className="flex-1 py-3 text-center rounded-md bg-sky-500 text-white hover:bg-sky-600 active:bg-sky-700 transition font-medium"
             >
-              {lang === 'ja' ? 'もう一度プレイ' : 'Play Again'}
+              {isGameEnd
+                ? lang === 'ja'
+                  ? 'もう一度プレイ'
+                  : 'Play Again'
+                : lang === 'ja'
+                  ? '挑戦する'
+                  : 'Play'}
             </a>
             <a
               href={`/${lang}/ranking`}
@@ -351,30 +370,32 @@ export default function Result({ loaderData }: Route.ComponentProps) {
             </a>
           </div>
 
-          {/* Share Link */}
-          <div className="text-center">
-            <div className="text-sm text-slate-600 dark:text-slate-400 mb-2">
-              {lang === 'ja' ? 'この結果をシェア' : 'Share this result'}
+          {/* Share Link - Only shown for game end */}
+          {isGameEnd && (
+            <div className="text-center">
+              <div className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+                {lang === 'ja' ? 'この結果をシェア' : 'Share this result'}
+              </div>
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  readOnly
+                  value={`${typeof window !== 'undefined' ? window.location.origin : ''}/result/${score.id}`}
+                  className="flex-1 px-3 py-2 text-sm rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
+                  onClick={(e) => e.currentTarget.select()}
+                />
+                <button
+                  onClick={() => {
+                    const url = `${typeof window !== 'undefined' ? window.location.origin : ''}/result/${score.id}`;
+                    navigator.clipboard.writeText(url);
+                  }}
+                  className="px-4 py-2 text-sm rounded-md bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition font-medium whitespace-nowrap"
+                >
+                  {lang === 'ja' ? 'コピー' : 'Copy'}
+                </button>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                readOnly
-                value={`${typeof window !== 'undefined' ? window.location.origin : ''}/result/${score.id}`}
-                className="flex-1 px-3 py-2 text-sm rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"
-                onClick={(e) => e.currentTarget.select()}
-              />
-              <button
-                onClick={() => {
-                  const url = `${typeof window !== 'undefined' ? window.location.origin : ''}/result/${score.id}`;
-                  navigator.clipboard.writeText(url);
-                }}
-                className="px-4 py-2 text-sm rounded-md bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition font-medium whitespace-nowrap"
-              >
-                {lang === 'ja' ? 'コピー' : 'Copy'}
-              </button>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </>
