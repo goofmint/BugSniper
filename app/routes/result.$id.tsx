@@ -21,6 +21,7 @@ type ScoreRecord = {
   player_name: string | null;
   created_at: string;
   llm_feedback: string | null;
+  ogp_image_url: string | null;
 };
 
 /**
@@ -51,7 +52,8 @@ export function meta({ data }: Route.MetaArgs) {
 
   // Construct full URLs for OGP
   const url = `${baseUrl}/result/${score.id}`;
-  const ogImageUrl = `${baseUrl}/ogp/${score.id}`;
+  // Use R2 URL if available, otherwise fall back to route-based URL
+  const ogImageUrl = score.ogp_image_url || `${baseUrl}/ogp/${score.id}`;
 
   return [
     {

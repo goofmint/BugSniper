@@ -6,10 +6,11 @@ import type { ActionFunctionArgs } from 'react-router';
 export async function action({ request, context }: ActionFunctionArgs) {
   console.log('[OGP Upload] Action called');
   const r2 = context.cloudflare.env.R2;
+  const db = context.cloudflare.env.DB;
 
-  if (!r2) {
-    console.error('[OGP Upload] R2 not configured');
-    return new Response(JSON.stringify({ error: 'R2 not configured' }), {
+  if (!r2 || !db) {
+    console.error('[OGP Upload] R2 or DB not configured');
+    return new Response(JSON.stringify({ error: 'R2 or DB not configured' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -49,6 +50,12 @@ export async function action({ request, context }: ActionFunctionArgs) {
     // Or custom domain: https://r2.yourdomain.com/<key>
     const publicUrl = context.cloudflare.env.R2_PUBLIC_URL || 'https://pub-REPLACE_THIS.r2.dev';
     const url = `${publicUrl}/${key}`;
+
+    // Save URL to database
+    await db
+      .prepare('UPDATE scores SET ogp_image_url = ? WHERE id = ?')
+      .bind(url, scoreId)
+      .run();
 
     console.log('[OGP Upload] Upload successful, URL:', url);
     return new Response(JSON.stringify({ url }), {
