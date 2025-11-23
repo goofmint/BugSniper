@@ -135,65 +135,7 @@ Note: Output only JSON, without any other explanation.`;
     return feedback;
   } catch (error) {
     console.error('Failed to generate feedback:', error);
-
-    // Return fallback feedback based on language
-    return getFallbackFeedback(input);
-  }
-}
-
-/**
- * Generate fallback feedback when API fails
- * @param input - Game result data
- * @returns Fallback feedback object
- */
-function getFallbackFeedback(input: FeedbackInput): LLMFeedback {
-  const { score, accuracy, uiLanguage } = input;
-
-  if (uiLanguage === 'ja') {
-    const summary =
-      accuracy >= 0.8
-        ? `素晴らしい結果です！${score}点を獲得しました。`
-        : accuracy >= 0.5
-          ? `良い結果です！${score}点を獲得しました。`
-          : `${score}点を獲得しました。練習を重ねて上達しましょう。`;
-
-    return {
-      summary,
-      strengths:
-        accuracy >= 0.5
-          ? ['コードの問題を見つける能力が優れています', '集中力を維持できています']
-          : ['ゲームの基本を理解しています'],
-      weakPoints:
-        accuracy < 0.8
-          ? ['正答率を上げる余地があります', 'より多くの問題パターンに慣れましょう']
-          : ['完璧です！'],
-      advice: [
-        'さまざまなコード言語で練習してみましょう',
-        'セキュリティ、バグ、パフォーマンスの各カテゴリに注目しましょう',
-      ],
-    };
-  } else {
-    const summary =
-      accuracy >= 0.8
-        ? `Excellent work! You scored ${score} points.`
-        : accuracy >= 0.5
-          ? `Good job! You scored ${score} points.`
-          : `You scored ${score} points. Keep practicing to improve!`;
-
-    return {
-      summary,
-      strengths:
-        accuracy >= 0.5
-          ? ['Strong ability to identify code issues', 'Good focus and concentration']
-          : ['Understanding of game basics'],
-      weakPoints:
-        accuracy < 0.8
-          ? ['Room to improve accuracy', 'Familiarize yourself with more issue patterns']
-          : ['Perfect performance!'],
-      advice: [
-        'Try practicing with different code languages',
-        'Focus on security, bug, and performance categories',
-      ],
-    };
+    // Re-throw the error to make failures visible
+    throw error;
   }
 }
