@@ -101,6 +101,12 @@ export async function generateShareImage(data: ShareImageData): Promise<Blob> {
   ctx.font = '28px Arial, sans-serif';
   ctx.fillText(getCodeLanguageDisplay(codeLanguage), 600, 430);
 
+  // "Developed with" text (bottom right, before icon)
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '20px Arial, sans-serif';
+  ctx.textAlign = 'right';
+  ctx.fillText('Developed with ', 1090, 575);
+
   // Load and draw CodeRabbit icon (bottom right)
   try {
     const icon = await loadImage('/images/coderabbit-icon.png');
@@ -114,6 +120,7 @@ export async function generateShareImage(data: ShareImageData): Promise<Blob> {
     ctx.fill();
     ctx.fillStyle = '#000000';
     ctx.font = '16px Arial, sans-serif';
+    ctx.textAlign = 'center';
     ctx.fillText('CR', 1130, 580);
   }
 
