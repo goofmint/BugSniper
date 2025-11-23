@@ -26,7 +26,8 @@
 		{
 			"binding": "R2",
 			"bucket_name": "bug-sniper-img",
-			"preview_bucket_name": "bug-sniper-img-preview"
+			"preview_bucket_name": "bug-sniper-img",
+			"remote": true
 		}
 	]
 	/**
