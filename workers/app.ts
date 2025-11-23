@@ -1,5 +1,13 @@
 import { createRequestHandler } from 'react-router';
 
+/**
+ * Cloudflare Workers environment bindings
+ */
+interface Env {
+  DB: D1Database;
+  GEMINI_API_KEY?: string;
+}
+
 declare module 'react-router' {
   export interface AppLoadContext {
     cloudflare: {

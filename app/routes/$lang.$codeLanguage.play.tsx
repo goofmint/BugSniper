@@ -228,7 +228,8 @@ export default function Play({ loaderData }: Route.ComponentProps) {
       const data = fetcher.data as { success?: boolean; id?: string; error?: string };
 
       if (data.success && data.id) {
-        navigate(`/result/${data.id}`);
+        // Add game_end parameter to show player-specific UI
+        navigate(`/result/${data.id}?game_end=1`);
       } else if (data.error) {
         setError(data.error);
       } else if (!data.success) {
