@@ -161,7 +161,7 @@ type LLMFeedback = {
  * Result page component
  */
 export default function Result({ loaderData }: Route.ComponentProps) {
-  const { score, isGameEnd } = loaderData;
+  const { score, isGameEnd, baseUrl } = loaderData;
   const fetcher = useFetcher();
   const ogpFetcher = useFetcher();
   const lang = (score.ui_language as SupportedLanguage) || 'en';
@@ -440,7 +440,6 @@ export default function Result({ loaderData }: Route.ComponentProps) {
                   href={(() => {
                     const codeLangDisplay = getCodeLanguageDisplay(score.code_language);
                     const accuracy = (score.accuracy * 100).toFixed(1);
-                    const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
                     const resultUrl = `${baseUrl}/result/${score.id}`;
 
                     const tweetText = lang === 'ja'
@@ -464,7 +463,6 @@ export default function Result({ loaderData }: Route.ComponentProps) {
               <div className="text-center">
                 <button
                   onClick={() => {
-                    const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
                     const url = `${baseUrl}/result/${score.id}`;
                     navigator.clipboard.writeText(url);
                   }}
