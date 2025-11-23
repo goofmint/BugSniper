@@ -5,7 +5,7 @@ import type { Route } from './+types/result.$id';
 import { Header } from '../components/Header';
 import type { SupportedLanguage } from '../locales';
 import { t } from '../locales';
-import { generateAndUploadOGPImage } from '../utils/imageGenerator';
+import { generateOGPImageBase64 } from '../utils/imageGenerator';
 
 /**
  * Score record type from D1
@@ -160,6 +160,7 @@ type LLMFeedback = {
 export default function Result({ loaderData }: Route.ComponentProps) {
   const { score, isGameEnd } = loaderData;
   const fetcher = useFetcher();
+  const ogpFetcher = useFetcher();
   const lang = (score.ui_language as SupportedLanguage) || 'en';
 
   // Check if name update is in progress
@@ -169,17 +170,29 @@ export default function Result({ loaderData }: Route.ComponentProps) {
   // Generate and upload OGP image when page loads (only for game end)
   useEffect(() => {
     if (isGameEnd && typeof window !== 'undefined') {
-      generateAndUploadOGPImage(score.id, {
+      generateOGPImageBase64({
         score: score.score,
         issuesFound: score.issues_found,
         totalIssues: score.total_issues,
         accuracy: score.accuracy,
         codeLanguage: score.code_language,
-      }).catch((error) => {
-        console.error('Failed to generate OGP image:', error);
-      });
+      })
+        .then((base64Image) => {
+          // Upload using useFetcher
+          const formData = new FormData();
+          formData.append('scoreId', score.id);
+          formData.append('image', base64Image);
+
+          ogpFetcher.submit(formData, {
+            method: 'POST',
+            action: '/api/upload-ogp',
+          });
+        })
+        .catch((error) => {
+          console.error('Failed to generate OGP image:', error);
+        });
     }
-  }, [isGameEnd, score]);
+  }, [isGameEnd, score.id, score.score, score.issues_found, score.total_issues, score.accuracy, score.code_language, ogpFetcher]);
 
   // Parse LLM feedback if available (always shown now)
   let llmFeedback: LLMFeedback | null = null;

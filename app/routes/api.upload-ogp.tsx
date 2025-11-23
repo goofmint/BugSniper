@@ -4,10 +4,15 @@ import type { ActionFunctionArgs } from 'react-router';
  * Upload OGP image to R2
  */
 export async function action({ request, context }: ActionFunctionArgs) {
+  console.log('[OGP Upload] Action called');
   const r2 = context.cloudflare.env.R2;
 
   if (!r2) {
-    return Response.json({ error: 'R2 not configured' }, { status: 500 });
+    console.error('[OGP Upload] R2 not configured');
+    return new Response(JSON.stringify({ error: 'R2 not configured' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
   try {
@@ -15,8 +20,14 @@ export async function action({ request, context }: ActionFunctionArgs) {
     const scoreId = formData.get('scoreId') as string;
     const imageData = formData.get('image') as string;
 
+    console.log('[OGP Upload] ScoreId:', scoreId, 'ImageData length:', imageData?.length);
+
     if (!scoreId || !imageData) {
-      return Response.json({ error: 'Missing scoreId or image' }, { status: 400 });
+      console.error('[OGP Upload] Missing scoreId or image');
+      return new Response(JSON.stringify({ error: 'Missing scoreId or image' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
     // Convert base64 to buffer
@@ -33,12 +44,18 @@ export async function action({ request, context }: ActionFunctionArgs) {
     });
 
     // Return the R2 URL (you may need to configure a custom domain for R2)
-    const url = `/r2/ogp/${scoreId}.png`;
+    const url = `/ogp/${scoreId}`;
 
-    return Response.json({ url });
+    console.log('[OGP Upload] Upload successful, URL:', url);
+    return new Response(JSON.stringify({ url }), {
+      headers: { 'Content-Type': 'application/json' },
+    });
   } catch (error) {
-    console.error('Failed to upload OGP image:', error);
-    return Response.json({ error: 'Failed to upload image' }, { status: 500 });
+    console.error('[OGP Upload] Failed to upload OGP image:', error);
+    return new Response(JSON.stringify({ error: 'Failed to upload image' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 }
 

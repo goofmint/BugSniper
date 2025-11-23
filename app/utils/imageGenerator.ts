@@ -134,33 +134,10 @@ export async function generateShareImage(data: ShareImageData): Promise<Blob> {
 }
 
 /**
- * Generate and upload OGP image to server
- * Returns the data URL of the generated image
+ * Generate OGP image and return as base64
+ * (Upload should be done via useFetcher in component)
  */
-export async function generateAndUploadOGPImage(
-  scoreId: string,
-  data: ShareImageData
-): Promise<string> {
-  // Generate image
+export async function generateOGPImageBase64(data: ShareImageData): Promise<string> {
   const blob = await generateShareImage(data);
-
-  // Convert to base64
-  const base64 = await blobToBase64(blob);
-
-  // Upload to server
-  const formData = new FormData();
-  formData.append('scoreId', scoreId);
-  formData.append('image', base64);
-
-  const response = await fetch('/api/upload-ogp', {
-    method: 'POST',
-    body: formData,
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to upload OGP image');
-  }
-
-  const result = await response.json();
-  return result.url;
+  return await blobToBase64(blob);
 }
