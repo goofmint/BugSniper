@@ -9,9 +9,9 @@ export const gameConfig = {
    * 各レベルから選択する問題数
    */
   problemsPerLevel: {
-    1: 20,  // Level 1 problems
-    2: 20,  // Level 2 problems
-    3: 20,  // Level 3 problems
+    1: 6,  // Level 1 problems
+    2: 4,  // Level 2 problems
+    3: 3,  // Level 3 problems
   },
 
   /**
