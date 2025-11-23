@@ -75,9 +75,9 @@ Output in the following JSON format:
 Note: Output only JSON, without any other explanation.`;
 
   try {
-    // Call Gemini API
+    // Call Gemini API (using gemini-1.5-flash model)
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: {
@@ -117,10 +117,14 @@ Note: Output only JSON, without any other explanation.`;
       }>;
     };
 
+    // Debug: Log the full response structure
+    console.log('Gemini API response:', JSON.stringify(data, null, 2));
+
     // Extract text from Gemini response
     const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
     if (!generatedText) {
+      console.error('Failed to extract text from response. Full response:', JSON.stringify(data, null, 2));
       throw new Error('No text generated from Gemini API');
     }
 
