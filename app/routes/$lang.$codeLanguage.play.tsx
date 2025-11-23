@@ -3,7 +3,7 @@ import { redirect, useFetcher, useNavigate } from 'react-router';
 import type { Route } from './+types/$lang.$codeLanguage.play';
 import type { SupportedLanguage } from '../locales';
 import { t } from '../locales';
-import type { CodeLanguageOrAll, Problem } from '../problems';
+import type { CodeLanguageOrAll, Problem, Issue } from '../problems';
 import { getProblems, calculateScore } from '../problems';
 import { Header } from '../components/Header';
 import { gameConfig } from '../config/game';
@@ -143,6 +143,7 @@ export default function Play({ loaderData }: Route.ComponentProps) {
   const [feedbackMessage, setFeedbackMessage] = useState<{
     type: 'correct' | 'wrong' | 'complete';
     text: string;
+    issue?: Issue;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -274,6 +275,7 @@ export default function Play({ loaderData }: Route.ComponentProps) {
           setFeedbackMessage({
             type: 'correct',
             text: `+${scoreGain} (${t('label.combo', lang)}: ${newCombo}x)`,
+            issue: hitIssue,
           });
 
           return {
@@ -459,7 +461,7 @@ export default function Play({ loaderData }: Route.ComponentProps) {
         {/* Floating Feedback message */}
         {feedbackMessage && (
           <div
-            className={`fixed top-20 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-lg shadow-lg text-center text-sm font-semibold animate-in fade-in slide-in-from-top-2 duration-300 ${
+            className={`fixed top-20 left-1/2 -translate-x-1/2 z-50 rounded-lg shadow-lg animate-in fade-in slide-in-from-top-2 duration-300 max-w-md ${
               feedbackMessage.type === 'correct'
                 ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200'
                 : feedbackMessage.type === 'complete'
@@ -467,7 +469,45 @@ export default function Play({ loaderData }: Route.ComponentProps) {
                 : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
             }`}
           >
-            {feedbackMessage.text}
+            {feedbackMessage.issue ? (
+              <div className="px-6 py-4 space-y-2">
+                <div className="text-center text-sm font-semibold">
+                  {feedbackMessage.text}
+                </div>
+                <div className="border-t border-emerald-200 dark:border-emerald-700 pt-2 space-y-1.5">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-medium">{t('label.type', lang)}:</span>
+                    <span className="capitalize">{feedbackMessage.issue.type}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-medium">{t('label.severity', lang)}:</span>
+                    <span className={`capitalize font-medium ${
+                      feedbackMessage.issue.severity === 'critical'
+                        ? 'text-red-600 dark:text-red-400'
+                        : feedbackMessage.issue.severity === 'normal'
+                        ? 'text-orange-600 dark:text-orange-400'
+                        : 'text-slate-600 dark:text-slate-400'
+                    }`}>
+                      {feedbackMessage.issue.severity}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-medium">{t('label.baseScore', lang)}:</span>
+                    <span>{feedbackMessage.issue.score}</span>
+                  </div>
+                  <div className="text-xs pt-1">
+                    <div className="font-medium mb-1">{t('label.description', lang)}:</div>
+                    <div className="text-xs leading-relaxed">
+                      {feedbackMessage.issue.description[lang]}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="px-6 py-3 text-center text-sm font-semibold">
+                {feedbackMessage.text}
+              </div>
+            )}
           </div>
         )}
 
