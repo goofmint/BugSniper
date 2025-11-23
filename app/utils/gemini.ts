@@ -95,7 +95,7 @@ Note: Output only JSON, without any other explanation.`;
           ],
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: 1000,
+            maxOutputTokens: 2048,
           },
         }),
       }
@@ -114,14 +114,23 @@ Note: Output only JSON, without any other explanation.`;
             text?: string;
           }>;
         };
+        finishReason?: string;
       }>;
     };
 
     // Debug: Log the full response structure
     console.log('Gemini API response:', JSON.stringify(data, null, 2));
 
+    const candidate = data.candidates?.[0];
+
+    // Check for MAX_TOKENS finish reason
+    if (candidate?.finishReason === 'MAX_TOKENS') {
+      console.error('Response truncated due to MAX_TOKENS. Consider increasing maxOutputTokens.');
+      throw new Error('Gemini response was truncated due to token limit. Please try again.');
+    }
+
     // Extract text from Gemini response
-    const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    const generatedText = candidate?.content?.parts?.[0]?.text;
 
     if (!generatedText) {
       console.error('Failed to extract text from response. Full response:', JSON.stringify(data, null, 2));
