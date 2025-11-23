@@ -43,8 +43,12 @@ export async function action({ request, context }: ActionFunctionArgs) {
       },
     });
 
-    // Return the R2 URL (you may need to configure a custom domain for R2)
-    const url = `/ogp/${scoreId}`;
+    // Get R2 public URL
+    // Note: You need to configure R2 public access or custom domain
+    // Format: https://pub-<hash>.r2.dev/<key>
+    // Or custom domain: https://r2.yourdomain.com/<key>
+    const publicUrl = context.cloudflare.env.R2_PUBLIC_URL || 'https://pub-REPLACE_THIS.r2.dev';
+    const url = `${publicUrl}/${key}`;
 
     console.log('[OGP Upload] Upload successful, URL:', url);
     return new Response(JSON.stringify({ url }), {
