@@ -447,7 +447,7 @@ export default function Result({ loaderData }: Route.ComponentProps) {
                       ? `コードのバグを発見するゲーム、Bug Sniperの${codeLangDisplay}で${score.score}点を獲得しました！（正解率：${accuracy}%）\n\n${resultUrl}\n\nDeveloped with #CodeRabbit`
                       : `I scored ${score.score} points in Bug Sniper (${codeLangDisplay})! (Accuracy: ${accuracy}%)\n\n${resultUrl}\n\nDeveloped with #CodeRabbit`;
 
-                    return `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+                    return `https://x.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
                   })()}
                   target="_blank"
                   rel="noopener noreferrer"
