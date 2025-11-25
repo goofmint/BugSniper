@@ -16,7 +16,7 @@
   "issues": [
     {
       "id": "java-l3-012-1",
-      "lines": [6, 7],
+      "lines": [5],
       "type": "bug",
       "severity": "critical",
       "score": 4,

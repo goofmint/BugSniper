@@ -15,7 +15,7 @@
   "issues": [
     {
       "id": "rb-l1-013-1",
-      "lines": [7],
+      "lines": [3],
       "type": "bug",
       "severity": "critical",
       "score": 4,
