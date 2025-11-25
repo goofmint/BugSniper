@@ -14,8 +14,7 @@
   "issues": [
     {
       "id": "php-l1-009-1",
-      "lines": [3,
-        4],
+      "lines": [4, 5],
       "type": "bug",
       "severity": "critical",
       "score": 4,
